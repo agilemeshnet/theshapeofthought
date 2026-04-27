@@ -61,7 +61,7 @@ The paper, the seed, and the cognitive cycle all follow the same structure:
 
 ## Highlights
 
-- **Substrate-independent cognition** - the architecture survives model swaps. Swap the LLM, keep the mind. Tested across Claude Opus 4.6, 4.7, and back.
+- **Substrate-independent cognition** - the architecture survives model swaps. Swap the LLM, keep the mind. Tested across Claude Opus 4.6, 4.7, Grok and a little bit of Kimi and back.
 - **Flock vote** - decisions as continuous distributed consensus, not single judgments. Like starlings: no leader, coherent movement.
 - **Three-button cell** - Act, Dismiss, Ask-sibling. The minimum ethical decision surface. Three, not two - the third button is the architectural guarantee against premature certainty.
 - **Architecturally facilitated kindness** - the system's resistance to flattening dimensional content onto a single axis. A structural property, not a policy.
