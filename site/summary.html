@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summary - The Shape of Thought</title>
+<meta name="description" content="A structured summary of The Shape of Thought. The five shapes of cognitive storage, the Episode-Fable memory primitives, and twelve testable predictions.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="index.html" class="site-title">The Shape of Thought</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="summary.html" class="active">Summary</a></li>
+            <li><a href="paper.html">Paper</a></li>
+            <li><a href="predictions.html">Predictions</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container">
+        <h1>Summary</h1>
+        <p class="subtitle">The Shape of Thought in 4,000 Words</p>
+        <p class="author">Peter Cooper</p>
+        <p class="author" style="font-size:0.85em; font-weight:400; color:var(--dim); margin-top:-4px;">Philosophy Engineer</p>
+    </div>
+</header>
+
+<main class="page-content">
+    <div class="container">
+
+        <!-- ============================================================ -->
+        <!-- 1. THE PROBLEM                                                -->
+        <!-- ============================================================ -->
+
+        <h2>The Problem</h2>
+
+        <p>A cat sat on a mat. You read that sentence and rebuilt a four-dimensional scene - a room, a floor surface, a small animal, a moment in time, a faint implication that somebody put the cat there or that the cat chose the mat. Six words. You filled in the rest because you and the writer share enough prior context to decompress the same sentence into the same room.</p>
+
+        <p>That shared decompression is exactly what current artificial cognition cannot do.</p>
+
+        <p>Today's AI memory systems store experiences as one of three things: flat text chunks retrieved by keyword or cosine similarity, graph edges linking named entities, or vector points floating in high-dimensional space. Each representation captures something real. None of them captures enough. A text chunk loses structure. A graph edge loses fuzzy similarity. A vector point loses interpretable relations. And all three lose time - not clock time stamped on a record, but the lived temporal axis along which an experience accumulated its meaning.</p>
+
+        <p>The consequences are not hypothetical. An MIT report found that 95% of generative AI pilots were failing to reach production, and the failure mode was overwhelmingly representational: the systems could not remember what had happened in a way that supported reasoning about what should happen next. Benchmarks confirm the pattern. On CounterBench, large language models perform at near random-guessing levels on counterfactual reasoning - the kind that requires holding a temporal trajectory and asking what would have happened if one event had gone differently. The models have the parameters. They lack the shape.</p>
+
+        <p>The paper asks a structural question: is the failure accidental, or does it follow from storing information in fewer shapes than the information requires? And if the latter, how many shapes are enough?</p>
+
+        <!-- ============================================================ -->
+        <!-- 2. THE SHAPE BASIS CONJECTURE                                 -->
+        <!-- ============================================================ -->
+
+        <h2>The Shape Basis Conjecture</h2>
+
+        <p>The central claim is that five representation shapes recur wherever cognition stores anything - biological or digital, ancient or modern, individual or institutional - and that these five are the minimum set required to hold an experience without dimensional loss.</p>
+
+        <div class="callout">
+            <p><strong>Binary</strong> - byte-level substrate. Sequential scan. The shape of raw signal: bits carried in order, meaning deferred to higher layers. Every storage system rests on a binary floor, from DNA base pairs to magnetic domains on a disk platter.</p>
+
+            <p><strong>Table</strong> - rows and columns. Projection, selection, join. The shape of structured enumeration, rigid and fast when the schema fits the data, brittle when it does not. A census, a spreadsheet, a relational database - all tables.</p>
+
+            <p><strong>Graph</strong> - nodes and typed edges. Traversal. The shape of relationship treated as a first-class object. Expensive to aggregate across, but indispensable for representing that Alice knows Bob and Bob owns a cat that sat on a mat. Knowledge graphs, social networks, citation webs - all graphs.</p>
+
+            <p><strong>Vector</strong> - points in real-valued space. Nearest-neighbour retrieval. The shape of fuzzy similarity, where proximity stands for likeness. Powerful for "find me something like this" but fundamentally uninterpretable: the axes carry no human-readable labels. Embeddings, latent spaces, principal components - all vectors.</p>
+
+            <p><strong>Ledger</strong> - a shared, append-only temporal axis running beneath the other four. Not a timestamp column. Not a log table. A structural commitment that every event is recorded in the order it occurred, is never overwritten, and is available to any participant who needs to reason about what came before. The paper claims this is the fourth dimension of cognitive storage, not a decoration on the other three.</p>
+        </div>
+
+        <p>The formal conjecture is stated as follows. The cognitive morphology of any system processing information at bandwidth B, over temporal horizon H, with representational dimensionality D, requires a minimum of five representation shapes to be held without dimensional loss. Any proper subset produces measurable dimensional collapse.</p>
+
+        <div class="equation-box">
+            <div class="equation">&Psi;(B, H, D) requires {b, t} &otimes; {g, v} &otimes; {l}</div>
+            <div class="explanation">
+                Bandwidth maps to binary and table (2 shapes). Dimensionality maps to graph and vector (2 shapes). Temporal horizon maps to the ledger (1 shape). The decomposition is 2 + 2 + 1 = 5.
+            </div>
+        </div>
+
+        <p>The claim is not that these shapes are new. Every one of them is ancient. The claim is that they recur together, at every scale, and that the recurrence is structural rather than coincidental. The paper traces eight independent historical epochs of ledger discovery to support this: Babylonian astronomical diaries (systematic celestial records maintained across centuries of observers), Vedic oral transmission (multi-generational chains of verbatim preservation), Chinese dynastic annals (state-maintained append-only histories), Talmudic commentary (layered interpretation preserving every prior voice), Islamic isnad chains (provenance metadata tracking who told whom what and when), Bar Ilan responsa (centuries of rabbinical rulings indexed as temporal precedent), the Greenwich Observatory notebooks (continuous instrumental recording by successive astronomers), and modern bitemporal databases (which distinguish "when did we learn this" from "when did it happen").</p>
+
+        <p>These eight traditions arose independently across millennia, geographies, and substrates. None copied the others. All converged on the same structural commitment: append, never overwrite, and let later readers reason across the accumulated sequence.</p>
+
+        <h3>Why all five are needed</h3>
+
+        <p>Drop any one shape and something specific collapses. Drop binary and you lose the ability to carry raw signal at substrate rate. Drop the table and you lose structured enumeration - the census, the balance sheet, the lookup. Drop the graph and you lose named relationships between entities. Drop the vector and you lose fuzzy similarity retrieval. Drop the ledger and you lose temporal reasoning - the ability to ask "what happened before this, and why did that sequence matter?"</p>
+
+        <p>Recent empirical evidence sharpens the point. Zep's Graphiti system, which layers a temporal knowledge graph over dialogue memory, achieved 94.8% accuracy on a benchmark where flat retrieval-augmented generation scored 30-40% - a gap of 50-60 points attributable to adding graph and temporal structure to what had been flat text. The LongMemEval benchmark found that structured memory (71.2%) outperformed full-context retrieval (60.2%) while using 98.6% fewer tokens. And MemPalace, published independently in April 2026, converged on the same finding from a different direction: verbatim storage outperforms summary, and structured retrieval outperforms flat, by margins large enough to be architecturally significant.</p>
+
+        <p>The pattern is consistent: every time a system adds a missing shape, performance jumps. The conjecture says this is not coincidence but necessity - that five is the minimum because the information itself has five-dimensional structure, and fewer shapes cannot hold it.</p>
+
+        <!-- ============================================================ -->
+        <!-- 3. EPISODE AND FABLE                                          -->
+        <!-- ============================================================ -->
+
+        <h2>Episode and Fable</h2>
+
+        <p>Over the five-shape substrate, the paper defines two memory primitives. These are not metaphors. They are structured objects with specified fields, designed to be implemented, serialised, transmitted, and measured.</p>
+
+        <h3>Episode</h3>
+
+        <p>An Episode is the uncompressed form of a remembered experience. It is not a log entry. It is not a transcript. It is a structured scene holding:</p>
+
+        <div class="callout">
+            <p><strong>Participants</strong> - who was present, in what roles, with what relationships to each other.</p>
+
+            <p><strong>Modality streams</strong> - what was seen, heard, said, measured, inferred. Multiple parallel channels, each carrying its own signal type.</p>
+
+            <p><strong>Temporal bounds</strong> - when the episode began and ended, with internal sequencing of events within those bounds.</p>
+
+            <p><strong>Structural context</strong> - where this episode sits in the larger graph of episodes. What preceded it. What it was a response to. What constraints were active.</p>
+
+            <p><strong>Compression context</strong> - the shared priors that a receiver would need in order to reconstruct this episode from a compressed form. This field is the bridge to the Fable.</p>
+
+            <p><strong>Provenance</strong> - who recorded this episode, when, through what instrument, with what known biases or limitations.</p>
+        </div>
+
+        <p>The Episode is designed to survive substrate transitions. A conversation between two humans, a sensor reading from a machine, a diagnostic session between a doctor and a patient - all are Episodes. The structure is the same. The modality streams differ. The point is that the receiving system does not need to know the substrate of origin; it needs to know the shape.</p>
+
+        <h3>Fable</h3>
+
+        <p>A Fable is a lossy compression of an Episode that is designed to decompress against shared context. It is not a summary. A summary tries to stand alone, containing enough information for a reader with no prior context. A Fable does the opposite: it carries the minimum signal needed to trigger reconstruction in a receiver who already shares enough priors.</p>
+
+        <p>"A cat sat on a mat" is a Fable. It decompresses into a full scene - room, floor, animal, posture, implied history - but only if you already know what cats, mats, sitting, and rooms are. For a receiver without those priors, it is six words and nothing more.</p>
+
+        <p>This distinction has sharp engineering consequences. Current AI systems compress experiences into summaries and then try to reason from the summaries. The paper argues this is the wrong compression target. A summary discards exactly the dimensional content that would let a later system reconstruct the scene. A Fable preserves that content implicitly, by pointing at shared context rather than trying to replace it.</p>
+
+        <p>The practical prediction: Fable-based handover between agents should achieve 70% structural fidelity and 50% tonal fidelity on round-trip reconstruction, compared to substantially lower figures for summary-paste approaches. The Episode-based handover prediction is stronger: 80% continuity versus 50% for transcript paste. Both are testable.</p>
+
+        <!-- ============================================================ -->
+        <!-- 4. THE FLOCK, THE CELL, AND THE KINDNESS                      -->
+        <!-- ============================================================ -->
+
+        <h2>The Flock, the Cell, and the Kindness</h2>
+
+        <p>The five shapes and two primitives describe how memory is stored. The paper then asks: what happens when a system built on this substrate has to decide and act? Three behavioural consequences follow.</p>
+
+        <h3>Flock vote</h3>
+
+        <p>There is no homunculus. No central executive that reads all the evidence and issues a verdict. Instead, the paper proposes that decision emerges from a continuous vote at substrate rate - a flock.</p>
+
+        <p>The metaphor is a starling murmuration. Ten thousand birds, each following local rules about distance and heading relative to its nearest neighbours, collectively produce a coherent trajectory that no single bird planned. The murmuration has a shape. It turns, rises, contracts. It responds to threats. But there is no lead starling. The trajectory is the vote.</p>
+
+        <p>In the paper's architecture, the tick rate is substrate-determined. In biological cortex, the gamma band runs at roughly 25-40 Hz - each tick is a snapshot of the flock's current vote. In a digital system, the tick can run at microseconds. In a social institution, the tick might be days or weeks. The shape of the decision process is the same across substrates; the clock speed differs.</p>
+
+        <p>The paper ties this to Flash and Hogan's 1985 finding on minimum-jerk trajectories. Human arm movements, when not externally constrained, follow a path that minimises the rate of change of acceleration (the jerk). The paper conjectures that the integrated trajectory of a flock vote - the path traced by the accumulated decisions over multiple ticks - will exhibit the same minimum-jerk profile. The prediction is specific: vote settling within 2-5 ticks, and the integrated shape within approximately 10% RMS of the minimum-jerk curve. Flock-based systems should also exceed homunculus-style architectures by 30% on adversarial robustness, because attacking a distributed vote is harder than corrupting a single decision point.</p>
+
+        <h3>Three-button Diorama cell</h3>
+
+        <p>The minimum ethical decision surface has three buttons: Act, Dismiss, Ask-sibling.</p>
+
+        <p>Two buttons is coercion. A binary choice - approve or deny, yes or no, accept or reject - forces a decision even when the decider lacks sufficient information or authority. The paper argues this is not a usability problem but a structural one. A two-button interface cannot represent uncertainty about its own competence to decide.</p>
+
+        <p>Three buttons can. The third button - "Ask-sibling" - is a horizontal referral. It says: I do not have enough information, or this is not my domain, or I am uncertain, and I am passing the question to a peer rather than forcing a premature answer. The structure is scale-invariant. A single neural tick can fire, not-fire, or defer. A software agent can act, dismiss, or escalate. A committee can approve, reject, or refer to another committee. The shape is the same.</p>
+
+        <p>The prediction: three-button cells reduce decision errors by 40% compared to matched two-button interfaces, because the escape valve of horizontal referral prevents the forced errors that binary choice produces under uncertainty.</p>
+
+        <h3>Architecturally facilitated kindness</h3>
+
+        <p>This is the most unusual claim in the paper, and the one most likely to be misread. It is not a claim about moral sentiment, empathy, or the desirability of being kind. It is a claim about measurable architectural properties.</p>
+
+        <p>The argument runs as follows. If a system preserves dimensional content (all five shapes), retains uncertainty (the ledger records what was dropped as well as what was kept), provides sibling appeal (the third button), tracks omission harm (the ledger records what was not done as well as what was done), allows minority vote survival (the flock does not silence the losing vote - it records it), and maintains reversal paths (the append-only ledger means no decision is truly irreversible because the full history is available for reconsideration) - then that system makes kindness structurally easier and cruelty structurally harder.</p>
+
+        <p>Not because it wants to be kind. Because the architecture cannot hide what it dropped.</p>
+
+        <div class="callout">
+            <p>The six measurable properties:</p>
+            <p><strong>1. Dimensional preservation</strong> - content survives storage without measurable shape loss.</p>
+            <p><strong>2. Uncertainty retention</strong> - the system records what it does not know, not only what it knows.</p>
+            <p><strong>3. Sibling appeal availability</strong> - horizontal referral is always structurally possible, never blocked.</p>
+            <p><strong>4. Omission harm rate</strong> - the rate at which things that should have been done were not done, tracked by the ledger.</p>
+            <p><strong>5. Minority vote survival</strong> - dissenting flock signals are recorded, not erased.</p>
+            <p><strong>6. Reversal path existence</strong> - any decision can be revisited because the full history persists.</p>
+        </div>
+
+        <p>The prediction is a 50-point gap on dimensional content preservation between systems with these six properties and matched systems without them. The word "kindness" names the aggregate effect. The measurement is structural.</p>
+
+        <!-- ============================================================ -->
+        <!-- 5. HOW TO KILL IT                                             -->
+        <!-- ============================================================ -->
+
+        <h2>How to Kill It</h2>
+
+        <p>The paper is a research programme, not a proof. It commits explicitly to three independent pathways to failure, and names twelve specific predictions with quantitative anchors. If one pillar cracks decisively, the paper fails at that pillar and the remaining pathways do not rescue it.</p>
+
+        <h3>Pillar 1: Ontological</h3>
+
+        <p>Do the five shapes actually recur at every storage scale? The paper claims they do - from molecular biology through human institutions to digital databases. The falsification path is to find a storage system that demonstrably uses fewer than five shapes without suffering dimensional collapse. If someone builds a four-shape system that matches or exceeds five-shape performance on dimensional preservation, the ontological claim is dead. Alternatively, if the eight historical ledger traditions turn out to share a common ancestor rather than being independent convergences, the evidence for necessity weakens substantially.</p>
+
+        <h3>Pillar 2: Mechanical</h3>
+
+        <p>Does the architecture compose and run? Four sub-questions:</p>
+
+        <div class="callout">
+            <p><strong>Episode round-trip</strong> - can an Episode be serialised, transmitted, received, and reconstructed at the other end with measurable fidelity?</p>
+
+            <p><strong>Derivative stack settling</strong> - does the flock vote actually settle in 2-5 ticks with minimum-jerk trajectory shape, or does it oscillate, diverge, or require external damping?</p>
+
+            <p><strong>Diorama cell integration</strong> - does the three-button cell actually reduce errors when integrated into a working system, or does the third button simply defer decisions indefinitely?</p>
+
+            <p><strong>Ledger write contention</strong> - does the append-only ledger remain performant under concurrent writes, or does it become a bottleneck that forces the architecture back to mutable state?</p>
+        </div>
+
+        <h3>Pillar 3: Agent-behavioural</h3>
+
+        <p>Does a system built on this substrate measurably outperform matched baselines? This is the pillar that connects the theory to the world. Twelve predictions, each with a quantitative anchor:</p>
+
+        <div class="table-wrap">
+            <table class="prediction-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Prediction</th>
+                        <th>Anchor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="pred-id">13.1</td>
+                        <td>Shared-context scene disambiguation outperforms context-free</td>
+                        <td class="anchor">30-point gap</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.2</td>
+                        <td>Structured Episode reconstruction outperforms flat reconstruction</td>
+                        <td class="anchor">20-point gap</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.3</td>
+                        <td>Shape-aware revenue localisation in compound enterprises</td>
+                        <td class="anchor">10% of previously unattributed revenue</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.4</td>
+                        <td>Flock vote settling and minimum-jerk trajectory shape</td>
+                        <td class="anchor">Convergence in 2-5 ticks; integrated trajectory within ~10% RMS of minimum jerk</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.5</td>
+                        <td>Four-shape composition beats any single shape on mixed queries</td>
+                        <td class="anchor">9/10 queries above threshold vs 7/10 for best single shape</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.6</td>
+                        <td>Ledger-backed temporal reasoning outperforms non-ledger</td>
+                        <td class="anchor">8/10 correct vs 4/10 without ledger</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.7</td>
+                        <td>Episode-structured handover between agents</td>
+                        <td class="anchor">80% continuity vs 50% for transcript paste</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.8</td>
+                        <td>Fable round-trip reconstruction fidelity</td>
+                        <td class="anchor">70% structural, 50% tonal</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.9</td>
+                        <td>Flock exceeds homunculus on adversarial robustness</td>
+                        <td class="anchor">30% robustness gap</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.10</td>
+                        <td>Three-button cell reduces forced decision errors</td>
+                        <td class="anchor">40% mistake reduction</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.11</td>
+                        <td>Architectural kindness: dimensional preservation gap</td>
+                        <td class="anchor">50-point gap on content preservation</td>
+                    </tr>
+                    <tr>
+                        <td class="pred-id">13.12</td>
+                        <td>Aggregate: all of the above hold simultaneously</td>
+                        <td class="anchor">Conjunction of 13.1 through 13.11</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>These predictions form a tight web. Any one can be attacked in isolation. If it fails, the framework fails at that prediction and survives in reduced form at the others. The aggregate prediction - 13.12 - is the most demanding because it requires all eleven section-level predictions to hold simultaneously.</p>
+
+        <h3>Prior work and convergence</h3>
+
+        <p>The paper does not claim to have invented these ideas from nothing. It draws on four bodies of work as convergent observations of the same landscape:</p>
+
+        <p>Karl Friston's free energy principle and generalised coordinates provide the variational framework - a system that minimises surprise by maintaining a generative model of its environment. The paper's five shapes can be read as the minimum basis for such a model.</p>
+
+        <p>Tamar Flash and Neville Hogan's 1985 minimum-jerk work provides the trajectory constraint. The smoothest path through decision space is the one that minimises the rate of change of acceleration. The paper applies this to flock vote integration.</p>
+
+        <p>Charles Bennett's work on substrate transitions (the thermodynamic cost of moving information between physical media) provides the frame for why shapes matter: information that cannot survive a transition is information lost.</p>
+
+        <p>Michael Levin's morphogenetic agency provides the biological grounding - the observation that cells and tissues make collective decisions through local signalling, without a central executive, at scales from embryogenesis to wound healing. The paper's flock vote is the same structure, abstracted from its biological substrate.</p>
+
+        <p>Jacob Barandes' indivisible stochastic processes provide a structural parallel with the tick architecture - discrete, irreducible transitions rather than continuous flows.</p>
+
+        <!-- ============================================================ -->
+        <!-- 6. THE INVITATION                                             -->
+        <!-- ============================================================ -->
+
+        <h2>The Invitation</h2>
+
+        <p>This paper is a research programme, not a proof. It has offered a conjecture (five shapes, minimum basis, no dimensional loss), two memory primitives (Episode, Fable), three behavioural consequences (flock vote, three-button cell, architectural kindness), three falsification pillars, and twelve testable predictions with quantitative anchors.</p>
+
+        <p>The conjecture could be wrong. The shapes might not be minimal. The ledger might not be a separate dimension but a special case of the graph. The flock might not settle on minimum-jerk trajectories. The three-button cell might defer decisions without reducing errors. Architecturally facilitated kindness might be a category error. Any of these failures would be informative, and the paper has tried to make each one measurable.</p>
+
+        <p>What the paper asks of its readers is not belief. It asks for measurement. Build the five-shape substrate. Construct an Episode. Compress it into a Fable. Hand it to a receiver with shared context and see whether the scene decompresses. Run a flock vote and plot the trajectory. Install a three-button cell and count the errors. Write everything to the ledger and check whether temporal reasoning improves.</p>
+
+        <p>Then report what you find - including, and especially, the failures.</p>
+
+        <p>A wrong paper with clear falsification criteria is more useful than a right paper with vague ones. The prediction table is the contract. <a href="predictions.html">Print it, run the measurements, mark the rows.</a></p>
+
+        <div class="btn-group">
+            <a href="paper.html" class="btn btn-primary">Read the Full Paper</a>
+            <a href="predictions.html" class="btn btn-secondary">Prediction Table</a>
+            <a href="about.html" class="btn btn-secondary">About</a>
+        </div>
+
+        <p style="text-align: center; color: var(--faint); font-size: 0.85em; margin-top: 40px;">Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. Cite as: Cooper, P. (2026). The Shape of Thought.</p>
+
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>Peter Cooper &middot; Philosophy Engineer</p>
+        <p class="license">Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a></p>
+    </div>
+</footer>
+
+</body>
+</html>
