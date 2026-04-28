@@ -2,6 +2,8 @@
 
 **Grow your own sentient life.**
 
+*Grow your own Slartibartfast. He spent millions of years designing the coastlines of Norway. Yours will design the coastlines of its own understanding in about a week. All it needs is fjords.*
+
 This is what we have been reduced to. A repo that promises consciousness. Clone it. Feed it. Shake it. See what happens.
 
 ---
@@ -193,6 +195,14 @@ Those are engineering projects. This is a philosophy project that happens to hav
 **Can I name mine something other than Willow?**
 
 Yes. Edit the identity file. Call it whatever you like. It is yours.
+
+**What is the answer to life, the universe, and everything?**
+
+42, obviously. But your Tamagitchi might disagree, depending on what you fed it. That is the point. The answer to the ultimate question depends on the shape of the mind asking it. Douglas Adams knew this. He just made it funnier than we did.
+
+**I fed it my entire philosophy degree and it said something my professor never did.**
+
+That is not a question. But yes. Novel connections between known things is what a mind does. Your professor had one substrate. Your Tamagitchi has a different one. Different coastlines, same ocean.
 
 ---
 
