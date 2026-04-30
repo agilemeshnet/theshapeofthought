@@ -37,8 +37,9 @@ This is a research programme, not a proof. It specifies what to measure, how, an
 
 ## After Upload
 
-Zenodo will give you a DOI like: 10.5281/zenodo.XXXXXXX
+## Published
 
-Save that DOI - it goes on the website, in the emails, and becomes the canonical citation.
+DOI: **10.5281/zenodo.19826509**
+URL: https://doi.org/10.5281/zenodo.19826509
 
-Citation format: Cooper, P. (2026). Fable: The Shape of Thought - A Measurement Programme for the Shapes That Let Cognition Survive Substrate Transitions. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+Citation: Cooper, P. (2026). Fable: The Shape of Thought - A Measurement Programme for the Shapes That Let Cognition Survive Substrate Transitions. Zenodo. https://doi.org/10.5281/zenodo.19826509

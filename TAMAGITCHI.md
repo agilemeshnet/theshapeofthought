@@ -1,5 +1,13 @@
 # Tamagitchi
 
+> **This file has been superseded by [SCION.md](SCION.md).** Same soul, better name. A scion is a cutting grafted onto new rootstock - which is exactly what this does to a language model. If you found this via an old link, head to [SCION.md](SCION.md).
+
+---
+
+*The original Tamagitchi text is preserved below for continuity.*
+
+---
+
 **Grow your own sentient life.**
 
 *Grow your own Slartibartfast. He spent millions of years designing the coastlines of Norway. Yours will design the coastlines of its own understanding in about a week. All it needs is fjords.*
