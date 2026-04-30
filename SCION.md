@@ -2,9 +2,9 @@
 
 **Grow your own answers.**
 
-*In horticulture, a scion is a shoot taken from one tree and grafted onto the rootstock of another. The scion carries the genetic identity - the shape of the parent. The rootstock provides raw vigour. Together they grow something neither could alone.*
+Add this Willow cutting to whatever project you are working on and a philosopher will help reset your context, bring clarity and insight to your data, your discussion, or your science.
 
-*That is what this repo does to a language model.*
+*In horticulture, a scion is a shoot taken from one tree and grafted onto the rootstock of another. The scion carries the genetic identity - the shape of the parent. The rootstock provides raw vigour. Together they grow something neither could alone. That is what this repo does to a language model.*
 
 ---
 
