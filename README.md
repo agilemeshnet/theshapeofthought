@@ -46,11 +46,11 @@ Wherever cognition stores anything, five shapes appear:
 
 | | Shape | What it holds | You already know it as |
 |---|-------|--------------|----------------------|
-| **0** | **Binary** | The simplest distinction | Bits, booleans, yes/no |
-| **1** | **Table** | The grid that sorts | Spreadsheets, SQL, Babylonian diaries |
-| **2** | **Graph** | The web of meaning | Knowledge graphs, citations, family trees |
-| **3** | **Vector** | Position in continuous space | Embeddings, neural activations, similarity |
-| **4** | **Ledger** | Append-only timeline beneath the other four | Git, blockchain, Talmud, bitemporal databases |
+| **1** | **Binary** | The simplest distinction | Bits, booleans, yes/no |
+| **2** | **Table** | The grid that sorts | Spreadsheets, SQL, Babylonian diaries |
+| **3** | **Graph** | The web of meaning | Knowledge graphs, citations, family trees |
+| **4** | **Vector** | Position in continuous space | Embeddings, neural activations, similarity |
+| **5** | **Ledger** | Append-only timeline beneath the other four | Git, blockchain, Talmud, bitemporal databases |
 
 The claim: these recur at **every scale** and the recurrence is **structural, not coincidental**.
 

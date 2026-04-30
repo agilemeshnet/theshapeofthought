@@ -581,6 +581,26 @@ nav .container-wide {
     min-width: 32px;
 }
 
+/* Fifth Element highlight */
+
+.fifth-element td {
+    background: var(--raised);
+    font-weight: 500;
+}
+
+.fifth-element .shape-num {
+    color: var(--gold);
+}
+
+.fifth-note {
+    text-align: center;
+    font-style: italic;
+    color: var(--dim);
+    max-width: 640px;
+    margin: 8px auto 0;
+    font-size: 0.95em;
+}
+
 /* Citation block */
 
 .citation-block {
