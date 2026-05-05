@@ -53,6 +53,26 @@ Kirsanov's line: "You just have to look at it from the right angle and the infor
 
 ---
 
+## C4. Cosmic Web as Mitosis - Scale-Invariant Division Geometry (5 May 2026)
+
+**Source:** Anton Petrov, "Something Enormous is Hiding in Our Galactic Blind Spot" (YouTube). Vela Supercluster region behind the Zone of Avoidance. Peter's observation at timestamp 7:18.
+
+**The observation:** The Vela/Columba/Lepus region of the cosmic web, imaged through the galactic blind spot, displays geometry visually identical to a cell in mid-mitosis. Two lobes (cluster nodes) pulling apart with filament bridges between them. Matter flows along the filaments toward the poles. Spindle fibres connecting chromosomes during cell division have the same tensile-bridge-between-attractors geometry at micrometre scale. The cosmic web reproduces it at 100 megaparsec scale.
+
+**Convergence with the thesis:**
+
+1. **Scale invariance of form.** The paper claims five shapes recur at every scale. Mitotic geometry (two poles, connecting bridge, material flowing along the bridge) appears at cellular scale (micrometres, seconds), organism scale (embryonic axis formation, millimetres, hours), and cosmological scale (megaparsecs, billions of years). Same form, substrate-independent.
+
+2. **Turing morphogenesis at every scale.** Turing (1952): homogeneous substrate + symmetry-breaking instability = pattern. The symmetry-breaker (the axis) is the readout angle from C1. At cellular scale: the mitotic spindle selects the division axis. At cosmic scale: dark matter filaments select the separation axis. At neural scale: the readout angle selects the signal from the reservoir.
+
+3. **The axis IS the symmetry-breaker.** Connects to C2 (extramission - projection selects return) and the Axis of Evil (cosmic-scale preferred direction). In every case, pattern emerges not from the substrate (which is rich/homogeneous) but from the axis imposed upon it.
+
+**Falsification relevance:** Supports the paper's scale-invariance claim across the widest possible range (micrometres to megaparsecs). If the geometric correspondence is coincidental rather than structural, it should fail under quantitative comparison of the tensile/flow dynamics at both scales.
+
+**Status:** Visual observation. Needs quantitative comparison to move from "looks like" to "is structurally isomorphic." But the visual correspondence is striking enough to note as a pointer for future investigation.
+
+---
+
 ## C3. Caterpillar Memory as Substrate-Transitioning Fable (5 May 2026)
 
 **Source:** Michael Levin's framing of caterpillar-to-butterfly memory retention. Levin argues the interesting thing is not that information survives massive neural remodelling, but that it gets remapped onto an entirely new substrate with entirely new problems. Memory is not a faithful archive but a generative kernel that compresses experience and reinflates it in whatever configuration the organism now occupies.
