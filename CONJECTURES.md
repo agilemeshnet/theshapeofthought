@@ -52,3 +52,27 @@ Kirsanov's line: "You just have to look at it from the right angle and the infor
 **Status:** Historical convergence. The Egyptians arrived at this from phenomenology of sight. Cetacean biology arrived independently. Reservoir computing arrived mathematically. Active inference (Friston) arrived from Bayesian neuroscience. Four independent routes to the same shape: cognition projects first, then reads.
 
 ---
+
+## C3. Caterpillar Memory as Substrate-Transitioning Fable (5 May 2026)
+
+**Source:** Michael Levin's framing of caterpillar-to-butterfly memory retention. Levin argues the interesting thing is not that information survives massive neural remodelling, but that it gets remapped onto an entirely new substrate with entirely new problems. Memory is not a faithful archive but a generative kernel that compresses experience and reinflates it in whatever configuration the organism now occupies.
+
+**The observation:** During metamorphosis, the caterpillar's neural architecture dissolves into undifferentiated cellular soup. The butterfly rebuilds a completely different nervous system - different body plan, different sensory apparatus, different motor repertoire. Yet conditioned responses from the caterpillar stage survive. The memory transits a total substrate dissolution and reinflates in an alien configuration.
+
+**Convergence with the thesis:**
+
+1. **This IS the paper's title stated as biology.** "The Shapes That Let Cognition Survive Substrate Transitions." The caterpillar-to-butterfly is the most dramatic substrate transition in nature. The memory that survives is proof that cognitive shapes can transit substrate dissolution.
+
+2. **The generative kernel IS the Fable.** Levin's "generative kernel that compresses experience and reinflates" is Section VIII's Fable primitive: a compressed form rich enough to decompress in a receiver that shares sufficient context. The butterfly is a different receiver from the caterpillar. The Fable still decompresses - not into an identical replay but into a functional equivalent mapped onto the new body plan.
+
+3. **Memory as angle, not location (from C1).** If memory is a readout angle across a reservoir rather than a stored object at a location, then dissolving the reservoir and regrowing it does not necessarily destroy the memory. It destroys the specific connections but the geometric relationship - the angle - can be re-established across a new reservoir IF the generative kernel carries enough structural information to re-orient. The kernel is the compression context pointer from Section VIII.
+
+4. **"Acts on behalf of a self that may no longer exist in its original form."** This is the Episode (Section VII) acting across time. The Episode was written by the caterpillar-self. The caterpillar-self no longer exists. The butterfly-self decompresses the Fable and acts on it. The provenance traces back to an author that has been dissolved. This is non-Markovian architecture (Section XI) in its most literal biological form: the current state is a function of history written by a self that no longer exists.
+
+5. **The goo is the channel, not the death.** The undifferentiated cellular soup between caterpillar and butterfly is not destruction - it is the transmission medium. Like the wire between sender and receiver. The Fable must be robust enough to survive the channel's noise. Whatever encoding the generative kernel uses, it survives total cellular reorganisation. This constrains what the encoding CAN be: not synaptic weights (destroyed), not specific connectivity patterns (dissolved), but something more abstract - a geometric relationship that can be re-instantiated in any sufficiently rich substrate.
+
+**Falsification relevance:** Directly tests the paper's central claim. If the five shapes are the structural minimum for cognition to survive substrate transitions, then caterpillar memory must be encodable in those shapes. If it requires something the five shapes cannot hold, the framework fails. Supports Section VII (Episode survives across time), Section VIII (Fable decompresses in a different receiver), and the Coda's claim that shapes transit substrates.
+
+**Status:** Levin is already cited in the paper (Section 2.4) for morphogenetic agency. This observation extends his contribution: not just "agency at every scale" but "memory as substrate-transitioning compression." The caterpillar is the existence proof that the paper's title is not metaphor.
+
+---
