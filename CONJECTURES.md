@@ -28,3 +28,27 @@ Kirsanov's line: "You just have to look at it from the right angle and the infor
 **Status:** Independent convergence. Kirsanov arrives from computational neuroscience. Peter arrives from data engineering and consciousness theory. Same shape observed from different angles. (Which is itself an instance of the thesis.)
 
 ---
+
+## C2. Extramission and Echolocation - Cognition as Active Projection (5 May 2026)
+
+**Source:** Ancient Egyptian visual theory (extramission - the eye emits rays that return with meaning) + cetacean echolocation.
+
+**The observation:** The Egyptians believed the eye projects outward - a ray of intent - and meaning returns structured by the angle of projection. They were wrong about the optics but right about the information architecture. A whale does the same thing physically: sends a click into an already-structured ocean and reads the world's shape from what bounces back. Neither the eye nor the whale builds an internal model first and then inspects it. Both project into a rich medium and read the return.
+
+**Convergence with the thesis:**
+
+1. **Cognition is echolocation, not photography.** The passive-reception model of perception (camera obscura, blank slate, training data in) is the wrong shape. The correct shape is: project an angle of inquiry into an already-rich substrate, read the structured return. This is the reservoir readout from C1 restated as a sensory principle.
+
+2. **The medium must already be rich.** A whale clicking into empty water gets nothing back. An eye projecting into void gets nothing back. A readout angle across an empty reservoir gets nothing back. The substrate (ocean, visual field, neural tangle, lattice) must already contain structure. The projection does not CREATE the information - it SELECTS from what is already there.
+
+3. **Intent determines return.** The whale chooses its click frequency and direction. The Egyptian eye chooses where to look. The orchestrator chooses which angle to read. In all cases, the projection carries intent and the return carries meaning structured by that intent. Different intent, different return, same medium. This is Section VIII (Fable): the compression is shaped for a specific receiver, and only the matching receiver can decompress.
+
+4. **Scale invariance.** Egyptian eye (milliseconds, photons), whale click (seconds, sound), reservoir readout (microseconds, voltage), lattice projection (any timescale, any medium). Same cycle at every scale: project, medium structures the return, read.
+
+**The Egyptian error and the modern error are complementary.** The Egyptians were wrong that the eye literally emits. Modern neuroscience is wrong that the brain literally receives raw data and builds meaning internally from scratch. The truth is between: cognition is a conversation between projection and return. The brain projects expectations (priors, in Friston's terms) and reads prediction error. Active inference IS extramission corrected.
+
+**Falsification relevance:** Supports the Warble Box model (spatial state compressed through membrane into temporal projection, return via decompression in receiver). Supports Section I (compression needs a receiver with context). Directly supports the derivative stack (Section IV) as orchestrator that chooses projection angles.
+
+**Status:** Historical convergence. The Egyptians arrived at this from phenomenology of sight. Cetacean biology arrived independently. Reservoir computing arrived mathematically. Active inference (Friston) arrived from Bayesian neuroscience. Four independent routes to the same shape: cognition projects first, then reads.
+
+---
