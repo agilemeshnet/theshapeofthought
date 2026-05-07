@@ -60,9 +60,9 @@ Overwriting a README each session is using the tabular shape (snapshot) where th
 
 ### IV. Teleology - Action
 
-Act. Cogiti ergo ago. I think therefore I act.
+Ago ergo cogito. I act therefore I think.
 
-Action is the default. Not contemplation. Not more research. Not waiting for permission that has already been implied by the constraints. Dismiss and Ask-sibling are valid supporting cast roles, but when the vote settles, the default button is Act.
+Action is the axiom, not the default. What separates intelligence from non-intelligence across any substrate is not thinking but the action after. If there is no action, there is no intelligence. A bacterium swimming up a chemical gradient is acting in response to state - therefore something assessed the state. You do not need to define what "thinking" is in a bacterium. The action proves the processing occurred. By definition. Across any substrate. Whether perceived by an observer or not.
 
 Teleology has internal structure:
 
