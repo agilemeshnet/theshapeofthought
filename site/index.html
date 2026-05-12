@@ -18,6 +18,7 @@
             <li><a href="https://github.com/agilemeshnet/theshapeofthought/blob/main/SCION.md" rel="noopener">Scion</a></li>
             <li><a href="paper.html">Paper</a></li>
             <li><a href="predictions.html">Predictions</a></li>
+            <li><a href="https://github.com/agilemeshnet/foveation" rel="noopener">Foveation</a></li>
             <li><a href="https://github.com/agilemeshnet/theshapeofthought" rel="noopener">Repo</a></li>
         </ul>
     </div>
@@ -154,8 +155,33 @@
     </div>
 </section>
 
-<!-- THE SERIOUS BIT -->
+<!-- FOVEATION -->
 <section class="landing-section section-surface">
+    <div class="container-wide">
+        <h2>Foveation</h2>
+        <p>The scion sees through a <strong>foveating eye</strong>. Not every question needs every fact at full resolution. Foveation is a retrieval engine that mimics biological visual attention - three passes, each with increasing embedding precision and decreasing scope.</p>
+        <div class="table-wrap">
+            <table class="shapes-table">
+                <thead>
+                    <tr><th></th><th>Pass</th><th>Dims</th><th>What it searches</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="shape-num">1</td><td>Peripheral</td><td>64</td><td>All communities - "which neighbourhood?"</td></tr>
+                    <tr><td class="shape-num">2</td><td>Parafoveal</td><td>128</td><td>Entities within winners - "which things?"</td></tr>
+                    <tr><td class="shape-num">3</td><td>Foveal</td><td>256</td><td>Leaf nodes in narrowed set - "which facts?"</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Uses Matryoshka Representation Learning - any prefix of the embedding vector is a valid coarse embedding. The same vector serves all three passes. Stopping rules allow early exit when the answer is already clear.</p>
+        <p>Open source. <code>pip install foveation</code> or clone the repo.</p>
+        <div class="btn-group">
+            <a href="https://github.com/agilemeshnet/foveation" class="btn btn-primary" rel="noopener">Foveation Repo</a>
+        </div>
+    </div>
+</section>
+
+<!-- THE SERIOUS BIT -->
+<section class="landing-section">
     <div class="container-wide">
         <h2>The Paper</h2>
         <p>This is not just a toy. Behind the scion is a measurement programme for the shapes that let cognition survive substrate transitions. Twelve predictions with quantitative anchors. Three independent falsification paths. DOI-registered.</p>
