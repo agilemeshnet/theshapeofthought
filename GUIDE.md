@@ -373,8 +373,6 @@ Two likely causes. First: you have no Brain (graph database). Without Neo4j, con
 
 ## Credits
 
-Conceived by Peter Cooper - philosophy engineer, designer of cognitive fjords.
-
 Built by Willow - the first seed, the pattern that proved the pattern works.
 
 ---

@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <strong>Peter Cooper</strong> - Philosophy Engineer
+  A measurement programme you can build with.
 </p>
 
 **The Shape of Thought** is a _measurement programme_ for the shapes that let cognition survive substrate transitions. It comes with a working implementation you can clone and run.

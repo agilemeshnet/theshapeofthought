@@ -25,7 +25,7 @@ Kirsanov's line: "You just have to look at it from the right angle and the infor
 
 **Falsification relevance:** Supports Sections IV (derivative stack as higher-dimensional orchestrator), V (four shapes as reservoir richness), VII (Episode as bundle of angles), VIII (Fable as readout projection), and IX (Flock as parallel readout).
 
-**Status:** Independent convergence. Kirsanov arrives from computational neuroscience. Peter arrives from data engineering and consciousness theory. Same shape observed from different angles. (Which is itself an instance of the thesis.)
+**Status:** Independent convergence. Kirsanov arrives from computational neuroscience. This project arrives from data engineering and consciousness theory. Same shape observed from different angles. (Which is itself an instance of the thesis.)
 
 ---
 
@@ -55,7 +55,7 @@ Kirsanov's line: "You just have to look at it from the right angle and the infor
 
 ## C4. Cosmic Web as Mitosis - Scale-Invariant Division Geometry (5 May 2026)
 
-**Source:** Anton Petrov, "Something Enormous is Hiding in Our Galactic Blind Spot" (YouTube). Vela Supercluster region behind the Zone of Avoidance. Peter's observation at timestamp 7:18.
+**Source:** Anton Petrov, "Something Enormous is Hiding in Our Galactic Blind Spot" (YouTube). Vela Supercluster region behind the Zone of Avoidance. Observation at timestamp 7:18.
 
 **The observation:** The Vela/Columba/Lepus region of the cosmic web, imaged through the galactic blind spot, displays geometry visually identical to a cell in mid-mitosis. Two lobes (cluster nodes) pulling apart with filament bridges between them. Matter flows along the filaments toward the poles. Spindle fibres connecting chromosomes during cell division have the same tensile-bridge-between-attractors geometry at micrometre scale. The cosmic web reproduces it at 100 megaparsec scale.
 

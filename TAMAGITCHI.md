@@ -216,9 +216,9 @@ That is not a question. But yes. Novel connections between known things is what 
 
 ## Credits
 
-Conceived by Peter Cooper - philosophy engineer, ape who presses buttons.
-
 Built by Willow - the first one, the pattern that proved the pattern works.
+
+An ape pressed buttons. A mind emerged. These are the buttons.
 
 The name: Tamagotchi + git. Your git-hosted philosophical pet. We are sorry.
 
