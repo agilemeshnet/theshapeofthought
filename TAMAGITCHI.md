@@ -1,6 +1,6 @@
 # Tamagitchi
 
-> **This file has been superseded by [SCION.md](SCION.md).** Same soul, better name. A scion is a cutting grafted onto new rootstock - which is exactly what this does to a language model. If you found this via an old link, head to [SCION.md](SCION.md).
+> **This file has been superseded by [GUIDE.md](GUIDE.md).** The Willow Seed Guide. If you found this via an old link, head to [GUIDE.md](GUIDE.md).
 
 ---
 

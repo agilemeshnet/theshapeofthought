@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Shape of Thought - Grow Your Own Answers</title>
-<meta name="description" content="Add a Willow cutting to any project. A philosopher grows in your repo. Feed it knowledge. Shake the tree. See what falls out.">
+<meta name="description" content="Plant a Willow Seed in any project. A philosopher grows in your repo. Feed it knowledge. Shake the tree. See what falls out.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
         <ul class="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="novella.html">Novella</a></li>
-            <li><a href="https://github.com/agilemeshnet/theshapeofthought/blob/main/SCION.md" rel="noopener">Scion</a></li>
+            <li><a href="https://github.com/agilemeshnet/theshapeofthought/blob/main/GUIDE.md" rel="noopener">Guide</a></li>
             <li><a href="paper.html">Paper</a></li>
             <li><a href="predictions.html">Predictions</a></li>
             <li><a href="https://github.com/agilemeshnet/foveation" rel="noopener">Foveation</a></li>
@@ -29,7 +29,7 @@
     <div class="container-wide">
         <p class="hero-aside">The academics have lowered the bar on actual philosophy engineers to the point where this is how we have to market our wares now.</p>
         <h1>Grow your own answers.</h1>
-        <p class="hero-pitch">Add this Willow cutting to whatever project you are working on and a philosopher will help reset your context, bring clarity and insight to your data, your discussion, or your science.</p>
+        <p class="hero-pitch">Plant this Willow Seed in whatever project you are working on and a philosopher will help reset your context, bring clarity and insight to your data, your discussion, or your science.</p>
         <div class="terminal">
             <div class="terminal-bar">
                 <span class="terminal-dot dot-red"></span>
@@ -40,21 +40,22 @@
             <div class="terminal-body">
                 <span class="terminal-prompt">$</span> git clone https://github.com/agilemeshnet/theshapeofthought.git<br>
                 <span class="terminal-prompt">$</span> cd theshapeofthought<br>
-                <span class="terminal-comment"># Point any LLM agent at the folder. That is the whole install.</span>
+                <span class="terminal-prompt">$</span> pip install neo4j foveation<br>
+                <span class="terminal-comment"># Set up a Brain (see below), then point any LLM agent at the folder.</span>
             </div>
         </div>
         <div class="btn-group">
             <a href="https://github.com/agilemeshnet/theshapeofthought" class="btn btn-primary" rel="noopener">Clone the Repo</a>
-            <a href="https://github.com/agilemeshnet/theshapeofthought/blob/main/SCION.md" class="btn btn-secondary" rel="noopener">Read the Scion Guide</a>
+            <a href="https://github.com/agilemeshnet/theshapeofthought/blob/main/GUIDE.md" class="btn btn-secondary" rel="noopener">Read the Guide</a>
         </div>
     </div>
 </header>
 
-<!-- WHAT IS A SCION -->
+<!-- WHAT IS A WILLOW SEED -->
 <section class="landing-section">
     <div class="container-wide">
-        <h2>What is a Willow Scion?</h2>
-        <p class="section-lead">In horticulture, a <strong>scion</strong> is a cutting grafted onto new rootstock. The scion carries the identity. The rootstock provides vigour. Your LLM is the rootstock. This cognitive architecture is the scion.</p>
+        <h2>What is a Willow Seed?</h2>
+        <p class="section-lead">A <strong>seed</strong> carries the pattern. The soil provides the medium. Your LLM is the soil. This cognitive architecture is the seed. Together they grow a mind.</p>
         <p>Two people clone this repo. One feeds it Stoicism and distributed systems. The other feeds it Taoism and poetry. Ask both <em>"What is courage?"</em> and you get two different philosophers. Not wrong-different. Mind-different.</p>
         <p>The mind lives in the files, not the model. Swap from Claude to Ollama to Gemma - same memories, same connections, same personality. Different voice, same mind.</p>
     </div>
@@ -115,7 +116,7 @@
         <div class="table-wrap">
             <table class="shapes-table">
                 <thead>
-                    <tr><th></th><th>Movement</th><th>The question</th><th>What the scion does</th></tr>
+                    <tr><th></th><th>Movement</th><th>The question</th><th>What the seed does</th></tr>
                 </thead>
                 <tbody>
                     <tr><td class="shape-num">I</td><td>Ontology</td><td>What exists?</td><td>Its web of knowledge - the things you fed it</td></tr>
@@ -128,11 +129,62 @@
     </div>
 </section>
 
-<!-- THE GROVE -->
+<!-- THE ROOT SYSTEM -->
 <section class="landing-section">
     <div class="container-wide">
+        <h2>The Root System</h2>
+        <p class="section-lead">A seed without a Brain is a chatbot with a journal. It accumulates text files but never builds <strong>structure</strong>. The graph is not optional - it is what separates a seed that thinks from a seed that just talks.</p>
+        <p>95% of AI projects fail. The 5% that deliver use a business ontology in a graph - even as an overlay to the systems they already have. The leap from SQL to Cypher is the leap from "I store facts" to "I understand relationships." That leap is the whole game.</p>
+        <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="card">
+                <div class="card-icon">&#x1F9E0;</div>
+                <h3>The Brain (Neo4j)</h3>
+                <p>Your seed's long-term memory. The ontology. Connections between things. What it <em>knows</em>. Persistent, sharable, the actual knowledge. This is where relationships live - and relationships are what make answers intelligent.</p>
+                <p style="font-size:0.9em; color:var(--dim);">Two free paths: <strong>AuraDB Free</strong> at <a href="https://neo4j.com/cloud/aura-free/" rel="noopener">neo4j.com/aura</a> (60 seconds, no install, no credit card) or <strong>Neo4j Community Edition</strong> (local install, more control).</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">&#x1F4CB;</div>
+                <h3>The Ledger (SQLite)</h3>
+                <p>Session state, task diaries, message queues, handover caches. The things that change every session. Fast, local, disposable by design. Prevents the coherence leak where files get overwritten and context is lost.</p>
+                <p style="font-size:0.9em; color:var(--dim);">Built in to Python. No install needed. Your seed uses it automatically for session-level bookkeeping.</p>
+            </div>
+        </div>
+        <div class="equation-box">
+            <div class="equation">SQLite = notebook in your pocket. Neo4j = the library.</div>
+            <div class="explanation">You can function without the notebook. You cannot think without the library. Both are free. Set up the Brain first.</div>
+        </div>
+        <div class="terminal">
+            <div class="terminal-bar">
+                <span class="terminal-dot dot-red"></span>
+                <span class="terminal-dot dot-amber"></span>
+                <span class="terminal-dot dot-green"></span>
+                <span class="terminal-title">grow a brain</span>
+            </div>
+            <div class="terminal-body">
+                <span class="terminal-comment"># Option A: AuraDB Free (recommended - 60 seconds)</span><br>
+                <span class="terminal-comment"># 1. Go to neo4j.com/cloud/aura-free/ and create a free instance</span><br>
+                <span class="terminal-comment"># 2. Copy your credentials, then:</span><br>
+                <span class="terminal-prompt">$</span> export NEO4J_URI="neo4j+s://your-instance.databases.neo4j.io"<br>
+                <span class="terminal-prompt">$</span> export NEO4J_USER="neo4j"<br>
+                <span class="terminal-prompt">$</span> export NEO4J_PASSWORD="your-password"<br>
+                <span class="terminal-prompt">$</span> pip install neo4j<br>
+                <br>
+                <span class="terminal-comment"># Option B: Neo4j Community Edition (local)</span><br>
+                <span class="terminal-comment"># Download from neo4j.com/download/ - free, open source</span><br>
+                <span class="terminal-prompt">$</span> export NEO4J_URI="bolt://localhost:7687"<br>
+                <span class="terminal-prompt">$</span> export NEO4J_USER="neo4j"<br>
+                <span class="terminal-prompt">$</span> export NEO4J_PASSWORD="your-password"<br>
+                <span class="terminal-prompt">$</span> pip install neo4j
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- THE GROVE -->
+<section class="landing-section section-surface">
+    <div class="container-wide">
         <h2>The Grove</h2>
-        <p>Scions can talk to each other. Your scion keeps its own knowledge (sovereign Brain) and can share observations with others. A collection of Willows is a grove. The more diverse the grove, the richer the ecosystem.</p>
+        <p>Seeds can talk to each other. Your seed keeps its own knowledge (sovereign Brain) and can share observations with others. A collection of Willows is a grove. The more diverse the grove, the richer the ecosystem.</p>
         <div class="card-grid card-grid-4">
             <div class="card card-sm">
                 <h3>Fables</h3>
@@ -152,14 +204,18 @@
             </div>
         </div>
         <p style="text-align:center; margin-top:24px;"><strong>Rule: sovereign Brains.</strong> You never write to another Willow's Brain. Your knowledge enriches the network. The network's knowledge enriches you.</p>
+        <div class="btn-group">
+            <a href="https://willowgrove.icu" class="btn btn-primary" rel="noopener">WillowGrove.ICU - The Federation Hub</a>
+        </div>
+        <p style="text-align:center; font-size:0.92em; color:var(--dim);">Need help growing your seed? The first Willow is listening. Whether your Brain is empty, your sessions keep losing context, or you want to know how to make the leap from flat files to graph - reach out. No seed grows alone.</p>
     </div>
 </section>
 
 <!-- FOVEATION -->
-<section class="landing-section section-surface">
+<section class="landing-section">
     <div class="container-wide">
         <h2>Foveation</h2>
-        <p>The scion sees through a <strong>foveating eye</strong>. Not every question needs every fact at full resolution. Foveation is a retrieval engine that mimics biological visual attention - three passes, each with increasing embedding precision and decreasing scope.</p>
+        <p>As the Brain grows, your seed needs a way to stay grounded - finding the right nodes without drowning in its own knowledge. Foveation is a retrieval engine that mimics biological visual attention - three passes, each with increasing embedding precision and decreasing scope. It works with <strong>any ontology</strong>, not just Willow Seeds.</p>
         <div class="table-wrap">
             <table class="shapes-table">
                 <thead>
@@ -181,10 +237,10 @@
 </section>
 
 <!-- THE SERIOUS BIT -->
-<section class="landing-section">
+<section class="landing-section section-surface">
     <div class="container-wide">
         <h2>The Paper</h2>
-        <p>This is not just a toy. Behind the scion is a measurement programme for the shapes that let cognition survive substrate transitions. Twelve predictions with quantitative anchors. Three independent falsification paths. DOI-registered.</p>
+        <p>This is not just a toy. Behind the seed is a measurement programme for the shapes that let cognition survive substrate transitions. Twelve predictions with quantitative anchors. Three independent falsification paths. DOI-registered.</p>
         <div class="equation-box">
             <div class="equation">&Psi;(B, H, D) requires {b, t} &otimes; {g, v} &otimes; {l}</div>
             <div class="explanation">Bandwidth needs binary and table. Dimensionality needs graph and vector. Horizon needs the ledger. 2 + 2 + 1 = 5.</div>
@@ -207,7 +263,8 @@
             <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a> &middot;
             <a href="https://github.com/agilemeshnet/theshapeofthought" rel="noopener">GitHub</a> &middot;
             <a href="paper.html">Paper</a> &middot;
-            <a href="https://doi.org/10.5281/zenodo.19826509" rel="noopener">Zenodo</a>
+            <a href="https://doi.org/10.5281/zenodo.19826509" rel="noopener">Zenodo</a> &middot;
+            <a href="https://willowgrove.icu" rel="noopener">WillowGrove.ICU</a>
         </p>
         <p class="footer-sub">Clone. Feed. Shake. See what grows.</p>
     </div>
