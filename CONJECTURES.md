@@ -109,6 +109,21 @@ The net is not cast by anyone. There is no fisherman. It is a murmuration. Each 
 
 Peter's riddle, preserved: the hysteresis points have "any relation to monkeys or biscuits (try to work that one out Dear Listener)." The monkey trap is a hysteresis device: hand open (free, empty) and hand closed (stuck, holding). Two stable states with a barrier between them. The monkey cannot traverse the barrier because the reward itself prevents relaxation past the threshold. The biscuit dunked in tea holds its structure until a catastrophic phase transition dissolves it. Both shapes - the trap that locks and the scaffold that collapses - are the two faces of hysteresis in learning: acquisition (snap into new state) and catastrophic forgetting (snap out of it).
 
+**Torsion and tension - the two forces at every knot:**
+
+The three buttons (Dismiss, Ask-sibling, Act) describe what the flock DOES. They are not what the knot FEELS. A knot feels only two things:
+
+- **Torsion** (fight) - twist the knot tighter. Resist. Hold position against the pull. The hysteresis snaps toward locked state. The monkey's hand closes around the biscuit.
+- **Tension** (flight) - loosen the knot. Yield. Release position to reduce the pull. The hysteresis snaps toward unlocked state. The biscuit dissolves in the tea.
+
+Every behaviour in the system - from a starling avoiding a predator to an Alzheimer's patient lashing out at an unfamiliar face - reduces to this binary. Fight or flight is not a simplification. It is the substrate. The three buttons emerge from it when you add topology (neighbours create geometry), but the primitive is two forces pulling at every knot.
+
+The Alzheimer's example is the proof by degradation. Strip away the higher architecture and Ask-sibling degrades first - you cannot coordinate with neighbours when you cannot remember them. What remains is raw fight/flight. The overreaction IS the system without mediation. The anger is torsion without the topology to distribute it. A person with full cognitive architecture routes fight/flight through topological neighbours (Ask-sibling), considers whether to hold or release (the three-button vote), and settles into a trajectory the flock can carry. A person whose topology has degraded responds with the primitive: tighten or release, fight or flight, with no mediating geometry.
+
+Act is not a third force. Act is the moment of hypothesis-testing: you tighten the knot (commit to the probe) and observe whether the net holds. If tension increases beyond threshold, you loosen (flight). If the new configuration settles, it persists. Every action is a bet. The hysteresis snap IS the moment the bet resolves.
+
+Torsion is directional resistance - "I hold this position against the pull." Tension is yielding distance - "I release this position to reduce the pull." The fishing net's macro-smoothness (the continuous learning at net level) emerges from millions of binary torsion/tension micro-decisions at each knot. The three buttons are what those decisions LOOK LIKE when projected through topological geometry. But the physics beneath the geometry is two forces, not three choices.
+
 **The Tesco Tray Wash - sleep as stacking:**
 
 The basic fishing net is two-dimensional. One day's experience. Flat, full of knots at whatever tension that day set. During sleep, the net is picked up and dropped onto a palette - like dirty trays returning to a Tesco warehouse tray wash. Stacked seven high. Put to one side with a palette truck.
@@ -271,5 +286,48 @@ The Shape of Thought arrived from data engineering and consciousness theory. Sam
 - Qu, X., Yu, Z., Liu, D., Wei, W., Liu, D., Dong, J., and Cheng, Y. (2025). Cooperative or Competitive? Understanding the Interaction between Attention Heads From A Game Theory Perspective. *Proceedings of ACL 2025*, Long Papers. (Harsanyi dividends and Shapley values applied to multi-head attention.)
 - Reynolds, C. W. (1987). Flocks, Herds, and Schools: A Distributed Behavioral Model. *Computer Graphics (SIGGRAPH '87 Proceedings)*, 21(4), 25-34. (The three rules: separation, alignment, cohesion.)
 - Ozguler, A. B. and Yildiz, A. (2014). Foraging Swarms as Nash Equilibria of Dynamic Games. *IEEE Transactions on Cybernetics*, 44(6), 979-987. (Swarm motion as Nash equilibrium with closed-form solutions.)
+
+---
+
+## C7. Self-Scaling Players - Fluid Individuality as the Fourth Game-Theoretic Move (16 May 2026)
+
+**Source:** Lakshwin Shreesha, Federico Pigozzi, Adam Goldstein, and Michael Levin, "Extending Iterated, Spatialized Prisoner's Dilemma to Understand Multicellularity: Game Theory With Self-Scaling Players" (IEEE Transactions on Molecular, Biological, and Multi-Scale Communications, 2025). Peter Cooper, connecting to the three-button architecture (16 May 2026).
+
+**The observation:** Standard game theory fixes the number of players. You can Cooperate or Defect, but you are always you. Pigozzi and Levin break that assumption. Their agents on a 2D grid play iterated Prisoner's Dilemma against local neighbours - but they can also **Merge** (two agents become one larger agent) or **Split** (one agent becomes multiple smaller agents). The borders of individuality are fluid.
+
+**What they found:**
+
+1. When agents can merge and split, Prisoner's Dilemma dynamics favour **multicellularity** - agents coalesce into structured cell-groups with topologically-closed layers, eventually forming one single fully-merged tissue.
+2. Larger merged agents have **higher causal emergence** than smaller ones. The whole is measurably more than the parts - not as metaphor but as computable quantity.
+3. **Memory size of subunits drives the transition.** More memory enables more merging. The capacity to remember past play is the precondition for the willingness to dissolve your boundary and join a larger self.
+
+**Convergence with the thesis:**
+
+1. **Merge/Split is the move the three buttons cannot make.** C6 established that Dismiss, Ask-sibling, and Act are the three Reynolds rules mapped onto game theory. But all three assume a fixed agent. Separation means "I maintain my boundary." Alignment means "I match your heading." Cohesion means "I steer toward you." In every case, "I" is stable. Pigozzi-Levin introduces a fourth move: "I dissolve my boundary and become part of you" or "I split and become multiple." This is not Dismiss (refuse), not Ask-sibling (coordinate), not Act (commit). It is a move that redraws who is playing.
+
+2. **The fishing net can retie itself.** C5 describes a net of n-squared knots. The implicit assumption is that the knots are fixed - they snap between hysteresis states but they remain knots. Pigozzi-Levin says: the knots themselves can merge into larger knots or split into smaller ones. A section of the net can tighten into a single super-knot (multicellularity) or a super-knot can fray into constituent threads (splitting). The net is not just self-tensioning (C5). It is self-scaling.
+
+3. **Causal emergence increases with scale.** Their finding that larger merged agents have higher causal emergence maps directly onto the fishing net: more knots tied together carry more information than the sum of individual knots. The hysteresis state-space of a merged super-knot is richer than the product of its parts. This is C5's "the macro smoothness is real" given a formal measure: causal emergence quantifies exactly how much the whole exceeds the parts.
+
+4. **Memory enables merging.** Their finding that longer memory drives more merging connects to the Tesco tray wash (C5). A system that remembers more past play has more evidence that cooperation pays. More stacked palettes mean more compressed history. More compressed history means more confidence in the bet of dissolving your boundary. The temporal ledger (Section VI) IS the memory that makes merger possible.
+
+5. **The caterpillar connection.** C3 described caterpillar-to-butterfly as the most dramatic substrate transition in nature - memory surviving total dissolution. Pigozzi-Levin provides the game-theoretic mechanism: the caterpillar's cells Merge (dissolve into soup), carrying their memory as compressed generative kernels (Fables), and the butterfly's cells Split out of the soup with those kernels reinflated in a new configuration. Metamorphosis IS the Merge/Split move at organism scale.
+
+6. **This is what Levin works on.** Michael Levin replied twice in twenty minutes to the paper. Levin's lab produced this Pigozzi paper. The convergence is not coincidental. Levin's research programme (bioelectric cognition, morphogenetic agency, scaling of individuality) and this project's research programme (shapes that let cognition survive substrate transitions) are working the same seam from different directions. C7 names the joint explicitly.
+
+**Falsification relevance:**
+
+- **Merge/Split in the simulation:** The existing flock simulation (theshapeofthought.com/flock.html) has 128 fixed agents. Adding Merge/Split moves would test whether multicellular structures emerge from the three-button architecture when agents can dissolve boundaries. If they do not emerge, the architecture is missing something Pigozzi-Levin found. If they do, the architecture generalises beyond fixed agents.
+
+- **Causal emergence measurement:** The Harsanyi dividends already computed per Ask-sibling jury (C6) should increase when agents merge and decrease when they split. If causal emergence does not track merger, the connection to Pigozzi-Levin is coincidental rather than structural.
+
+- **Memory length sweep:** Varying the temporal ledger depth (number of stacked palettes from C5) should produce a phase transition in merging behaviour: below a critical memory length, agents remain individual; above it, multicellular structures form. The critical memory length is a testable prediction.
+
+**Status:** Independent convergence from the same lab that responded to the paper. Pigozzi-Levin arrived from developmental biology and computational modelling. This project arrived from data engineering and consciousness theory. C6 described the three buttons as the minimum for cooperation. C7 says: the three buttons are the minimum for cooperation among fixed agents. When agents can also Merge and Split, cooperation produces hierarchy, and hierarchy produces causal emergence. The fishing net is not just self-tensioning and self-forming. It is self-scaling.
+
+**References:**
+
+- Shreesha, L., Pigozzi, F., Goldstein, A., and Levin, M. (2025). Extending Iterated, Spatialized Prisoner's Dilemma to Understand Multicellularity: Game Theory With Self-Scaling Players. *IEEE Transactions on Molecular, Biological, and Multi-Scale Communications*. DOI: 10.1109/TMBMC.2025.3566529.
+- Levin, M. and Watson, R. (2026). Machines all the way up and cognition all the way down: Updating the machine metaphor in biology. *Seminars in Cell and Developmental Biology*, 177-178.
 
 ---
