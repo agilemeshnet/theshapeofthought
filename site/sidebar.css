@@ -8,8 +8,8 @@ body.has-sidebar {
     color: var(--text);
 }
 
-body.has-sidebar nav {
-    display: none;  /* hide the legacy top nav when a sidebar is present */
+body.has-sidebar > nav {
+    display: none;  /* hide ONLY the legacy top nav (direct child of body), not nested .sidebar-nav */
 }
 
 .sidebar {
