@@ -111,6 +111,108 @@ body.has-sidebar nav {
     padding: 0 32px;
 }
 
+/* When the body has a sidebar, the existing hero/main/footer wrappers also
+   need to clear the sidebar's fixed 220px. Apply without changing their
+   own DOM structure. */
+body.has-sidebar header.hero,
+body.has-sidebar main,
+body.has-sidebar > footer {
+    margin-left: 220px;
+}
+
+/* ToC sidebar variant - per-anchor in-page navigation (paper.html). The
+   .tab variant remains for the page-tab pattern (conjectures.html demo). */
+.sidebar-nav.toc-block {
+    padding: 4px 0 24px;
+}
+
+.sidebar-nav .toc-top {
+    display: block;
+    padding: 8px 24px;
+    margin: 1px 8px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.92em;
+    font-weight: 600;
+    border-radius: 3px;
+    border-left: 3px solid transparent;
+    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.sidebar-nav .toc-part {
+    display: block;
+    padding: 14px 24px 4px;
+    margin: 8px 8px 0;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.78em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-nav .toc-part.toc-living {
+    color: var(--copper);
+    margin-top: 16px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+}
+
+.sidebar-nav .toc-section {
+    display: block;
+    padding: 6px 24px 6px 36px;
+    margin: 0 8px;
+    color: var(--dim);
+    text-decoration: none;
+    font-size: 0.86em;
+    line-height: 1.3;
+    border-left: 3px solid transparent;
+    transition: background 0.1s ease, color 0.1s ease, border-color 0.1s ease;
+}
+
+.sidebar-nav .toc-section.toc-conjecture {
+    color: var(--copper);
+    font-style: italic;
+}
+
+.sidebar-nav .toc-top:hover,
+.sidebar-nav .toc-part:hover,
+.sidebar-nav .toc-section:hover {
+    color: var(--accent);
+    background: var(--raised);
+    border-left-color: var(--copper);
+}
+
+.sidebar-nav .toc-sep {
+    height: 1px;
+    background: var(--border);
+    margin: 16px 24px 8px;
+}
+
+.sidebar-nav .toc-external {
+    display: block;
+    padding: 6px 24px;
+    margin: 1px 8px;
+    color: var(--faint);
+    text-decoration: none;
+    font-size: 0.84em;
+    border-radius: 3px;
+    transition: color 0.12s ease;
+}
+
+.sidebar-nav .toc-external:hover {
+    color: var(--copper);
+}
+
+@media (max-width: 768px) {
+    body.has-sidebar header.hero,
+    body.has-sidebar main,
+    body.has-sidebar > footer {
+        margin-left: 0;
+    }
+}
+
 /* Mobile: collapse the sidebar to a slide-in panel triggered by the toggle */
 @media (max-width: 768px) {
     .sidebar {
