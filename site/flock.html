@@ -26,12 +26,15 @@
 }
 .sim-grid {
     display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 20px;
+    grid-template-columns: 260px 1fr 280px;
+    gap: 16px;
     align-items: start;
 }
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
     .sim-grid { grid-template-columns: 1fr; }
+}
+.sim-wrap {
+    max-width: 1280px;
 }
 .canvas-box {
     background: var(--surface);
@@ -167,10 +170,7 @@ canvas {
     </div>
 
     <div class="sim-grid">
-        <div class="canvas-box">
-            <canvas id="flock-canvas" width="760" height="560"></canvas>
-        </div>
-
+        <!-- LEFT: State & Readings -->
         <div>
             <div class="panel">
                 <h3>Flock State</h3>
@@ -197,11 +197,11 @@ canvas {
                     <span class="stat-value positive" id="s-act">0</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">Dismiss (separation)</span>
+                    <span class="stat-label">Dismiss (sep.)</span>
                     <span class="stat-value negative" id="s-dismiss">0</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">Ask-sibling (align)</span>
+                    <span class="stat-label">Ask-sib (align)</span>
                     <span class="stat-value neutral" id="s-ask">0</span>
                 </div>
 
@@ -225,7 +225,7 @@ canvas {
                     <span class="stat-value" id="s-locked">0</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">Snaps this tick</span>
+                    <span class="stat-label">Snaps/tick</span>
                     <span class="stat-value" id="s-snaps">0</span>
                 </div>
                 <div class="stat-row">
@@ -234,21 +234,39 @@ canvas {
                 </div>
             </div>
 
-            <div class="panel" style="margin-top: 12px;">
-                <h3>Sleep Consolidation</h3>
+            <div class="panel" style="margin-top: 10px;">
+                <h3>Sleep</h3>
                 <div class="sleep-bar"><div class="sleep-fill" id="sleep-fill" style="width: 0%"></div></div>
-                <div class="stat-row" style="margin-top: 8px;">
+                <div class="stat-row" style="margin-top: 6px;">
                     <span class="stat-label">Cycle</span>
                     <span class="stat-value" id="s-sleep-cycle">Awake</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label">Palettes stacked</span>
+                    <span class="stat-label">Palettes</span>
                     <span class="stat-value" id="s-palettes">0</span>
                 </div>
                 <div class="palette-stack" id="palette-stack"></div>
             </div>
 
-            <div class="panel" style="margin-top: 12px;">
+            <div class="panel" style="margin-top: 10px;">
+                <div class="legend">
+                    <div class="legend-item"><div class="legend-dot" style="background: #4a7a32"></div> Act (cohesion)</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: #c45a2a"></div> Dismiss (separation)</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: #8a6c18"></div> Ask-sibling (alignment)</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: #b87333"></div> Net tension</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: rgba(191,91,22,0.3)"></div> Attractor basin</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTRE: Canvas -->
+        <div class="canvas-box">
+            <canvas id="flock-canvas" width="760" height="560"></canvas>
+        </div>
+
+        <!-- RIGHT: Controls & Experiment -->
+        <div>
+            <div class="panel">
                 <h3>Controls</h3>
                 <div class="controls">
                     <button class="btn active" id="btn-run" onclick="toggleRun()">Running</button>
@@ -262,12 +280,11 @@ canvas {
                 </div>
             </div>
 
-            <div class="panel" style="margin-top: 12px;">
-                <h3>Experiment 1: Three-Button Falsification</h3>
-                <p style="font: 12px/1.5 var(--sans); color: var(--dim); margin-bottom: 10px;">
+            <div class="panel" style="margin-top: 10px;">
+                <h3>Experiment 1</h3>
+                <p style="font: 11px/1.4 var(--sans); color: var(--dim); margin-bottom: 8px;">
                     Disable each button to observe predicted failure modes.
                     Reynolds' three rules are the minimum for cooperation.
-                    Disabling any one should break the flock in a specific way.
                 </p>
                 <div class="controls">
                     <button class="btn dismiss-btn" id="btn-dis-dismiss" onclick="toggleDisable('dismiss')">Dismiss: ON</button>
@@ -295,17 +312,7 @@ canvas {
                     <span class="stat-label">Diagnosis</span>
                     <span class="stat-value" id="s-diagnosis" style="font-size: 11px;">healthy</span>
                 </div>
-                <div id="exp-log" style="margin-top: 8px; font: 11px/1.4 var(--mono); color: var(--dim); max-height: 80px; overflow-y: auto;"></div>
-            </div>
-
-            <div class="panel" style="margin-top: 12px;">
-                <div class="legend">
-                    <div class="legend-item"><div class="legend-dot" style="background: #4a7a32"></div> Act - moving with flock (cohesion)</div>
-                    <div class="legend-item"><div class="legend-dot" style="background: #c45a2a"></div> Dismiss - avoiding crowding (separation)</div>
-                    <div class="legend-item"><div class="legend-dot" style="background: #8a6c18"></div> Ask-sibling - matching heading (alignment)</div>
-                    <div class="legend-item"><div class="legend-dot" style="background: #b87333"></div> Net threads - tension between topological neighbours</div>
-                    <div class="legend-item"><div class="legend-dot" style="background: rgba(191,91,22,0.3)"></div> Strange attractor basin</div>
-                </div>
+                <div id="exp-log" style="margin-top: 8px; font: 11px/1.4 var(--mono); color: var(--dim); max-height: 100px; overflow-y: auto;"></div>
             </div>
         </div>
     </div>
