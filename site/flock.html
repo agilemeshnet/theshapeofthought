@@ -260,6 +260,45 @@ canvas {
                     <button class="btn dismiss-btn" id="btn-mode-repel" onclick="setMode('repel')">+ Repeller</button>
                     <button class="btn ask-btn" id="btn-mode-clear" onclick="setMode('clear')">Clear forces</button>
                 </div>
+            </div>
+
+            <div class="panel" style="margin-top: 12px;">
+                <h3>Experiment 1: Three-Button Falsification</h3>
+                <p style="font: 12px/1.5 var(--sans); color: var(--dim); margin-bottom: 10px;">
+                    Disable each button to observe predicted failure modes.
+                    Reynolds' three rules are the minimum for cooperation.
+                    Disabling any one should break the flock in a specific way.
+                </p>
+                <div class="controls">
+                    <button class="btn dismiss-btn" id="btn-dis-dismiss" onclick="toggleDisable('dismiss')">Dismiss: ON</button>
+                    <button class="btn ask-btn" id="btn-dis-ask" onclick="toggleDisable('ask')">Ask-sib: ON</button>
+                    <button class="btn act-btn" id="btn-dis-act" onclick="toggleDisable('act')">Act: ON</button>
+                </div>
+                <div class="controls" style="margin-top: 8px;">
+                    <button class="btn" id="btn-exp-run" onclick="runExperiment()">Run full experiment</button>
+                    <button class="btn" id="btn-exp-log" onclick="downloadLog()">Export data</button>
+                </div>
+                <div class="section-label">Predicted vs Observed</div>
+                <div class="stat-row">
+                    <span class="stat-label">Coherence</span>
+                    <span class="stat-value" id="s-coherence">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Avg spacing</span>
+                    <span class="stat-value" id="s-spacing">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Collisions/tick</span>
+                    <span class="stat-value" id="s-collisions">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Diagnosis</span>
+                    <span class="stat-value" id="s-diagnosis" style="font-size: 11px;">healthy</span>
+                </div>
+                <div id="exp-log" style="margin-top: 8px; font: 11px/1.4 var(--mono); color: var(--dim); max-height: 80px; overflow-y: auto;"></div>
+            </div>
+
+            <div class="panel" style="margin-top: 12px;">
                 <div class="legend">
                     <div class="legend-item"><div class="legend-dot" style="background: #4a7a32"></div> Act - moving with flock (cohesion)</div>
                     <div class="legend-item"><div class="legend-dot" style="background: #c45a2a"></div> Dismiss - avoiding crowding (separation)</div>
@@ -311,6 +350,11 @@ let sleepTick = 0;
 let palettes = [];
 let clickMode = 'act';
 let snapsThisTick = 0;
+let disabled = { dismiss: false, ask: false, act: false };
+let expLog = [];
+let expRunning = false;
+let expPhase = -1;
+let expPhaseTick = 0;
 
 class Agent {
     constructor(x, y) {
@@ -428,7 +472,7 @@ function updateAgent(agent) {
 
     const nLen = agent.neighbours.length || 1;
 
-    if (sepCount > 0) {
+    if (sepCount > 0 && !disabled.dismiss) {
         agent.vx += (sepX / sepCount) * SEPARATION_W;
         agent.vy += (sepY / sepCount) * SEPARATION_W;
         agent.button = 'dismiss';
@@ -442,14 +486,16 @@ function updateAgent(agent) {
 
         let aliScore = Math.abs(Math.cos(Math.atan2(agent.vy, agent.vx) - Math.atan2(aliY, aliX)));
 
-        if (aliScore < 0.7) {
+        if (aliScore < 0.7 && !disabled.ask) {
             agent.vx += (aliX / aliMag) * ALIGNMENT_W;
             agent.vy += (aliY / aliMag) * ALIGNMENT_W;
             agent.button = 'ask';
-        } else {
+        } else if (!disabled.act) {
             agent.vx += (cohX / cohMag) * COHESION_W;
             agent.vy += (cohY / cohMag) * COHESION_W;
             agent.button = 'act';
+        } else {
+            agent.button = 'ask';
         }
     }
 
@@ -703,6 +749,8 @@ function step() {
 
     draw();
     updateStats();
+    if (typeof updateExpStats === 'function') updateExpStats();
+    if (typeof expStep === 'function') expStep();
 }
 
 // --- Interaction ---
@@ -734,6 +782,16 @@ function triggerSleep() {
 
 function resetSim() {
     init();
+    disabled = { dismiss: false, ask: false, act: false };
+    expLog = [];
+    expRunning = false;
+    expPhase = -1;
+    document.getElementById('exp-log').textContent = '';
+    ['dismiss','ask','act'].forEach(b => {
+        document.getElementById('btn-dis-' + b).textContent =
+            b === 'ask' ? 'Ask-sib: ON' : b.charAt(0).toUpperCase() + b.slice(1) + ': ON';
+        document.getElementById('btn-dis-' + b).classList.toggle('active', false);
+    });
 }
 
 function setMode(mode) {
@@ -741,6 +799,146 @@ function setMode(mode) {
     document.getElementById('btn-mode-act').classList.toggle('active', mode === 'act');
     document.getElementById('btn-mode-repel').classList.toggle('active', mode === 'repel');
     document.getElementById('btn-mode-clear').classList.toggle('active', mode === 'clear');
+}
+
+// --- Experiment 1: Three-Button Falsification ---
+
+function measureHealth() {
+    let headings = agents.map(a => Math.atan2(a.vy, a.vx));
+    let avgCos = headings.reduce((s, h) => s + Math.cos(h), 0) / agents.length;
+    let avgSin = headings.reduce((s, h) => s + Math.sin(h), 0) / agents.length;
+    let coherence = Math.sqrt(avgCos * avgCos + avgSin * avgSin);
+
+    let totalDist = 0, pairs = 0, collisions = 0;
+    for (let i = 0; i < agents.length; i++) {
+        for (const n of agents[i].neighbours) {
+            let d = dist(agents[i], n);
+            totalDist += d;
+            pairs++;
+            if (d < 8) collisions++;
+        }
+    }
+    let avgSpacing = pairs > 0 ? totalDist / pairs : 0;
+    collisions = Math.round(collisions / 2);
+
+    let diagnosis = 'healthy';
+    if (disabled.dismiss && collisions > 10) diagnosis = 'COERCION - no boundaries';
+    else if (disabled.ask && coherence < 0.25) diagnosis = 'FRAGMENTED - no coordination';
+    else if (disabled.act && coherence < 0.2 && avgSpacing > 100) diagnosis = 'PARALYSED - no commitment';
+    else if (collisions > 8) diagnosis = 'crowding';
+    else if (coherence < 0.3) diagnosis = 'disordered';
+
+    return { coherence, avgSpacing, collisions, diagnosis };
+}
+
+function updateExpStats() {
+    const h = measureHealth();
+    document.getElementById('s-coherence').textContent = h.coherence.toFixed(3);
+    document.getElementById('s-spacing').textContent = h.avgSpacing.toFixed(1);
+    document.getElementById('s-collisions').textContent = h.collisions;
+    const diagEl = document.getElementById('s-diagnosis');
+    diagEl.textContent = h.diagnosis;
+    diagEl.className = 'stat-value ' + (
+        h.diagnosis === 'healthy' ? 'positive' :
+        h.diagnosis.startsWith('COERCION') || h.diagnosis.startsWith('FRAGMENTED') || h.diagnosis.startsWith('PARALYSED') ? 'negative' : 'neutral'
+    );
+    return h;
+}
+
+function toggleDisable(btn) {
+    disabled[btn] = !disabled[btn];
+    const el = document.getElementById('btn-dis-' + btn);
+    const label = btn === 'ask' ? 'Ask-sib' : btn.charAt(0).toUpperCase() + btn.slice(1);
+    el.textContent = label + ': ' + (disabled[btn] ? 'OFF' : 'ON');
+    el.classList.toggle('active', disabled[btn]);
+    logExp((disabled[btn] ? 'Disabled ' : 'Enabled ') + btn);
+}
+
+function logExp(msg) {
+    const entry = `[${tick}] ${msg}`;
+    expLog.push(entry);
+    const el = document.getElementById('exp-log');
+    el.textContent = expLog.slice(-8).join('\n');
+    el.scrollTop = el.scrollHeight;
+}
+
+const EXP_PHASES = [
+    { name: 'baseline', disable: {} },
+    { name: 'no-dismiss', disable: { dismiss: true, ask: false, act: false } },
+    { name: 'recovery-1', disable: {} },
+    { name: 'no-ask-sibling', disable: { dismiss: false, ask: true, act: false } },
+    { name: 'recovery-2', disable: {} },
+    { name: 'no-act', disable: { dismiss: false, ask: false, act: true } },
+    { name: 'recovery-3', disable: {} },
+];
+const EXP_PHASE_TICKS = 200;
+
+function runExperiment() {
+    if (expRunning) {
+        expRunning = false;
+        disabled = { dismiss: false, ask: false, act: false };
+        document.getElementById('btn-exp-run').textContent = 'Run full experiment';
+        logExp('Experiment stopped');
+        return;
+    }
+    expRunning = true;
+    expPhase = 0;
+    expPhaseTick = 0;
+    expLog = [];
+    document.getElementById('btn-exp-run').textContent = 'Stop experiment';
+    document.getElementById('btn-exp-run').classList.add('active');
+    resetSim();
+    expRunning = true;
+    logExp('Experiment started: 7 phases x 200 ticks');
+    applyPhase(0);
+}
+
+function applyPhase(idx) {
+    const phase = EXP_PHASES[idx];
+    disabled = { ...phase.disable };
+    ['dismiss','ask','act'].forEach(b => {
+        const el = document.getElementById('btn-dis-' + b);
+        const label = b === 'ask' ? 'Ask-sib' : b.charAt(0).toUpperCase() + b.slice(1);
+        el.textContent = label + ': ' + (disabled[b] ? 'OFF' : 'ON');
+        el.classList.toggle('active', !!disabled[b]);
+    });
+    logExp('Phase: ' + phase.name);
+}
+
+function expStep() {
+    if (!expRunning) return;
+    expPhaseTick++;
+
+    if (expPhaseTick % 20 === 0) {
+        const h = measureHealth();
+        expLog.push(`[${tick}] ${EXP_PHASES[expPhase].name} | coh=${h.coherence.toFixed(3)} spc=${h.avgSpacing.toFixed(0)} col=${h.collisions} | ${h.diagnosis}`);
+    }
+
+    if (expPhaseTick >= EXP_PHASE_TICKS) {
+        const h = measureHealth();
+        logExp(`== ${EXP_PHASES[expPhase].name} RESULT: coherence=${h.coherence.toFixed(3)} spacing=${h.avgSpacing.toFixed(0)} collisions=${h.collisions} diagnosis=${h.diagnosis}`);
+
+        expPhase++;
+        expPhaseTick = 0;
+        if (expPhase >= EXP_PHASES.length) {
+            expRunning = false;
+            disabled = { dismiss: false, ask: false, act: false };
+            document.getElementById('btn-exp-run').textContent = 'Run full experiment';
+            document.getElementById('btn-exp-run').classList.toggle('active', false);
+            logExp('EXPERIMENT COMPLETE');
+            return;
+        }
+        applyPhase(expPhase);
+    }
+}
+
+function downloadLog() {
+    const text = expLog.join('\n');
+    const blob = new Blob([text], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'flock-experiment-' + new Date().toISOString().slice(0,16) + '.txt';
+    a.click();
 }
 
 // --- Boot ---
