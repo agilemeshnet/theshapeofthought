@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Flock - Interactive Demonstration</title>
+<meta name="description" content="Interactive demonstration of the fishing net, flock game theory, and sleep consolidation from The Shape of Thought.">
+<link rel="stylesheet" href="style.css">
+<style>
+.sim-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+.sim-header {
+    margin-bottom: 24px;
+}
+.sim-header h1 {
+    font: 600 28px/1.3 var(--sans);
+    color: var(--text);
+    margin-bottom: 8px;
+}
+.sim-header p {
+    font: 15px/1.6 var(--sans);
+    color: var(--dim);
+}
+.sim-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+    align-items: start;
+}
+@media (max-width: 800px) {
+    .sim-grid { grid-template-columns: 1fr; }
+}
+.canvas-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+canvas {
+    display: block;
+    width: 100%;
+    cursor: crosshair;
+}
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+}
+.panel h3 {
+    font: 600 14px/1.4 var(--sans);
+    color: var(--text);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font: 13px/1.5 var(--mono);
+}
+.stat-row:last-child { border-bottom: none; }
+.stat-label { color: var(--dim); }
+.stat-value { color: var(--text); font-weight: 600; }
+.stat-value.positive { color: var(--green); }
+.stat-value.negative { color: var(--rust); }
+.stat-value.neutral { color: var(--gold); }
+.controls {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.btn {
+    font: 600 12px/1 var(--sans);
+    padding: 8px 14px;
+    border: 1px solid var(--border-h);
+    border-radius: 6px;
+    background: var(--raised);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.btn:hover { background: var(--border); }
+.btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+.btn.act-btn { border-color: var(--green); color: var(--green); }
+.btn.dismiss-btn { border-color: var(--rust); color: var(--rust); }
+.btn.ask-btn { border-color: var(--gold); color: var(--gold); }
+.legend {
+    margin-top: 16px;
+    font: 12px/1.6 var(--sans);
+    color: var(--dim);
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.sleep-bar {
+    margin-top: 16px;
+    background: var(--raised);
+    border-radius: 4px;
+    overflow: hidden;
+    height: 8px;
+}
+.sleep-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--copper), var(--gold));
+    transition: width 0.3s;
+}
+.palette-stack {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px;
+    max-height: 120px;
+    overflow: hidden;
+}
+.palette-layer {
+    height: 4px;
+    border-radius: 2px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+.section-label {
+    font: 600 11px/1 var(--sans);
+    color: var(--faint);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="container-wide">
+        <a href="index.html" class="site-title">The Shape of Thought</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="paper.html">Paper</a></li>
+            <li><a href="predictions.html">Predictions</a></li>
+            <li><a href="flock.html" class="active">Flock</a></li>
+            <li><a href="https://github.com/agilemeshnet/theshapeofthought" rel="noopener">Repo</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="sim-wrap">
+    <div class="sim-header">
+        <h1>The Flock</h1>
+        <p>A murmuration of agents with no fisherman. Each bird follows three rules (separation, alignment, cohesion) that map to three buttons (Dismiss, Ask-sibling, Act). Knots snap between hysteresis states. The net stacks during sleep. The strange attractor shapes the probability landscape. Click to place an attractor. Watch the flock settle to Nash equilibrium.</p>
+    </div>
+
+    <div class="sim-grid">
+        <div class="canvas-box">
+            <canvas id="flock-canvas" width="760" height="560"></canvas>
+        </div>
+
+        <div>
+            <div class="panel">
+                <h3>Flock State</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Agents</span>
+                    <span class="stat-value" id="s-agents">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Tick</span>
+                    <span class="stat-value" id="s-tick">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Tick rate</span>
+                    <span class="stat-value" id="s-tickrate">40ms</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Settled</span>
+                    <span class="stat-value" id="s-settled">-</span>
+                </div>
+
+                <div class="section-label">Three Buttons</div>
+                <div class="stat-row">
+                    <span class="stat-label">Act (cohesion)</span>
+                    <span class="stat-value positive" id="s-act">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Dismiss (separation)</span>
+                    <span class="stat-value negative" id="s-dismiss">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Ask-sibling (align)</span>
+                    <span class="stat-value neutral" id="s-ask">0</span>
+                </div>
+
+                <div class="section-label">Harsanyi Dividends</div>
+                <div class="stat-row">
+                    <span class="stat-label">Synergy (+)</span>
+                    <span class="stat-value positive" id="s-synergy">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Redundancy (-)</span>
+                    <span class="stat-value negative" id="s-redundancy">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Net dividend</span>
+                    <span class="stat-value" id="s-net-div">0</span>
+                </div>
+
+                <div class="section-label">Hysteresis</div>
+                <div class="stat-row">
+                    <span class="stat-label">Knots locked</span>
+                    <span class="stat-value" id="s-locked">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Snaps this tick</span>
+                    <span class="stat-value" id="s-snaps">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Attractors</span>
+                    <span class="stat-value" id="s-attractors">0</span>
+                </div>
+            </div>
+
+            <div class="panel" style="margin-top: 12px;">
+                <h3>Sleep Consolidation</h3>
+                <div class="sleep-bar"><div class="sleep-fill" id="sleep-fill" style="width: 0%"></div></div>
+                <div class="stat-row" style="margin-top: 8px;">
+                    <span class="stat-label">Cycle</span>
+                    <span class="stat-value" id="s-sleep-cycle">Awake</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Palettes stacked</span>
+                    <span class="stat-value" id="s-palettes">0</span>
+                </div>
+                <div class="palette-stack" id="palette-stack"></div>
+            </div>
+
+            <div class="panel" style="margin-top: 12px;">
+                <h3>Controls</h3>
+                <div class="controls">
+                    <button class="btn active" id="btn-run" onclick="toggleRun()">Running</button>
+                    <button class="btn" id="btn-sleep" onclick="triggerSleep()">Sleep cycle</button>
+                    <button class="btn" id="btn-reset" onclick="resetSim()">Reset</button>
+                </div>
+                <div class="controls" style="margin-top: 8px;">
+                    <button class="btn act-btn" id="btn-mode-act" onclick="setMode('act')">+ Attractor</button>
+                    <button class="btn dismiss-btn" id="btn-mode-repel" onclick="setMode('repel')">+ Repeller</button>
+                    <button class="btn ask-btn" id="btn-mode-clear" onclick="setMode('clear')">Clear forces</button>
+                </div>
+                <div class="legend">
+                    <div class="legend-item"><div class="legend-dot" style="background: #4a7a32"></div> Act - moving with flock (cohesion)</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: #c45a2a"></div> Dismiss - avoiding crowding (separation)</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: #8a6c18"></div> Ask-sibling - matching heading (alignment)</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: #b87333"></div> Net threads - tension between topological neighbours</div>
+                    <div class="legend-item"><div class="legend-dot" style="background: rgba(191,91,22,0.3)"></div> Strange attractor basin</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById('flock-canvas');
+const ctx = canvas.getContext('2d');
+
+const W = 760, H = 560;
+canvas.width = W * 2; canvas.height = H * 2;
+ctx.scale(2, 2);
+
+// --- Configuration ---
+const NUM_AGENTS = 128;
+const TOPO_K = 7;
+const MAX_SPEED = 3;
+const SEPARATION_R = 25;
+const ALIGNMENT_W = 0.08;
+const COHESION_W = 0.05;
+const SEPARATION_W = 0.12;
+const HYSTERESIS_THRESHOLD = 0.6;
+const SNAP_COOLDOWN = 10;
+const TICK_MS = 40;
+const SLEEP_DURATION = 120;
+const WAKE_DURATION = 300;
+
+// --- Colours (from site palette) ---
+const COL = {
+    bg: '#f9f7f3', border: '#e4dfd5', dim: '#6b5e4a', faint: '#a89a82',
+    green: '#4a7a32', rust: '#c45a2a', gold: '#8a6c18', copper: '#b87333',
+    accent: '#bf5b16', text: '#1a1714'
+};
+
+// --- State ---
+let agents = [];
+let attractors = [];
+let tick = 0;
+let running = true;
+let sleeping = false;
+let sleepTick = 0;
+let palettes = [];
+let clickMode = 'act';
+let snapsThisTick = 0;
+
+class Agent {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        const a = Math.random() * Math.PI * 2;
+        this.vx = Math.cos(a) * 1.5;
+        this.vy = Math.sin(a) * 1.5;
+        this.neighbours = [];
+        this.button = 'ask';
+        this.hysteresis = Math.random();
+        this.locked = this.hysteresis > HYSTERESIS_THRESHOLD;
+        this.snapCooldown = 0;
+        this.shapley = 0;
+        this.dividend = 0;
+    }
+}
+
+function init() {
+    agents = [];
+    for (let i = 0; i < NUM_AGENTS; i++) {
+        agents.push(new Agent(
+            100 + Math.random() * (W - 200),
+            100 + Math.random() * (H - 200)
+        ));
+    }
+    attractors = [];
+    tick = 0;
+    palettes = [];
+    sleeping = false;
+    sleepTick = 0;
+}
+
+function dist(a, b) {
+    const dx = a.x - b.x, dy = a.y - b.y;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+function findTopologicalNeighbours() {
+    for (const a of agents) {
+        const dists = agents
+            .filter(b => b !== a)
+            .map(b => ({ agent: b, d: dist(a, b) }))
+            .sort((x, y) => x.d - y.d);
+        a.neighbours = dists.slice(0, TOPO_K).map(d => d.agent);
+    }
+}
+
+function computeHarsanyi(agent) {
+    if (agent.neighbours.length < 2) {
+        agent.dividend = 0;
+        agent.shapley = 0.5;
+        return;
+    }
+    const n = agent.neighbours;
+    let headings = n.map(b => Math.atan2(b.vy, b.vx));
+    let myHeading = Math.atan2(agent.vy, agent.vx);
+
+    let pairAlignSum = 0;
+    let count = 0;
+    for (let i = 0; i < headings.length; i++) {
+        for (let j = i + 1; j < headings.length; j++) {
+            pairAlignSum += Math.cos(headings[i] - headings[j]);
+            count++;
+        }
+    }
+    let pairAvg = count > 0 ? pairAlignSum / count : 0;
+
+    let tripleSum = 0;
+    let tCount = 0;
+    for (let i = 0; i < headings.length; i++) {
+        for (let j = i + 1; j < headings.length; j++) {
+            for (let k = j + 1; k < headings.length; k++) {
+                let trio = (Math.cos(headings[i] - headings[j]) +
+                           Math.cos(headings[j] - headings[k]) +
+                           Math.cos(headings[i] - headings[k])) / 3;
+                let pair = (Math.cos(headings[i] - headings[j]) +
+                           Math.cos(headings[j] - headings[k]) +
+                           Math.cos(headings[i] - headings[k])) / 3;
+                tripleSum += trio - pair * 0.8;
+                tCount++;
+            }
+        }
+    }
+
+    agent.dividend = tCount > 0 ? tripleSum / tCount : 0;
+
+    let marginal = 0;
+    for (const h of headings) {
+        marginal += Math.cos(myHeading - h);
+    }
+    agent.shapley = Math.max(0.1, (marginal / headings.length + 1) / 2);
+}
+
+function updateAgent(agent) {
+    let sepX = 0, sepY = 0, sepCount = 0;
+    let aliX = 0, aliY = 0;
+    let cohX = 0, cohY = 0;
+
+    for (const n of agent.neighbours) {
+        const d = dist(agent, n);
+
+        if (d < SEPARATION_R && d > 0) {
+            sepX += (agent.x - n.x) / d;
+            sepY += (agent.y - n.y) / d;
+            sepCount++;
+        }
+
+        aliX += n.vx * n.shapley;
+        aliY += n.vy * n.shapley;
+
+        cohX += n.x;
+        cohY += n.y;
+    }
+
+    const nLen = agent.neighbours.length || 1;
+
+    if (sepCount > 0) {
+        agent.vx += (sepX / sepCount) * SEPARATION_W;
+        agent.vy += (sepY / sepCount) * SEPARATION_W;
+        agent.button = 'dismiss';
+    } else {
+        aliX /= nLen; aliY /= nLen;
+        cohX = cohX / nLen - agent.x;
+        cohY = cohY / nLen - agent.y;
+
+        let aliMag = Math.sqrt(aliX * aliX + aliY * aliY) || 1;
+        let cohMag = Math.sqrt(cohX * cohX + cohY * cohY) || 1;
+
+        let aliScore = Math.abs(Math.cos(Math.atan2(agent.vy, agent.vx) - Math.atan2(aliY, aliX)));
+
+        if (aliScore < 0.7) {
+            agent.vx += (aliX / aliMag) * ALIGNMENT_W;
+            agent.vy += (aliY / aliMag) * ALIGNMENT_W;
+            agent.button = 'ask';
+        } else {
+            agent.vx += (cohX / cohMag) * COHESION_W;
+            agent.vy += (cohY / cohMag) * COHESION_W;
+            agent.button = 'act';
+        }
+    }
+
+    for (const att of attractors) {
+        const dx = att.x - agent.x;
+        const dy = att.y - agent.y;
+        const d = Math.sqrt(dx * dx + dy * dy) || 1;
+        const force = att.strength / (d * 0.1 + 1);
+        agent.vx += (dx / d) * force * 0.02;
+        agent.vy += (dy / d) * force * 0.02;
+    }
+
+    let speed = Math.sqrt(agent.vx * agent.vx + agent.vy * agent.vy);
+    if (speed > MAX_SPEED) {
+        agent.vx = (agent.vx / speed) * MAX_SPEED;
+        agent.vy = (agent.vy / speed) * MAX_SPEED;
+    }
+
+    agent.x += agent.vx;
+    agent.y += agent.vy;
+
+    if (agent.x < 10) { agent.x = 10; agent.vx *= -0.5; }
+    if (agent.x > W - 10) { agent.x = W - 10; agent.vx *= -0.5; }
+    if (agent.y < 10) { agent.y = 10; agent.vy *= -0.5; }
+    if (agent.y > H - 10) { agent.y = H - 10; agent.vy *= -0.5; }
+
+    if (agent.snapCooldown > 0) {
+        agent.snapCooldown--;
+    } else {
+        let tension = 0;
+        for (const n of agent.neighbours) {
+            tension += Math.abs(Math.cos(
+                Math.atan2(agent.vy, agent.vx) - Math.atan2(n.vy, n.vx)
+            ));
+        }
+        tension /= (agent.neighbours.length || 1);
+
+        if (!agent.locked && tension > HYSTERESIS_THRESHOLD) {
+            agent.locked = true;
+            agent.snapCooldown = SNAP_COOLDOWN;
+            agent.hysteresis = tension;
+            snapsThisTick++;
+        } else if (agent.locked && tension < HYSTERESIS_THRESHOLD * 0.5) {
+            agent.locked = false;
+            agent.snapCooldown = SNAP_COOLDOWN;
+            agent.hysteresis = tension;
+            snapsThisTick++;
+        }
+    }
+}
+
+function takeSnapshot() {
+    return agents.map(a => ({
+        x: a.x, y: a.y,
+        vx: a.vx, vy: a.vy,
+        locked: a.locked,
+        hysteresis: a.hysteresis,
+        button: a.button
+    }));
+}
+
+function sleepCycle() {
+    if (sleeping) return;
+    sleeping = true;
+    sleepTick = 0;
+
+    const snapshot = takeSnapshot();
+    const avgHyst = snapshot.reduce((s, a) => s + a.hysteresis, 0) / snapshot.length;
+    const lockRatio = snapshot.filter(a => a.locked).length / snapshot.length;
+
+    const hue = Math.round(30 + avgHyst * 60);
+    const sat = Math.round(40 + lockRatio * 40);
+    const light = Math.round(55 + (1 - lockRatio) * 25);
+
+    palettes.push({
+        snapshot,
+        colour: `hsl(${hue}, ${sat}%, ${light}%)`,
+        avgHyst,
+        lockRatio,
+        tick: tick
+    });
+
+    const stackEl = document.getElementById('palette-stack');
+    const layer = document.createElement('div');
+    layer.className = 'palette-layer';
+    layer.style.background = `hsl(${hue}, ${sat}%, ${light}%)`;
+    layer.title = `Tick ${tick} | Lock: ${(lockRatio * 100).toFixed(0)}% | Hyst: ${avgHyst.toFixed(2)}`;
+    stackEl.appendChild(layer);
+}
+
+function draw() {
+    ctx.fillStyle = sleeping ? '#f4f1eb' : COL.bg;
+    ctx.fillRect(0, 0, W, H);
+
+    for (const att of attractors) {
+        const grad = ctx.createRadialGradient(att.x, att.y, 0, att.x, att.y, 80);
+        if (att.strength > 0) {
+            grad.addColorStop(0, 'rgba(191,91,22,0.15)');
+            grad.addColorStop(1, 'rgba(191,91,22,0)');
+        } else {
+            grad.addColorStop(0, 'rgba(196,90,42,0.15)');
+            grad.addColorStop(1, 'rgba(196,90,42,0)');
+        }
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(att.x, att.y, 80, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = att.strength > 0 ? COL.accent : COL.rust;
+        ctx.beginPath();
+        ctx.arc(att.x, att.y, 4, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    ctx.strokeStyle = 'rgba(184,115,51,0.12)';
+    ctx.lineWidth = 0.5;
+    for (const a of agents) {
+        for (const n of a.neighbours) {
+            if (a.locked && n.locked) {
+                ctx.strokeStyle = 'rgba(184,115,51,0.3)';
+                ctx.lineWidth = 1;
+            } else if (a.locked || n.locked) {
+                ctx.strokeStyle = 'rgba(184,115,51,0.15)';
+                ctx.lineWidth = 0.7;
+            } else {
+                ctx.strokeStyle = 'rgba(184,115,51,0.06)';
+                ctx.lineWidth = 0.4;
+            }
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(n.x, n.y);
+            ctx.stroke();
+        }
+    }
+
+    for (const a of agents) {
+        const col = a.button === 'dismiss' ? COL.rust :
+                    a.button === 'ask' ? COL.gold : COL.green;
+
+        if (a.locked) {
+            ctx.fillStyle = col;
+            ctx.beginPath();
+            ctx.arc(a.x, a.y, 4, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.strokeStyle = col;
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(a.x, a.y, 6, 0, Math.PI * 2);
+            ctx.stroke();
+        } else {
+            ctx.fillStyle = col;
+            ctx.beginPath();
+            ctx.arc(a.x, a.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        const angle = Math.atan2(a.vy, a.vx);
+        const len = 8 + a.shapley * 6;
+        ctx.strokeStyle = col;
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(a.x + Math.cos(angle) * len, a.y + Math.sin(angle) * len);
+        ctx.stroke();
+    }
+
+    if (sleeping) {
+        ctx.fillStyle = `rgba(26,23,20,${0.05 + 0.1 * Math.sin(sleepTick * 0.05)})`;
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.fillStyle = COL.dim;
+        ctx.font = '14px ' + 'SF Mono, monospace';
+        ctx.fillText('SLEEP CYCLE - stacking net onto palette...', 20, H - 20);
+    }
+
+    ctx.fillStyle = COL.faint;
+    ctx.font = '11px ' + 'SF Mono, monospace';
+    ctx.fillText(`tick ${tick} | 40ms | topo-7 | no fisherman`, 10, 16);
+}
+
+function updateStats() {
+    const acts = agents.filter(a => a.button === 'act').length;
+    const dismisses = agents.filter(a => a.button === 'dismiss').length;
+    const asks = agents.filter(a => a.button === 'ask').length;
+    const locked = agents.filter(a => a.locked).length;
+    const synergy = agents.filter(a => a.dividend > 0.01).length;
+    const redundancy = agents.filter(a => a.dividend < -0.01).length;
+    const netDiv = agents.reduce((s, a) => s + a.dividend, 0);
+
+    let headings = agents.map(a => Math.atan2(a.vy, a.vx));
+    let avgCos = headings.reduce((s, h) => s + Math.cos(h), 0) / agents.length;
+    let avgSin = headings.reduce((s, h) => s + Math.sin(h), 0) / agents.length;
+    let coherence = Math.sqrt(avgCos * avgCos + avgSin * avgSin);
+    let settled = coherence > 0.7 ? 'YES' : coherence > 0.4 ? 'settling...' : 'no';
+
+    document.getElementById('s-agents').textContent = agents.length;
+    document.getElementById('s-tick').textContent = tick;
+    document.getElementById('s-settled').textContent = settled;
+    document.getElementById('s-act').textContent = acts;
+    document.getElementById('s-dismiss').textContent = dismisses;
+    document.getElementById('s-ask').textContent = asks;
+    document.getElementById('s-synergy').textContent = synergy;
+    document.getElementById('s-redundancy').textContent = redundancy;
+    document.getElementById('s-net-div').textContent = netDiv.toFixed(3);
+    document.getElementById('s-locked').textContent = locked;
+    document.getElementById('s-snaps').textContent = snapsThisTick;
+    document.getElementById('s-attractors').textContent = attractors.length;
+    document.getElementById('s-palettes').textContent = palettes.length;
+    document.getElementById('s-sleep-cycle').textContent = sleeping ? 'REM' : 'Awake';
+
+    if (sleeping) {
+        document.getElementById('sleep-fill').style.width =
+            Math.min(100, (sleepTick / SLEEP_DURATION) * 100) + '%';
+    } else {
+        const awakePct = Math.min(100, ((tick % WAKE_DURATION) / WAKE_DURATION) * 100);
+        document.getElementById('sleep-fill').style.width = awakePct + '%';
+    }
+
+    const netDivEl = document.getElementById('s-net-div');
+    netDivEl.className = 'stat-value ' + (netDiv > 0.01 ? 'positive' : netDiv < -0.01 ? 'negative' : 'neutral');
+}
+
+function step() {
+    if (!running) return;
+
+    snapsThisTick = 0;
+    tick++;
+
+    if (sleeping) {
+        sleepTick++;
+        for (const a of agents) {
+            a.vx *= 0.98;
+            a.vy *= 0.98;
+            a.x += a.vx;
+            a.y += a.vy;
+        }
+        if (sleepTick >= SLEEP_DURATION) {
+            sleeping = false;
+            sleepTick = 0;
+        }
+    } else {
+        findTopologicalNeighbours();
+        for (const a of agents) computeHarsanyi(a);
+        for (const a of agents) updateAgent(a);
+
+        if (tick % WAKE_DURATION === 0 && tick > 0) {
+            sleepCycle();
+        }
+    }
+
+    draw();
+    updateStats();
+}
+
+// --- Interaction ---
+canvas.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left) * (W / rect.width);
+    const y = (e.clientY - rect.top) * (H / rect.height);
+
+    if (clickMode === 'clear') {
+        attractors = [];
+    } else {
+        attractors.push({
+            x, y,
+            strength: clickMode === 'act' ? 1 : -1
+        });
+    }
+});
+
+function toggleRun() {
+    running = !running;
+    const btn = document.getElementById('btn-run');
+    btn.textContent = running ? 'Running' : 'Paused';
+    btn.classList.toggle('active', running);
+}
+
+function triggerSleep() {
+    sleepCycle();
+}
+
+function resetSim() {
+    init();
+}
+
+function setMode(mode) {
+    clickMode = mode;
+    document.getElementById('btn-mode-act').classList.toggle('active', mode === 'act');
+    document.getElementById('btn-mode-repel').classList.toggle('active', mode === 'repel');
+    document.getElementById('btn-mode-clear').classList.toggle('active', mode === 'clear');
+}
+
+// --- Boot ---
+init();
+findTopologicalNeighbours();
+draw();
+setInterval(step, TICK_MS);
+</script>
+
+</body>
+</html>
