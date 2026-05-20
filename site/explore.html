@@ -62,21 +62,17 @@
     border-left-color: var(--copper);
     font-weight: 600;
 }
-.toc-you-are-here {
-    font-size: 8px;
-    color: var(--copper);
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    display: none;
-    position: absolute;
-    right: 2px;
-    top: 1px;
-}
 .toc-section-link {
     position: relative;
-    padding-right: 56px;
+    padding-right: 10px;
 }
-.toc-section-link.active .toc-you-are-here {
+.toc-signpost {
+    display: none;
+    position: absolute;
+    left: -16px;
+    top: -2px;
+}
+.toc-section-link.active .toc-signpost {
     display: block;
 }
 .toc-flywheel {
@@ -635,7 +631,7 @@ function buildToc() {
             var secId = 'sec-' + pi + '-' + si;
             html += '<a class="toc-section-link" data-section="' + secId + '" onclick="scrollToSection(\'' + secId + '\')">';
             html += shortTitle(section.title);
-            html += '<span class="toc-you-are-here">&#9668; HERE</span>';
+            html += '<svg class="toc-signpost" width="14" height="16" viewBox="0 0 14 16"><rect x="6" y="0" width="2" height="16" rx="0.5" fill="#5C3D14"/><polygon points="1,3 12,3 13,7 1,7" fill="#B87333"/><text x="7" y="6.2" text-anchor="middle" font-size="3" fill="#fff" font-weight="bold">HERE</text></svg>';
             html += '</a>';
         });
         html += '</div>';
