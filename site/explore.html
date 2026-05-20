@@ -7,10 +7,101 @@
 <meta name="description" content="A living, graph-generated view of The Shape of Thought. Zoom from children's book to academic depth. Filter conjectures. The ideas stand - only the projection changes.">
 <link rel="stylesheet" href="style.css">
 <style>
+/* Sidebar ToC - You Are Here */
+.explore-layout {
+    display: flex;
+    min-height: 100vh;
+}
+.toc-sidebar {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 110px);
+    overflow-y: auto;
+    padding: 12px 10px 12px 14px;
+    font-size: 11px;
+    z-index: 80;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+.toc-sidebar::-webkit-scrollbar { width: 3px; }
+.toc-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.toc-part {
+    margin-bottom: 6px;
+}
+.toc-part-title {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 0;
+    cursor: pointer;
+}
+.toc-part-title:hover { color: var(--accent); }
+.toc-section-link {
+    display: block;
+    padding: 2px 0 2px 10px;
+    color: var(--dim);
+    text-decoration: none;
+    font-size: 11px;
+    line-height: 1.4;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.toc-section-link:hover {
+    color: var(--accent);
+}
+.toc-section-link.active {
+    color: var(--accent);
+    border-left-color: var(--copper);
+    font-weight: 600;
+}
+.toc-you-are-here {
+    font-size: 8px;
+    color: var(--copper);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    display: none;
+    position: absolute;
+    right: 2px;
+    top: 1px;
+}
+.toc-section-link {
+    position: relative;
+    padding-right: 56px;
+}
+.toc-section-link.active .toc-you-are-here {
+    display: block;
+}
+.toc-flywheel {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 10px;
+    color: var(--faint);
+}
+.toc-flywheel .flywheel-arrow {
+    color: var(--copper);
+    font-size: 14px;
+}
+.main-content-area {
+    margin-left: 220px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Explore bar */
 .explore-bar {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 12px 0;
+    padding: 8px 0;
     position: sticky;
     top: 50px;
     z-index: 90;
@@ -19,11 +110,11 @@
 .explore-bar .container {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 14px;
     flex-wrap: wrap;
 }
 .explore-bar label {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--dim);
     font-weight: 500;
     white-space: nowrap;
@@ -31,8 +122,8 @@
 .foveation-slider {
     -webkit-appearance: none;
     appearance: none;
-    width: 180px;
-    height: 6px;
+    width: 150px;
+    height: 5px;
     background: linear-gradient(to right, var(--copper), var(--gold));
     border-radius: 3px;
     outline: none;
@@ -40,25 +131,25 @@
 }
 .foveation-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     background: var(--accent);
     border-radius: 50%;
     border: 2px solid #fff;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     cursor: pointer;
 }
 .fov-label {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--accent);
     font-weight: 600;
-    min-width: 80px;
+    min-width: 70px;
 }
 .filter-btn {
-    font-size: 12px;
-    padding: 4px 12px;
+    font-size: 11px;
+    padding: 3px 10px;
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 12px;
     background: var(--bg);
     color: var(--dim);
     cursor: pointer;
@@ -69,57 +160,55 @@
     color: #fff;
     border-color: var(--gold);
 }
-.filter-btn:hover {
-    border-color: var(--copper);
-}
+.filter-btn:hover { border-color: var(--copper); }
 
 .status-bar {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     align-items: center;
     margin-left: auto;
 }
 .status-pill {
-    font-size: 11px;
-    padding: 2px 8px;
+    font-size: 10px;
+    padding: 2px 7px;
     border-radius: 10px;
     font-weight: 500;
 }
 .status-pill.supported { background: rgba(74,122,50,0.12); color: var(--green); }
 .status-pill.conjecture { background: rgba(184,115,51,0.12); color: var(--copper); }
 
-/* Content */
+/* Compact content */
 .part-header {
-    margin: 56px 0 8px;
-    padding: 16px 0 12px;
+    margin: 28px 0 4px;
+    padding: 10px 0 8px;
     border-bottom: 2px solid var(--border-h);
 }
 .part-header h1 {
     font-family: var(--serif);
-    font-size: 1.8em;
+    font-size: 1.5em;
     color: var(--gold);
     font-weight: 400;
 }
 .part-header .part-sub {
-    font-size: 0.95em;
+    font-size: 0.85em;
     color: var(--dim);
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .section-block {
-    margin: 40px 0;
+    margin: 18px 0;
     padding: 0;
 }
 .section-header {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 .section-sticker {
-    width: 80px;
+    width: 50px;
     flex-shrink: 0;
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+    filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.12));
     opacity: 0.85;
     transition: transform 0.3s, opacity 0.3s;
     cursor: pointer;
@@ -132,24 +221,24 @@
     margin: 0;
     padding: 0;
     border: none;
-    font-size: 1.4em;
+    font-size: 1.15em;
 }
 .section-number {
-    font-size: 0.75em;
+    font-size: 0.7em;
     color: var(--copper);
     font-weight: 500;
     display: block;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
     font-family: var(--sans);
 }
 
 .idea-card {
-    margin: 16px 0;
-    padding: 16px 20px;
+    margin: 6px 0;
+    padding: 10px 14px;
     background: var(--surface);
-    border-radius: 8px;
+    border-radius: 6px;
     border-left: 3px solid var(--border);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
     position: relative;
 }
@@ -162,193 +251,157 @@
     background: var(--raised);
 }
 .idea-card .idea-surface {
-    font-size: 0.95em;
-    line-height: 1.7;
+    font-size: 0.88em;
+    line-height: 1.55;
     color: var(--text);
 }
 .idea-card .idea-core {
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: var(--dim);
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     font-weight: 500;
 }
 .idea-card .idea-depth {
-    margin-top: 12px;
-    padding-top: 12px;
+    margin-top: 8px;
+    padding-top: 8px;
     border-top: 1px solid var(--border);
-    font-size: 0.88em;
-    line-height: 1.75;
+    font-size: 0.82em;
+    line-height: 1.6;
     color: var(--dim);
     display: none;
 }
-.idea-card.expanded .idea-depth {
-    display: block;
-}
+.idea-card.expanded .idea-depth { display: block; }
 .idea-card .idea-evidence {
-    margin-top: 8px;
-    font-size: 0.8em;
+    margin-top: 6px;
+    font-size: 0.75em;
     color: var(--faint);
     font-style: italic;
 }
 .idea-card .idea-status {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 8px;
+    right: 8px;
 }
 .idea-card .zoom-hint {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--faint);
-    margin-top: 8px;
+    margin-top: 4px;
     text-align: right;
 }
 .idea-card.expanded .zoom-hint { display: none; }
 
 .idea-links {
-    margin-top: 8px;
+    margin-top: 6px;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 4px;
 }
 .idea-link {
-    font-size: 11px;
-    padding: 2px 8px;
+    font-size: 10px;
+    padding: 1px 7px;
     background: rgba(138,108,24,0.08);
     color: var(--gold);
     border-radius: 10px;
     text-decoration: none;
     cursor: pointer;
 }
-.idea-link:hover {
-    background: rgba(138,108,24,0.18);
-}
+.idea-link:hover { background: rgba(138,108,24,0.18); }
 
 .section-fact {
-    font-size: 0.9em;
+    font-size: 0.82em;
     color: var(--dim);
-    line-height: 1.7;
-    margin-bottom: 16px;
-    padding: 12px 16px;
+    line-height: 1.55;
+    margin-bottom: 8px;
+    padding: 8px 12px;
     background: rgba(138,108,24,0.04);
-    border-radius: 6px;
+    border-radius: 5px;
 }
 .section-falsification {
-    font-size: 0.82em;
+    font-size: 0.78em;
     color: var(--faint);
-    margin-top: 20px;
-    padding: 8px 12px;
+    margin-top: 10px;
+    padding: 6px 10px;
     border-left: 2px solid var(--border);
     font-style: italic;
 }
 
 .conjecture-block {
-    margin: 24px 0;
-    padding: 20px;
+    margin: 12px 0;
+    padding: 12px;
     background: rgba(184,115,51,0.04);
     border: 1px solid rgba(184,115,51,0.15);
-    border-radius: 8px;
+    border-radius: 6px;
 }
 .conjecture-block h3 {
     color: var(--copper);
-    font-size: 1.05em;
-    margin-bottom: 4px;
+    font-size: 0.95em;
+    margin-bottom: 2px;
 }
-.conjecture-block .conj-date {
-    font-size: 0.8em;
-    color: var(--faint);
-}
-.conjecture-block .conj-source {
-    font-size: 0.85em;
-    color: var(--dim);
-    margin: 8px 0;
-}
-.conjecture-block .conj-fact {
-    font-size: 0.9em;
-    line-height: 1.7;
-    color: var(--text);
-}
+.conjecture-block .conj-date { font-size: 0.75em; color: var(--faint); }
+.conjecture-block .conj-source { font-size: 0.8em; color: var(--dim); margin: 4px 0; }
+.conjecture-block .conj-fact { font-size: 0.85em; line-height: 1.55; color: var(--text); }
 
 .meta-links {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
     align-items: center;
 }
 .meta-link {
-    font-size: 12px;
-    padding: 4px 14px;
+    font-size: 11px;
+    padding: 3px 10px;
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 12px;
     color: var(--dim);
     text-decoration: none;
     transition: all 0.2s;
 }
-.meta-link:hover {
-    border-color: var(--copper);
-    color: var(--accent);
-}
-.meta-link.primary {
-    background: var(--gold);
-    color: #fff;
-    border-color: var(--gold);
-}
-.meta-link.primary:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-}
+.meta-link:hover { border-color: var(--copper); color: var(--accent); }
+.meta-link.primary { background: var(--gold); color: #fff; border-color: var(--gold); }
+.meta-link.primary:hover { background: var(--accent); border-color: var(--accent); }
 
 .working-notice {
     text-align: center;
-    padding: 24px;
-    margin: 32px 0;
+    padding: 14px;
+    margin: 16px 0;
     background: var(--surface);
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px dashed var(--border);
 }
-.working-notice p {
-    font-size: 0.9em;
-    color: var(--dim);
-    line-height: 1.6;
-}
-.working-notice strong {
-    color: var(--accent);
-}
+.working-notice p { font-size: 0.82em; color: var(--dim); line-height: 1.5; }
+.working-notice strong { color: var(--accent); }
 
 .author-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 12px;
-    margin: 24px 0;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+    margin: 12px 0;
 }
 .author-card {
-    padding: 12px;
+    padding: 8px 10px;
     background: var(--surface);
-    border-radius: 6px;
-    font-size: 0.85em;
+    border-radius: 5px;
+    font-size: 0.8em;
 }
-.author-card .author-name {
-    font-weight: 600;
-    color: var(--accent);
-}
-.author-card .author-contrib {
-    color: var(--dim);
-    margin-top: 4px;
-    font-size: 0.9em;
-}
+.author-card .author-name { font-weight: 600; color: var(--accent); }
+.author-card .author-contrib { color: var(--dim); margin-top: 2px; font-size: 0.9em; }
 
 footer.explore-footer {
     text-align: center;
-    padding: 40px 0;
-    margin-top: 60px;
+    padding: 24px 0;
+    margin-top: 30px;
     border-top: 1px solid var(--border);
     color: var(--faint);
-    font-size: 0.85em;
+    font-size: 0.8em;
 }
 
-@media (max-width: 600px) {
-    .explore-bar .container { flex-direction: column; gap: 10px; }
-    .section-sticker { width: 50px; }
+@media (max-width: 768px) {
+    .toc-sidebar { display: none; }
+    .main-content-area { margin-left: 0; }
+    .explore-bar .container { flex-direction: column; gap: 8px; }
+    .section-sticker { width: 40px; }
     .status-bar { margin-left: 0; }
-    .foveation-slider { width: 140px; }
+    .foveation-slider { width: 120px; }
 }
 </style>
 </head>
@@ -384,12 +437,23 @@ footer.explore-footer {
     </div>
 </div>
 
-<header class="hero" style="padding: 48px 0 36px;">
+<div class="explore-layout">
+
+<aside class="toc-sidebar" id="toc-sidebar">
+    <div id="toc-content"></div>
+    <div class="toc-flywheel">
+        <span class="flywheel-arrow">&#8635;</span> the flywheel turns
+    </div>
+</aside>
+
+<div class="main-content-area">
+
+<header class="hero" style="padding: 28px 0 20px;">
     <div class="container">
-        <h1>The Shape of Thought</h1>
-        <p class="subtitle" style="font-style:italic; font-size:1.05em; margin-bottom:8px;">From Quantum Mechanics to Thought - Come and See the Shapes</p>
-        <p class="subtitle" style="font-size:0.9em;">The shapes are the facts. The rest is projection. Any style, any depth, any language.</p>
-        <div style="margin-top:20px;" class="meta-links">
+        <h1 style="font-size:1.8em;">The Shape of Thought</h1>
+        <p class="subtitle" style="font-style:italic; font-size:0.95em; margin-bottom:4px;">From Quantum Mechanics to Thought - Come and See the Shapes</p>
+        <p class="subtitle" style="font-size:0.82em;">The shapes are the facts. The rest is projection. Any style, any depth, any language.</p>
+        <div style="margin-top:12px;" class="meta-links">
             <a href="paper.html" class="meta-link">Full Paper</a>
             <a href="https://doi.org/10.5281/zenodo.15263498" class="meta-link primary" rel="noopener">Zenodo (Snapshot)</a>
             <a href="https://github.com/agilemeshnet/theshapeofthought" class="meta-link" rel="noopener">Willow Seed Repo</a>
@@ -407,7 +471,7 @@ footer.explore-footer {
 
 <main class="page-content">
     <div class="container" id="content">
-        <p style="text-align:center; color:var(--faint); padding:40px;">Loading from graph...</p>
+        <p style="text-align:center; color:var(--faint); padding:20px;">Loading from graph...</p>
     </div>
 </main>
 
@@ -418,29 +482,27 @@ footer.explore-footer {
     </div>
 </footer>
 
+</div><!-- main-content-area -->
+</div><!-- explore-layout -->
+
 <script>
 var graphData = null;
 var showConjectures = true;
-var foveationLevel = 1; // 0=surface, 1=general, 2=depth
+var foveationLevel = 1;
 
 var stickerMap = {
     'Introduction': 'watcher',
-    'Section I': 'netty',
-    'Section II': 'netty',
+    'Section I': 'netty', 'Section II': 'netty',
     'Section III': 'tray-stacker',
-    'Section IV': 'conductor',
-    'Section V': 'conductor',
-    'Section VI': 'ember',
-    'Section VII': 'netty',
-    'Section VIII': 'juggler',
-    'Section IX': 'flock-bird',
-    'Section X': 'ember',
-    'Section XI': 'ember',
-    'Section XII': 'watcher',
-    'Coda': 'watcher'
+    'Section IV': 'conductor', 'Section V': 'conductor',
+    'Section VI': 'ember', 'Section VII': 'netty',
+    'Section VIII': 'juggler', 'Section IX': 'flock-bird',
+    'Section X': 'ember', 'Section XI': 'ember',
+    'Section XII': 'watcher', 'Coda': 'watcher'
 };
 
 var fovLabels = ['Children\'s Book', 'General', 'Academic'];
+var sectionObserver = null;
 
 document.getElementById('foveation').addEventListener('input', function() {
     foveationLevel = parseInt(this.value);
@@ -454,6 +516,11 @@ function toggleConjectures() {
     render();
 }
 
+function scrollToSection(sectionId) {
+    var el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function scrollToIdea(ideaId) {
     var el = document.getElementById('idea-' + ideaId);
     if (el) {
@@ -463,13 +530,83 @@ function scrollToIdea(ideaId) {
     }
 }
 
-function toggleIdea(el) {
-    el.classList.toggle('expanded');
-}
+function toggleIdea(el) { el.classList.toggle('expanded'); }
 
 function getLinksForIdea(ideaId) {
     if (!graphData || !graphData.links) return [];
     return graphData.links.filter(function(l) { return l.from_id === ideaId || l.to_id === ideaId; });
+}
+
+var tocSimple = {
+    'The Cat in the Hat as Architecture': 'The Cat Arrives',
+    'The Cat Sat On The Mat - Compression Needs a Receiver': 'Words Need Ears',
+    'The Pigeon Bob - Storage Not Processing': 'Walking Memory',
+    'The Warehouse Disease - Measurement vs Referent': 'Counting Wrong',
+    'The Glass Elevator - Derivative Stack and Vote': 'The Glass Lift',
+    'Binary Table Graph Vector - Four Irreducible Shapes': 'Four Shapes',
+    'The Ledger - Time as Fifth Shape': 'Time as Shape',
+    'The Episode - Memory Stores Scenes Not Strings': 'Scenes Not Words',
+    'The Fable - Compression That Decompresses Against Shared Context': 'The Fable',
+    'The Flock and the Vote - No One Steers the Murmuration': 'The Flock',
+    'The Three Buttons - Minimum Ethical Decision Surface': 'Three Buttons',
+    'Structural Kindness - Architecture Not Exhortation': 'Built-In Kindness',
+    'What Crosses The Bridge': 'The Bridge',
+    'The Three Pillars - Independent Pathways to Failure': 'Three Pillars'
+};
+
+function shortTitle(title) {
+    if (foveationLevel === 0 && tocSimple[title]) return tocSimple[title];
+    return title.replace(/^The /, '').split(' - ')[0].substring(0, 28);
+}
+
+function getConjecturesForSection(sectionLabel) {
+    if (!graphData || !graphData.conjectures) return [];
+    var roman = sectionLabel.replace('Section ', '');
+    return graphData.conjectures.filter(function(c) {
+        return c.supports && c.supports.indexOf(roman) !== -1;
+    });
+}
+
+function buildToc() {
+    if (!graphData) return;
+    var html = '';
+    graphData.parts.forEach(function(part, pi) {
+        var partId = 'part-' + pi;
+        html += '<div class="toc-part">';
+        html += '<div class="toc-part-title" onclick="scrollToSection(\'' + partId + '\')">' + part.title.replace('Part ', '') + '</div>';
+        part.sections.forEach(function(section, si) {
+            var secId = 'sec-' + pi + '-' + si;
+            html += '<a class="toc-section-link" data-section="' + secId + '" onclick="scrollToSection(\'' + secId + '\')">';
+            html += shortTitle(section.title);
+            html += '<span class="toc-you-are-here">&#9668; HERE</span>';
+            html += '</a>';
+        });
+        html += '</div>';
+    });
+    document.getElementById('toc-content').innerHTML = html;
+}
+
+function setupScrollSpy() {
+    if (sectionObserver) sectionObserver.disconnect();
+    var sections = document.querySelectorAll('.section-block[id]');
+    if (!sections.length) return;
+
+    sectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.toc-section-link').forEach(function(link) {
+                    link.classList.remove('active');
+                });
+                var link = document.querySelector('.toc-section-link[data-section="' + entry.target.id + '"]');
+                if (link) {
+                    link.classList.add('active');
+                    link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }
+        });
+    }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(function(sec) { sectionObserver.observe(sec); });
 }
 
 function render() {
@@ -479,14 +616,16 @@ function render() {
     var totalIdeas = 0;
     var supportedCount = 0;
     var conjectureCount = 0;
+    var renderedConjs = {};
 
-    graphData.parts.forEach(function(part) {
-        html += '<div class="part-header"><h1>' + part.title + '</h1>';
+    graphData.parts.forEach(function(part, pi) {
+        html += '<div class="part-header" id="part-' + pi + '"><h1>' + part.title + '</h1>';
         html += '<div class="part-sub">' + (part.subtitle || '') + '</div></div>';
 
-        part.sections.forEach(function(section) {
+        part.sections.forEach(function(section, si) {
+            var secId = 'sec-' + pi + '-' + si;
             var sticker = stickerMap[section.section] || 'watcher';
-            html += '<div class="section-block">';
+            html += '<div class="section-block" id="' + secId + '">';
             html += '<div class="section-header">';
             html += '<img src="stickers/' + sticker + '.png" class="section-sticker" alt="' + sticker + '">';
             html += '<div><span class="section-number">' + section.section + '</span>';
@@ -496,44 +635,33 @@ function render() {
                 html += '<div class="section-fact">' + section.bare_fact + '</div>';
             }
 
-            var ideas = section.ideas || [];
-            ideas.forEach(function(idea) {
+            (section.ideas || []).forEach(function(idea) {
                 if (!idea.id) return;
-
                 var isConj = idea.status && idea.status.indexOf('conjecture') !== -1;
-                if (isConj) conjectureCount++;
-                else supportedCount++;
-
+                if (isConj) conjectureCount++; else supportedCount++;
                 if (isConj && !showConjectures) return;
-
                 totalIdeas++;
                 var links = getLinksForIdea(idea.id);
 
                 html += '<div class="idea-card" id="idea-' + idea.id + '" onclick="toggleIdea(this)">';
-
                 if (idea.status) {
                     var pillClass = isConj ? 'conjecture' : 'supported';
-                    var pillText = isConj ? 'conjecture' : 'supported';
-                    html += '<span class="idea-status"><span class="status-pill ' + pillClass + '">' + pillText + '</span></span>';
+                    html += '<span class="idea-status"><span class="status-pill ' + pillClass + '">' + pillClass + '</span></span>';
                 }
-
                 html += '<div class="idea-core">' + idea.idea + '</div>';
 
                 if (foveationLevel === 0 && idea.surface) {
                     html += '<div class="idea-surface">' + idea.surface + '</div>';
                 } else if (foveationLevel === 1) {
-                    if (idea.surface) {
-                        html += '<div class="idea-surface">' + idea.surface + '</div>';
-                    }
+                    if (idea.surface) html += '<div class="idea-surface">' + idea.surface + '</div>';
                     html += '<div class="idea-depth">';
                     if (idea.depth) html += '<p>' + idea.depth + '</p>';
                     if (idea.evidence) html += '<div class="idea-evidence">' + idea.evidence + '</div>';
-                    if (links.length > 0) {
+                    if (links.length) {
                         html += '<div class="idea-links">';
                         links.forEach(function(l) {
                             var target = l.from_id === idea.id ? l.to_id : l.from_id;
-                            var label = l.rel_type.replace(/_/g, ' ').toLowerCase();
-                            html += '<span class="idea-link" onclick="event.stopPropagation(); scrollToIdea(\'' + target + '\')">' + label + ' ' + target + '</span>';
+                            html += '<span class="idea-link" onclick="event.stopPropagation(); scrollToIdea(\'' + target + '\')">' + l.rel_type.replace(/_/g,' ').toLowerCase() + '</span>';
                         });
                         html += '</div>';
                     }
@@ -542,85 +670,67 @@ function render() {
                 } else if (foveationLevel === 2) {
                     if (idea.depth) html += '<div class="idea-surface">' + idea.depth + '</div>';
                     if (idea.evidence) html += '<div class="idea-evidence">' + idea.evidence + '</div>';
-                    if (links.length > 0) {
+                    if (links.length) {
                         html += '<div class="idea-links">';
                         links.forEach(function(l) {
                             var target = l.from_id === idea.id ? l.to_id : l.from_id;
-                            var label = l.rel_type.replace(/_/g, ' ').toLowerCase();
-                            html += '<span class="idea-link" onclick="event.stopPropagation(); scrollToIdea(\'' + target + '\')">' + label + ' ' + target + '</span>';
+                            html += '<span class="idea-link" onclick="event.stopPropagation(); scrollToIdea(\'' + target + '\')">' + l.rel_type.replace(/_/g,' ').toLowerCase() + '</span>';
                         });
                         html += '</div>';
                     }
                 }
-
                 html += '</div>';
             });
 
-            if (foveationLevel >= 2 && section.falsification && section.falsification !== 'N/A - framing section' && section.falsification !== 'N/A - reflection section') {
+            if (foveationLevel >= 2 && section.falsification && section.falsification.indexOf('N/A') === -1) {
                 html += '<div class="section-falsification">' + section.falsification + '</div>';
             }
+
+            var sectionConjs = showConjectures ? getConjecturesForSection(section.section) : [];
+            sectionConjs.forEach(function(c) {
+                if (renderedConjs[c.id]) return;
+                renderedConjs[c.id] = true;
+                html += '<div class="conjecture-block">';
+                html += '<h3>' + c.id + '. ' + c.title + '</h3>';
+                html += '<div class="conj-date">' + (c.date || '') + '</div>';
+                if (foveationLevel >= 1 && c.source) html += '<div class="conj-source">Source: ' + c.source + '</div>';
+                html += '<div class="conj-fact">' + c.bare_fact + '</div>';
+                if (foveationLevel >= 2 && c.supports) html += '<div class="idea-evidence">Supports: ' + c.supports + '</div>';
+                html += '</div>';
+            });
 
             html += '</div>';
         });
     });
 
-    // Conjectures section
-    if (showConjectures && graphData.conjectures && graphData.conjectures.length > 0) {
-        html += '<div class="part-header"><h1>Living Conjectures</h1>';
-        html += '<div class="part-sub">Observations that converge on the thesis as we find them. Dated and sourced.</div></div>';
-
-        var knotty = '<img src="stickers/knotty.png" class="section-sticker" style="float:right;width:70px;margin:0 0 16px 16px;" alt="Knotty">';
-        html += knotty;
-
-        graphData.conjectures.forEach(function(c) {
-            html += '<div class="conjecture-block">';
-            html += '<h3>' + c.id + '. ' + c.title + '</h3>';
-            html += '<div class="conj-date">' + (c.date || '') + '</div>';
-            if (foveationLevel >= 1 && c.source) {
-                html += '<div class="conj-source">Source: ' + c.source + '</div>';
-            }
-            html += '<div class="conj-fact">' + c.bare_fact + '</div>';
-            if (foveationLevel >= 2 && c.supports) {
-                html += '<div class="idea-evidence">Supports: ' + c.supports + '</div>';
-            }
-            html += '</div>';
-        });
-    }
-
-    // Convergent observers
-    if (foveationLevel >= 1 && graphData.authors && graphData.authors.length > 0) {
+    if (foveationLevel >= 1 && graphData.authors && graphData.authors.length) {
         html += '<div class="part-header"><h1>Convergent Observers</h1>';
         html += '<div class="part-sub">Independent vantages of the same landscape.</div></div>';
         html += '<div class="author-grid">';
         graphData.authors.forEach(function(a) {
-            html += '<div class="author-card">';
-            html += '<div class="author-name">' + a.name + '</div>';
+            html += '<div class="author-card"><div class="author-name">' + a.name + '</div>';
             html += '<div class="author-contrib">' + a.contribution + '</div>';
-            if (foveationLevel >= 2 && a.relevance) {
-                html += '<div class="idea-evidence" style="margin-top:6px;">' + a.relevance + '</div>';
-            }
+            if (foveationLevel >= 2 && a.relevance) html += '<div class="idea-evidence" style="margin-top:4px;">' + a.relevance + '</div>';
             html += '</div>';
         });
         html += '</div>';
     }
 
     container.innerHTML = html;
-
     document.getElementById('count-supported').textContent = supportedCount + ' supported';
     document.getElementById('count-conjecture').textContent = conjectureCount + ' conjecture';
     document.getElementById('node-count').textContent = totalIdeas;
     document.getElementById('link-count').textContent = graphData.links ? graphData.links.length : 0;
+
+    buildToc();
+    setupScrollSpy();
 }
 
-// Load graph data
 fetch('paper-graph.json')
     .then(function(r) { return r.json(); })
-    .then(function(data) {
-        graphData = data;
-        render();
-    })
+    .then(function(data) { graphData = data; render(); })
     .catch(function(err) {
-        document.getElementById('content').innerHTML = '<p style="color:var(--accent);text-align:center;padding:40px;">Could not load graph data: ' + err.message + '</p>';
+        document.getElementById('content').innerHTML = '<p style="color:var(--accent);text-align:center;padding:20px;">Could not load graph data: ' + err.message + '</p>';
     });
 </script>
 </body>
