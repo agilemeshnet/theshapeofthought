@@ -147,6 +147,22 @@
     font-weight: 600;
     min-width: 70px;
 }
+.lang-select {
+    font-size: 11px;
+    padding: 2px 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    margin-left: 8px;
+}
+.lang-select option:disabled { color: var(--faint); }
+.lang-label {
+    font-size: 11px;
+    color: var(--dim);
+    margin-left: 12px;
+}
 .filter-btn {
     font-size: 11px;
     padding: 3px 10px;
@@ -533,6 +549,16 @@ footer.explore-footer {
         <input type="range" id="foveation" class="foveation-slider" min="0" max="2" step="1" value="1">
         <span id="fov-label" class="fov-label">General</span>
 
+        <span class="lang-label">Language</span>
+        <select id="lang-select" class="lang-select" onchange="setLanguage(this.value)">
+            <option value="en" selected>English</option>
+            <option value="nl" disabled>Nederlands (coming)</option>
+            <option value="de" disabled>Deutsch (coming)</option>
+            <option value="fr" disabled>Fran&#231;ais (coming)</option>
+            <option value="es" disabled>Espa&#241;ol (coming)</option>
+            <option value="zh" disabled>&#20013;&#25991; (coming)</option>
+        </select>
+
         <button id="btn-conjectures" class="filter-btn active" onclick="toggleConjectures()">Conjectures</button>
 
         <div class="status-bar">
@@ -557,7 +583,7 @@ footer.explore-footer {
     <div class="container">
         <h1 style="font-size:1.8em;">The Shape of Thought</h1>
         <p class="subtitle" style="font-style:italic; font-size:0.95em; margin-bottom:4px;">From Quantum Mechanics to Thought - Come and See the Shapes</p>
-        <p class="subtitle" style="font-size:0.82em;">The shapes are the facts. The rest is projection. Any style, any depth, any language.</p>
+        <p class="subtitle" style="font-size:0.82em;">The shapes are the facts. The rest is projection. Any depth, any language - same graph.</p>
         <div style="margin-top:12px;" class="meta-links">
             <a href="paper.html" class="meta-link primary">Full Paper</a>
             <a href="https://github.com/agilemeshnet/theshapeofthought" class="meta-link" rel="noopener">Willow Seed Repo</a>
@@ -654,6 +680,21 @@ footer.explore-footer {
 var graphData = null;
 var showConjectures = true;
 var foveationLevel = 1;
+var currentLang = 'en';
+
+function setLanguage(lang) {
+    if (lang !== 'en') {
+        document.getElementById('lang-select').value = 'en';
+        var toast = document.createElement('div');
+        toast.textContent = 'Translation is a projection parameter. Same graph, different surface. Each language will be generated from the bare facts on first request - the flywheel turns.';
+        toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:12px 20px;border-radius:8px;font-size:13px;max-width:500px;z-index:1000;box-shadow:0 4px 12px rgba(0,0,0,0.3);';
+        document.body.appendChild(toast);
+        setTimeout(function() { toast.remove(); }, 5000);
+        return;
+    }
+    currentLang = lang;
+    render();
+}
 
 var stickerMap = {
     'Introduction': 'watcher',
