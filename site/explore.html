@@ -552,7 +552,10 @@ function toggleConjectures() {
 
 function scrollToSection(sectionId) {
     var el = document.getElementById(sectionId);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) {
+        var top = el.getBoundingClientRect().top + window.pageYOffset - 110;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+    }
 }
 
 function scrollToIdea(ideaId) {
