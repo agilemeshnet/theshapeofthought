@@ -494,10 +494,13 @@ footer.explore-footer {
     </div>
 </header>
 
-<div class="working-notice">
+<div class="working-notice" id="living-notice" style="display:none;">
     <div class="container">
         <p><strong>This is a living, crystallised formulation.</strong> A frozen snapshot lives on <a href="https://doi.org/10.5281/zenodo.15263498" style="color:var(--accent);">Zenodo</a>. This page is generated from the knowledge graph and reflects the world model as it stands today - growing, connecting, being tested. The shapes are facts; projections adapt per reader, per depth, per purpose. The <a href="https://github.com/agilemeshnet/theshapeofthought" style="color:var(--accent);">Willow Seed</a> repository contains everything needed to grow your own instance of this architecture.</p>
     </div>
+</div>
+<div style="text-align:center; margin:4px 0;">
+    <span style="font-size:11px; color:var(--copper); cursor:pointer; letter-spacing:0.5px;" onclick="var n=document.getElementById('living-notice'); n.style.display = n.style.display==='none' ? 'block' : 'none';">&#9660; this is a living document &#9660;</span>
 </div>
 
 <main class="page-content">
