@@ -282,6 +282,37 @@
     top: 8px;
     right: 8px;
 }
+.footnote-mark {
+    font-size: 13px;
+    color: var(--copper);
+    cursor: pointer;
+    font-weight: 600;
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 2px;
+    transition: color 0.2s;
+}
+.footnote-mark:hover { color: var(--accent); }
+.footnote-mark.supported { color: var(--green); }
+.footnote-detail {
+    display: none;
+    margin-top: 6px;
+    padding: 6px 10px;
+    background: rgba(138,108,24,0.04);
+    border-left: 2px solid var(--border);
+    font-size: 0.78em;
+    color: var(--dim);
+    line-height: 1.5;
+    border-radius: 0 4px 4px 0;
+}
+.footnote-detail.visible { display: block; }
+.footnote-detail .fn-label {
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--copper);
+    margin-right: 4px;
+}
+.footnote-detail .fn-label.supported { color: var(--green); }
 .idea-card .zoom-hint {
     font-size: 10px;
     color: var(--faint);
@@ -531,6 +562,10 @@ function scrollToIdea(ideaId) {
 }
 
 function toggleIdea(el) { el.classList.toggle('expanded'); }
+function toggleFootnote(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.toggle('visible');
+}
 
 function getLinksForIdea(ideaId) {
     if (!graphData || !graphData.links) return [];
@@ -617,6 +652,8 @@ function render() {
     var supportedCount = 0;
     var conjectureCount = 0;
     var renderedConjs = {};
+    var fnCounter = 0;
+    var fnMarks = ['§', '†', '‡', '¶', '§§', '††', '‡‡', '¶¶'];
 
     graphData.parts.forEach(function(part, pi) {
         html += '<div class="part-header" id="part-' + pi + '"><h1>' + part.title + '</h1>';
@@ -643,12 +680,15 @@ function render() {
                 totalIdeas++;
                 var links = getLinksForIdea(idea.id);
 
+                var fnId = 'fn-' + fnCounter;
+                var fnMark = fnMarks[fnCounter % fnMarks.length];
+                fnCounter++;
+                var fnClass = isConj ? '' : ' supported';
+
                 html += '<div class="idea-card" id="idea-' + idea.id + '" onclick="toggleIdea(this)">';
-                if (idea.status) {
-                    var pillClass = isConj ? 'conjecture' : 'supported';
-                    html += '<span class="idea-status"><span class="status-pill ' + pillClass + '">' + pillClass + '</span></span>';
-                }
-                html += '<div class="idea-core">' + idea.idea + '</div>';
+                html += '<div class="idea-core">' + idea.idea;
+                html += '<span class="footnote-mark' + fnClass + '" onclick="event.stopPropagation(); toggleFootnote(\'' + fnId + '\')" title="' + (isConj ? 'conjecture - valid until proven wrong' : 'supported') + '">' + fnMark + '</span>';
+                html += '</div>';
 
                 if (foveationLevel === 0 && idea.surface) {
                     html += '<div class="idea-surface">' + idea.surface + '</div>';
@@ -679,6 +719,17 @@ function render() {
                         html += '</div>';
                     }
                 }
+
+                html += '<div class="footnote-detail" id="' + fnId + '">';
+                html += '<span class="fn-label' + fnClass + '">' + fnMark + '</span> ';
+                if (isConj) {
+                    html += '<em>Conjecture</em> - valid in the world model until the Reverend Bayes says otherwise.';
+                } else {
+                    html += '<em>Supported</em> - convergent evidence from independent observers.';
+                }
+                if (idea.evidence) html += ' <br>' + idea.evidence;
+                html += '</div>';
+
                 html += '</div>';
             });
 
