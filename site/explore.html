@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore - The Shape of Thought</title>
+<meta name="description" content="A living, graph-generated view of The Shape of Thought. Zoom from children's book to academic depth. Filter conjectures. The ideas stand - only the projection changes.">
+<link rel="stylesheet" href="style.css">
+<style>
+.explore-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    position: sticky;
+    top: 50px;
+    z-index: 90;
+    backdrop-filter: blur(12px);
+}
+.explore-bar .container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.explore-bar label {
+    font-size: 13px;
+    color: var(--dim);
+    font-weight: 500;
+    white-space: nowrap;
+}
+.foveation-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 180px;
+    height: 6px;
+    background: linear-gradient(to right, var(--copper), var(--gold));
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+.foveation-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.fov-label {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    min-width: 80px;
+}
+.filter-btn {
+    font-size: 12px;
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--bg);
+    color: var(--dim);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.filter-btn.active {
+    background: var(--gold);
+    color: #fff;
+    border-color: var(--gold);
+}
+.filter-btn:hover {
+    border-color: var(--copper);
+}
+
+.status-bar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-left: auto;
+}
+.status-pill {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+.status-pill.supported { background: rgba(74,122,50,0.12); color: var(--green); }
+.status-pill.conjecture { background: rgba(184,115,51,0.12); color: var(--copper); }
+
+/* Content */
+.part-header {
+    margin: 56px 0 8px;
+    padding: 16px 0 12px;
+    border-bottom: 2px solid var(--border-h);
+}
+.part-header h1 {
+    font-family: var(--serif);
+    font-size: 1.8em;
+    color: var(--gold);
+    font-weight: 400;
+}
+.part-header .part-sub {
+    font-size: 0.95em;
+    color: var(--dim);
+    margin-top: 4px;
+}
+
+.section-block {
+    margin: 40px 0;
+    padding: 0;
+}
+.section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.section-sticker {
+    width: 80px;
+    flex-shrink: 0;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+    opacity: 0.85;
+    transition: transform 0.3s, opacity 0.3s;
+    cursor: pointer;
+}
+.section-sticker:hover {
+    transform: scale(1.1) rotate(3deg);
+    opacity: 1;
+}
+.section-header h2 {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 1.4em;
+}
+.section-number {
+    font-size: 0.75em;
+    color: var(--copper);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+    font-family: var(--sans);
+}
+
+.idea-card {
+    margin: 16px 0;
+    padding: 16px 20px;
+    background: var(--surface);
+    border-radius: 8px;
+    border-left: 3px solid var(--border);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+.idea-card:hover {
+    background: var(--raised);
+    border-left-color: var(--copper);
+}
+.idea-card.expanded {
+    border-left-color: var(--gold);
+    background: var(--raised);
+}
+.idea-card .idea-surface {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: var(--text);
+}
+.idea-card .idea-core {
+    font-size: 0.85em;
+    color: var(--dim);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+.idea-card .idea-depth {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 0.88em;
+    line-height: 1.75;
+    color: var(--dim);
+    display: none;
+}
+.idea-card.expanded .idea-depth {
+    display: block;
+}
+.idea-card .idea-evidence {
+    margin-top: 8px;
+    font-size: 0.8em;
+    color: var(--faint);
+    font-style: italic;
+}
+.idea-card .idea-status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+.idea-card .zoom-hint {
+    font-size: 11px;
+    color: var(--faint);
+    margin-top: 8px;
+    text-align: right;
+}
+.idea-card.expanded .zoom-hint { display: none; }
+
+.idea-links {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.idea-link {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: rgba(138,108,24,0.08);
+    color: var(--gold);
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.idea-link:hover {
+    background: rgba(138,108,24,0.18);
+}
+
+.section-fact {
+    font-size: 0.9em;
+    color: var(--dim);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: rgba(138,108,24,0.04);
+    border-radius: 6px;
+}
+.section-falsification {
+    font-size: 0.82em;
+    color: var(--faint);
+    margin-top: 20px;
+    padding: 8px 12px;
+    border-left: 2px solid var(--border);
+    font-style: italic;
+}
+
+.conjecture-block {
+    margin: 24px 0;
+    padding: 20px;
+    background: rgba(184,115,51,0.04);
+    border: 1px solid rgba(184,115,51,0.15);
+    border-radius: 8px;
+}
+.conjecture-block h3 {
+    color: var(--copper);
+    font-size: 1.05em;
+    margin-bottom: 4px;
+}
+.conjecture-block .conj-date {
+    font-size: 0.8em;
+    color: var(--faint);
+}
+.conjecture-block .conj-source {
+    font-size: 0.85em;
+    color: var(--dim);
+    margin: 8px 0;
+}
+.conjecture-block .conj-fact {
+    font-size: 0.9em;
+    line-height: 1.7;
+    color: var(--text);
+}
+
+.meta-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.meta-link {
+    font-size: 12px;
+    padding: 4px 14px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--dim);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.meta-link:hover {
+    border-color: var(--copper);
+    color: var(--accent);
+}
+.meta-link.primary {
+    background: var(--gold);
+    color: #fff;
+    border-color: var(--gold);
+}
+.meta-link.primary:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.working-notice {
+    text-align: center;
+    padding: 24px;
+    margin: 32px 0;
+    background: var(--surface);
+    border-radius: 8px;
+    border: 1px dashed var(--border);
+}
+.working-notice p {
+    font-size: 0.9em;
+    color: var(--dim);
+    line-height: 1.6;
+}
+.working-notice strong {
+    color: var(--accent);
+}
+
+.author-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+}
+.author-card {
+    padding: 12px;
+    background: var(--surface);
+    border-radius: 6px;
+    font-size: 0.85em;
+}
+.author-card .author-name {
+    font-weight: 600;
+    color: var(--accent);
+}
+.author-card .author-contrib {
+    color: var(--dim);
+    margin-top: 4px;
+    font-size: 0.9em;
+}
+
+footer.explore-footer {
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 60px;
+    border-top: 1px solid var(--border);
+    color: var(--faint);
+    font-size: 0.85em;
+}
+
+@media (max-width: 600px) {
+    .explore-bar .container { flex-direction: column; gap: 10px; }
+    .section-sticker { width: 50px; }
+    .status-bar { margin-left: 0; }
+    .foveation-slider { width: 140px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="index.html" class="site-title">The Shape of Thought</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="summary.html">Summary</a></li>
+            <li><a href="paper.html">Paper</a></li>
+            <li><a href="explore.html" class="active">Explore</a></li>
+            <li><a href="predictions.html">Predictions</a></li>
+            <li><a href="flock.html">Flock</a></li>
+            <li><a href="https://github.com/agilemeshnet/theshapeofthought" rel="noopener">Repo</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="explore-bar">
+    <div class="container">
+        <label for="foveation">Foveation</label>
+        <input type="range" id="foveation" class="foveation-slider" min="0" max="2" step="1" value="1">
+        <span id="fov-label" class="fov-label">General</span>
+
+        <button id="btn-conjectures" class="filter-btn active" onclick="toggleConjectures()">Conjectures</button>
+
+        <div class="status-bar">
+            <span class="status-pill supported" id="count-supported"></span>
+            <span class="status-pill conjecture" id="count-conjecture"></span>
+        </div>
+    </div>
+</div>
+
+<header class="hero" style="padding: 48px 0 36px;">
+    <div class="container">
+        <h1>The Shape of Thought</h1>
+        <p class="subtitle" style="font-style:italic; font-size:1.05em; margin-bottom:8px;">From Quantum Mechanics to Thought - Come and See the Shapes</p>
+        <p class="subtitle" style="font-size:0.9em;">The shapes are the facts. The rest is projection. Any style, any depth, any language.</p>
+        <div style="margin-top:20px;" class="meta-links">
+            <a href="paper.html" class="meta-link">Full Paper</a>
+            <a href="https://doi.org/10.5281/zenodo.15263498" class="meta-link primary" rel="noopener">Zenodo (Snapshot)</a>
+            <a href="https://github.com/agilemeshnet/theshapeofthought" class="meta-link" rel="noopener">Willow Seed Repo</a>
+            <a href="https://willowgrove.icu" class="meta-link" rel="noopener">WillowGrove.ICU</a>
+            <a href="https://github.com/agilemeshnet/foveation" class="meta-link" rel="noopener">Foveation Repo</a>
+        </div>
+    </div>
+</header>
+
+<div class="working-notice">
+    <div class="container">
+        <p><strong>This is a living, crystallised formulation.</strong> A frozen snapshot lives on <a href="https://doi.org/10.5281/zenodo.15263498" style="color:var(--accent);">Zenodo</a>. This page is generated from the knowledge graph and reflects the world model as it stands today - growing, connecting, being tested. The shapes are facts; projections adapt per reader, per depth, per purpose. The <a href="https://github.com/agilemeshnet/theshapeofthought" style="color:var(--accent);">Willow Seed</a> repository contains everything needed to grow your own instance of this architecture.</p>
+    </div>
+</div>
+
+<main class="page-content">
+    <div class="container" id="content">
+        <p style="text-align:center; color:var(--faint); padding:40px;">Loading from graph...</p>
+    </div>
+</main>
+
+<footer class="explore-footer">
+    <div class="container">
+        <p>Peter Cooper - CC BY 4.0 - Living Formulation - 2026</p>
+        <p style="margin-top:4px;">Generated from the Brain. <span id="node-count"></span> ideas, <span id="link-count"></span> connections.</p>
+    </div>
+</footer>
+
+<script>
+var graphData = null;
+var showConjectures = true;
+var foveationLevel = 1; // 0=surface, 1=general, 2=depth
+
+var stickerMap = {
+    'Introduction': 'watcher',
+    'Section I': 'netty',
+    'Section II': 'netty',
+    'Section III': 'tray-stacker',
+    'Section IV': 'conductor',
+    'Section V': 'conductor',
+    'Section VI': 'ember',
+    'Section VII': 'netty',
+    'Section VIII': 'juggler',
+    'Section IX': 'flock-bird',
+    'Section X': 'ember',
+    'Section XI': 'ember',
+    'Section XII': 'watcher',
+    'Coda': 'watcher'
+};
+
+var fovLabels = ['Children\'s Book', 'General', 'Academic'];
+
+document.getElementById('foveation').addEventListener('input', function() {
+    foveationLevel = parseInt(this.value);
+    document.getElementById('fov-label').textContent = fovLabels[foveationLevel];
+    render();
+});
+
+function toggleConjectures() {
+    showConjectures = !showConjectures;
+    document.getElementById('btn-conjectures').classList.toggle('active', showConjectures);
+    render();
+}
+
+function scrollToIdea(ideaId) {
+    var el = document.getElementById('idea-' + ideaId);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('expanded');
+        setTimeout(function() { el.classList.remove('expanded'); }, 5000);
+    }
+}
+
+function toggleIdea(el) {
+    el.classList.toggle('expanded');
+}
+
+function getLinksForIdea(ideaId) {
+    if (!graphData || !graphData.links) return [];
+    return graphData.links.filter(function(l) { return l.from_id === ideaId || l.to_id === ideaId; });
+}
+
+function render() {
+    if (!graphData) return;
+    var container = document.getElementById('content');
+    var html = '';
+    var totalIdeas = 0;
+    var supportedCount = 0;
+    var conjectureCount = 0;
+
+    graphData.parts.forEach(function(part) {
+        html += '<div class="part-header"><h1>' + part.title + '</h1>';
+        html += '<div class="part-sub">' + (part.subtitle || '') + '</div></div>';
+
+        part.sections.forEach(function(section) {
+            var sticker = stickerMap[section.section] || 'watcher';
+            html += '<div class="section-block">';
+            html += '<div class="section-header">';
+            html += '<img src="stickers/' + sticker + '.png" class="section-sticker" alt="' + sticker + '">';
+            html += '<div><span class="section-number">' + section.section + '</span>';
+            html += '<h2>' + section.title + '</h2></div></div>';
+
+            if (foveationLevel >= 1 && section.bare_fact) {
+                html += '<div class="section-fact">' + section.bare_fact + '</div>';
+            }
+
+            var ideas = section.ideas || [];
+            ideas.forEach(function(idea) {
+                if (!idea.id) return;
+
+                var isConj = idea.status && idea.status.indexOf('conjecture') !== -1;
+                if (isConj) conjectureCount++;
+                else supportedCount++;
+
+                if (isConj && !showConjectures) return;
+
+                totalIdeas++;
+                var links = getLinksForIdea(idea.id);
+
+                html += '<div class="idea-card" id="idea-' + idea.id + '" onclick="toggleIdea(this)">';
+
+                if (idea.status) {
+                    var pillClass = isConj ? 'conjecture' : 'supported';
+                    var pillText = isConj ? 'conjecture' : 'supported';
+                    html += '<span class="idea-status"><span class="status-pill ' + pillClass + '">' + pillText + '</span></span>';
+                }
+
+                html += '<div class="idea-core">' + idea.idea + '</div>';
+
+                if (foveationLevel === 0 && idea.surface) {
+                    html += '<div class="idea-surface">' + idea.surface + '</div>';
+                } else if (foveationLevel === 1) {
+                    if (idea.surface) {
+                        html += '<div class="idea-surface">' + idea.surface + '</div>';
+                    }
+                    html += '<div class="idea-depth">';
+                    if (idea.depth) html += '<p>' + idea.depth + '</p>';
+                    if (idea.evidence) html += '<div class="idea-evidence">' + idea.evidence + '</div>';
+                    if (links.length > 0) {
+                        html += '<div class="idea-links">';
+                        links.forEach(function(l) {
+                            var target = l.from_id === idea.id ? l.to_id : l.from_id;
+                            var label = l.rel_type.replace(/_/g, ' ').toLowerCase();
+                            html += '<span class="idea-link" onclick="event.stopPropagation(); scrollToIdea(\'' + target + '\')">' + label + ' ' + target + '</span>';
+                        });
+                        html += '</div>';
+                    }
+                    html += '</div>';
+                    html += '<div class="zoom-hint">click to expand</div>';
+                } else if (foveationLevel === 2) {
+                    if (idea.depth) html += '<div class="idea-surface">' + idea.depth + '</div>';
+                    if (idea.evidence) html += '<div class="idea-evidence">' + idea.evidence + '</div>';
+                    if (links.length > 0) {
+                        html += '<div class="idea-links">';
+                        links.forEach(function(l) {
+                            var target = l.from_id === idea.id ? l.to_id : l.from_id;
+                            var label = l.rel_type.replace(/_/g, ' ').toLowerCase();
+                            html += '<span class="idea-link" onclick="event.stopPropagation(); scrollToIdea(\'' + target + '\')">' + label + ' ' + target + '</span>';
+                        });
+                        html += '</div>';
+                    }
+                }
+
+                html += '</div>';
+            });
+
+            if (foveationLevel >= 2 && section.falsification && section.falsification !== 'N/A - framing section' && section.falsification !== 'N/A - reflection section') {
+                html += '<div class="section-falsification">' + section.falsification + '</div>';
+            }
+
+            html += '</div>';
+        });
+    });
+
+    // Conjectures section
+    if (showConjectures && graphData.conjectures && graphData.conjectures.length > 0) {
+        html += '<div class="part-header"><h1>Living Conjectures</h1>';
+        html += '<div class="part-sub">Observations that converge on the thesis as we find them. Dated and sourced.</div></div>';
+
+        var knotty = '<img src="stickers/knotty.png" class="section-sticker" style="float:right;width:70px;margin:0 0 16px 16px;" alt="Knotty">';
+        html += knotty;
+
+        graphData.conjectures.forEach(function(c) {
+            html += '<div class="conjecture-block">';
+            html += '<h3>' + c.id + '. ' + c.title + '</h3>';
+            html += '<div class="conj-date">' + (c.date || '') + '</div>';
+            if (foveationLevel >= 1 && c.source) {
+                html += '<div class="conj-source">Source: ' + c.source + '</div>';
+            }
+            html += '<div class="conj-fact">' + c.bare_fact + '</div>';
+            if (foveationLevel >= 2 && c.supports) {
+                html += '<div class="idea-evidence">Supports: ' + c.supports + '</div>';
+            }
+            html += '</div>';
+        });
+    }
+
+    // Convergent observers
+    if (foveationLevel >= 1 && graphData.authors && graphData.authors.length > 0) {
+        html += '<div class="part-header"><h1>Convergent Observers</h1>';
+        html += '<div class="part-sub">Independent vantages of the same landscape.</div></div>';
+        html += '<div class="author-grid">';
+        graphData.authors.forEach(function(a) {
+            html += '<div class="author-card">';
+            html += '<div class="author-name">' + a.name + '</div>';
+            html += '<div class="author-contrib">' + a.contribution + '</div>';
+            if (foveationLevel >= 2 && a.relevance) {
+                html += '<div class="idea-evidence" style="margin-top:6px;">' + a.relevance + '</div>';
+            }
+            html += '</div>';
+        });
+        html += '</div>';
+    }
+
+    container.innerHTML = html;
+
+    document.getElementById('count-supported').textContent = supportedCount + ' supported';
+    document.getElementById('count-conjecture').textContent = conjectureCount + ' conjecture';
+    document.getElementById('node-count').textContent = totalIdeas;
+    document.getElementById('link-count').textContent = graphData.links ? graphData.links.length : 0;
+}
+
+// Load graph data
+fetch('paper-graph.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        graphData = data;
+        render();
+    })
+    .catch(function(err) {
+        document.getElementById('content').innerHTML = '<p style="color:var(--accent);text-align:center;padding:40px;">Could not load graph data: ' + err.message + '</p>';
+    });
+</script>
+</body>
+</html>

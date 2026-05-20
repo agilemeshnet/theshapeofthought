@@ -1,0 +1,1010 @@
+{
+  "parts": [
+    {
+      "title": "Part One",
+      "subtitle": "The Diagnosis",
+      "sections": [
+        {
+          "section": "Introduction",
+          "title": "The Cat in the Hat as Architecture",
+          "bare_fact": "Seven propositions hidden in a children's story: agents arrive uninvited, spawn sub-agents, ethical voices steer by shaping probabilities not issuing commands, systems run without observers, some decisions must be handed to the observer, observer decisions have exactly three shapes (act, dismiss, ask peer). Everything in the paper is an engineering specification for what Seuss drew in 1957.",
+          "falsification": "N/A - framing section",
+          "ideas": [
+            {
+              "depth": "Autonomous agents enter pre-existing state spaces carrying their own context (goals, capabilities, priors) and modify the space through action. This is structurally identical to Seuss's Cat in the Hat (1957), who arrives with intent, reshapes the bounded environment, and spawns sub-processes.",
+              "evidence": "Structural: any agent architecture (BDI, ReAct, AutoGPT) exhibits this pattern. The Cat is the ur-example.",
+              "id": "INTRO-01",
+              "idea": "An agent arrives uninvited and reshapes the space it finds",
+              "status": "supported",
+              "surface": "The Cat walks into the room without asking. He starts changing everything. This is what helpers do - they arrive with a plan and start rearranging."
+            },
+            {
+              "depth": "Multi-agent delegation produces autonomous sub-processes that inherit a bounded context but generate independent trajectories. The spawner provides constraints (the room, the afternoon, the standing objections) but not scripts. This is delegation, not instruction - structurally identical to process forking with shared memory but independent execution.",
+              "evidence": "Engineering: process forking, coroutines, multi-agent orchestration. Biological: cell division, colonial organisms.",
+              "id": "INTRO-02",
+              "idea": "An agent can spawn sub-agents it does not control - delegation not instruction",
+              "status": "supported",
+              "surface": "The Cat opens a box and out come Thing One and Thing Two. They have their own energy. The Cat let them go and they ran wild in the room."
+            },
+            {
+              "depth": "A component with no executive authority (the Fish: can only refuse and escalate) reshapes the system's energy landscape so that certain trajectories become more probable. This is quantum direction: shaping probability distributions rather than determining outcomes. Structurally identical to a strange attractor in a dynamical system - the system converges toward restoration even while spiralling outward. Every organisation has a Fish: the compliance officer, the risk analyst, the engineer who flags trajectories.",
+              "evidence": "Mathematical: strange attractor dynamics (Lorenz). Organisational: compliance functions, risk management. Biological: inhibitory neurons, immune system checkpoints.",
+              "id": "INTRO-03",
+              "idea": "An ethical voice without executive power steers the whole system by shaping probabilities - quantum direction",
+              "status": "supported",
+              "surface": "The Fish cannot leave his bowl. He cannot stop anyone. But his objections change everything. He steers the room the way a magnet steers iron filings - not by touching them, but by reshaping the field they move through."
+            },
+            {
+              "depth": "Cognitive dynamics are observer-independent: the architecture operates without requiring a dashboard, a human in the loop, or an observer to witness decisions. This challenges the default design pattern of cognitive architectures that prioritise observability as a functional requirement rather than an optional audit property. Vortices in converging fluid flows (hosepipe analogy) are phenomenologically real, physically persistent, and observer-independent.",
+              "evidence": "Physical: vortex formation in fluid dynamics. Biological: autonomic nervous system. Philosophical: Dennett's multiple drafts model.",
+              "id": "INTRO-04",
+              "idea": "The system runs whether or not anyone is watching - observer independence",
+              "status": "supported",
+              "surface": "Sally and her brother just sit and watch. The Cat, the Things, the Fish - they would all keep going even if nobody was looking. Like vortices forming where two hosepipes cross in a garden. The child at the window sees them, but the vortices do not need the child."
+            },
+            {
+              "depth": "The minimum viable decision surface for a non-coerced agent is three options: Act (execute), Dismiss (refuse), Ask Sibling (consult horizontal peer). Two buttons forces binary commit-or-refuse. The third button dissolves the false dichotomy by enabling horizontal referral. Seuss's open ending at the close of Cat in the Hat is the first known presentation of this three-button cell to a mass audience.",
+              "evidence": "Structural: information-theoretic minimum for non-coerced choice. Game-theoretic: three strategies in iterated games. Developmental: children's moral reasoning stages.",
+              "id": "INTRO-05",
+              "idea": "The observer's decision has exactly three shapes: act, dismiss, or ask a peer",
+              "status": "supported",
+              "surface": "Mother is coming home. What would YOU do if she asked you? Tell her what happened. Say nothing. Ask your brother first. The book gives you three buttons and walks away."
+            },
+            {
+              "depth": "Narrative is a compression protocol: four-dimensional experiential content (who, what, where, when, why + emotional tone + causal structure) is projected onto a one-dimensional linguistic stream. Decompression requires the receiver to hold sufficient shared priors (compression context). The Fable is the formal name for this primitive. Writing is Fable creation at scale. Reading is Fable decompression at scale. The mechanism predates literacy (oral tradition, Vedic transmission chains).",
+              "evidence": "Historical: oral traditions across all known cultures. Linguistic: Grice's cooperative principle, pragmatic inference. Cognitive: constructive memory (Bartlett 1932).",
+              "id": "INTRO-06",
+              "idea": "Stories are humanity's oldest compression protocol - a Fable is lossy compression that decompresses against shared context",
+              "status": "supported",
+              "surface": "When you tell someone a story, you are squeezing a whole world into a few sentences. The listener rebuilds the world in their own head using things they already know. That is what a Fable is - a small package that unpacks into something much bigger."
+            },
+            {
+              "depth": "Compression fidelity is a function of shared context between sender and receiver. The same bitstring (\"the cat sat on the mat\" + facial expression of horror) decompresses into two structurally different four-dimensional scenes depending on the receiver's priors (allergic context vs birthday cake context). The receiver must possess four-dimensional storage (who, what, where, when) to have a destination for the decompressed content. Without it, the compression arrives but the decompression has nowhere to land.",
+              "evidence": "Linguistic: pragmatic disambiguation (Sperber & Wilson 1986). Cognitive: schema theory (Bartlett). Engineering: decompression requires matching codec.",
+              "id": "INTRO-07",
+              "idea": "Compression is lossless only with respect to shared context - the receiver must have four-dimensional storage",
+              "status": "supported",
+              "surface": "Someone says \"the cat sat on the mat\" with a look of horror. If you know they are allergic, you picture a medical emergency. If you know there is a birthday cake shaped like a cat, you picture a ruined party. Same words, different pictures. The difference is what you already know."
+            },
+            {
+              "depth": "Current LLMs possess enormous processing capacity (attention, parameter count, inference throughput) but structurally impoverished storage: the context window is working space that resets, not persistent episodic memory. There is no persistent scene representation - no Cat, no Mat, no trajectory, no episode to which the next sentence can refer. The dimensional asymmetry: humans are 4D in, 1D on the wire, 4D out. Current AI is 1D in, flat on storage, 1D out.",
+              "evidence": "Engineering: context window limitations, lack of persistent episodic stores in production LLMs. Empirical: degradation on multi-turn, multi-session tasks.",
+              "id": "INTRO-08",
+              "idea": "Current LLMs are processing-rich and storage-poor - the decompression had nowhere to land",
+              "status": "supported",
+              "surface": "Imagine a brilliant reader who forgets everything the moment they turn the page. They can understand each sentence perfectly but cannot build the story because there is nowhere to keep the pieces. That is what a large language model is today."
+            },
+            {
+              "depth": "The Shape Thesis: binary, table, graph, vector (four spatial shapes) composed under a shared append-only ledger (temporal axis) constitute a sufficient substrate for cognition to survive transitions between physical substrates without dimensional loss. The composition is canonical - no single shape is the referent. The thesis draws on convergent observations from Friston (free energy), Flash & Hogan (minimum jerk), Bennett (substrate transitions), Levin (morphogenetic agency), Barandes (indivisible stochastic processes), and Jung (structural archetypes).",
+              "evidence": "Convergence: six independent theoretical frameworks arrive at compatible structural claims. Historical: eight epochs of ledger discovery. Engineering: running implementation on 126K+ node graph.",
+              "id": "INTRO-09",
+              "idea": "Five shapes composed under a shared ledger are sufficient for cognition to survive substrate transitions",
+              "status": "supported",
+              "surface": "There are five shapes that show up everywhere thinking happens: on/off switches, tables, webs of connections, clouds of similarity, and a timeline that remembers everything. Put them together and you have a shape that can hold a thought even when you move it to a completely different brain."
+            },
+            {
+              "depth": "Three independent falsification pillars. Ontological: the crystalline shape must hold new findings from any field - if observations actively resist the five-shape substrate, the framework fails. Mechanical: the architecture must compose and run - Episode round-trip, derivative stack settling, Diorama-Flock integration, ledger write contention. Agent behavioural: the agent must measurably outperform a parameter-matched baseline on intent inference, temporal reasoning, counterfactual handling. Each pillar stands or falls independently.",
+              "evidence": "Methodological: Popperian falsifiability. The paper commits to stronger falsification criteria than most research programme papers.",
+              "id": "INTRO-10",
+              "idea": "Three independent pathways to falsification - ontological, mechanical, agent behavioural",
+              "status": "supported",
+              "surface": "This paper can be broken in three different ways. You can show the picture is wrong. You can show the machine does not work. You can show the machine works but does not help. Break any one and that part fails. The other two do not rescue it."
+            }
+          ],
+          "order": 1
+        },
+        {
+          "section": "Section I",
+          "title": "The Cat Sat On The Mat - Compression Needs a Receiver",
+          "bare_fact": "Compression is lossless only with respect to shared context. The receiver must have four-dimensional storage to decompress four-dimensional content. Current LLMs have context windows (working space that resets) but no persistent scene storage. The decompression had nowhere to land.",
+          "falsification": "If a parameter-matched LLM with 4D context store does not disambiguate the Cat Sat horror example at least 30 percentage points better than flat baseline, Section I fails.",
+          "ideas": [
+            {
+              "depth": "Natural language compression relies on a protocol of shared shape conventions (entity types, spatial relations, temporal aspect, definiteness) that sender and receiver co-evolved. \"The Cat Sat On The Mat\" encodes entities (Cat, Mat), typed spatial relation (ON), temporal aspect (SAT marks completed past action), and definiteness (THE presupposes common ground). ~136 bits ASCII carry hundreds of bits of dimensional content because the protocol encodes shape conventions both sides understand.",
+              "evidence": "Linguistic: pragmatics (Grice, Sperber & Wilson). Evolutionary: co-evolution of language production and comprehension.",
+              "id": "I-01",
+              "idea": "Compression encodes shape conventions both sender and receiver evolved together",
+              "status": "supported",
+              "surface": "When you say six words, you send hundreds of invisible instructions along with them. The listener knows how to unpack them because you both grew up speaking the same language of shapes."
+            },
+            {
+              "depth": "Given identical compression (same sentence + same facial expression), two receivers with different priors produce structurally different four-dimensional scenes. Disambiguation is a function of the receiver's context store (speaker history, recent episodes, emotional state, physical facts, presuppositions), not of the message payload. Engineering implication: the context store must be queryable by participant, scene, and time.",
+              "evidence": "Empirical: pragmatic disambiguation studies. Engineering: RAG systems demonstrate context-dependent retrieval quality.",
+              "id": "I-02",
+              "idea": "The difference between two decompressions lives in the receiver's context, not in the message",
+              "status": "supported",
+              "surface": "Same words, same horror face. But one person pictures an allergy attack and the other pictures a ruined birthday cake. The words did not change. The person hearing them changed everything."
+            },
+            {
+              "depth": "LLM context windows provide temporary working space for attention-based processing but lack persistence, indexability by time/participant, and structural shape for episode storage. There is no Cat, no Mat, no scene, no trajectory, no episode to which the next sentence can refer. The compression was received. The decompression had nowhere to land. The context window resets across sessions, conversations, and (in practice) after sufficient turns within a session.",
+              "evidence": "Engineering: all production LLMs exhibit context window limitations. The manual relay protocol (copying iTerm buffers) is low-fidelity evidence that Episode-like handover works.",
+              "id": "I-03",
+              "idea": "The context window is not memory - it is working space that resets",
+              "status": "supported",
+              "surface": "A notebook you erase every time you close it is not a diary. You can write brilliant things in it, but when you open it tomorrow, it is blank. That is what a context window is."
+            },
+            {
+              "depth": "Falsifiable prediction: a parameter-matched LLM with a four-dimensional context store will disambiguate the Cat Sat horror example correctly at least 30 percentage points more often than a baseline with a flat context window. The 30-point gap is chosen to exceed noise and be achievable with current infrastructure. Falsification: if a competent implementation does not produce a 30-point gap, Section I fails.",
+              "evidence": "Prediction registered. Measurement protocol specified. Calibration targets set before implementation.",
+              "id": "I-04",
+              "idea": "Cat Sat bench: 30-point gap between 4D receiver and flat receiver on disambiguation",
+              "status": "supported",
+              "surface": "Give the same puzzle to two listeners. One has a box of memories to check. The other has only the words in front of them. The one with the box should get it right much more often."
+            }
+          ],
+          "order": 2
+        },
+        {
+          "section": "Section II",
+          "title": "The Pigeon Bob - Storage Not Processing",
+          "bare_fact": "A pigeon uses time-displaced head samples to reconstruct 3D depth - stereoscopy over time. Current AI is processing-rich and storage-poor. The next capability frontier is richer storage shape, not more parameters. The Episode is a structured object holding an event with its shape intact: participants, modalities, temporal bounds, structural context, compression context.",
+          "falsification": "If ordering flat < vector < graph < Episode does not hold, or gap is below 20 points on scene reconstruction, Section II fails.",
+          "ideas": [
+            {
+              "depth": "Pigeon head-bobbing is a structural necessity: lateral eye placement precludes binocular stereoscopy, so the pigeon reconstructs 3D scenes by displacing its head in space, sampling at two time points, and computing depth from the temporal delta between samples. This is stereoscopy over time rather than stereoscopy over space. The depth is not in any single sample - it is in the relation between samples held in the storage structure. Template for cognition when processing is cheap and storage is expensive.",
+              "evidence": "Biological: pigeon visual system (Frost 1978). Engineering: temporal stereoscopy in robotics.",
+              "id": "II-01",
+              "idea": "The pigeon solves depth with its storage budget not its processing budget - stereoscopy over time",
+              "status": "supported",
+              "surface": "A pigeon bobs its head because it needs to see depth but its eyes are on the sides. So it takes two pictures at different times and works out the distance from the difference. The clever bit is not in the seeing - it is in the remembering."
+            },
+            {
+              "depth": "Current benchmark failures (forgetting answers after 5 turns, dropping conversation threads when context rolls forward, inability to link scenes across clips) are storage failures masquerading as reasoning failures. The processing is adequate. The four-dimensional destination is missing. The next capability frontier for artificial cognition is not more parameters, more tokens, or more inference steps - it is a richer storage shape.",
+              "evidence": "Empirical: LLM degradation on multi-turn tasks, long-context benchmarks (RULER, InfiniteBench). Engineering: RAG and memory-augmented architectures improve performance on these tasks.",
+              "id": "II-02",
+              "idea": "Every failure blamed on reasoning is actually a storage failure in disguise",
+              "status": "supported",
+              "surface": "When the computer forgets what you said five minutes ago, we call it stupid. But it is not stupid - it just has no place to keep the conversation. The thinking is fine. The cupboard is empty."
+            },
+            {
+              "depth": "The Episode primitive is a structured object with: participants (keyed by stable identifiers), modalities (raw sensory streams timestamped against ledger), temporal bounds (start/end ledger entries), structural context (active subgraph of world graph), and compression context (bundle of priors needed for Fable decompression). An Episode is not a log entry (flat, searchable but not decompressible). An Episode holds an event with its shape intact. The simultaneous combination of all four shapes under a ledger axis is the novel composition.",
+              "evidence": "Engineering: event sourcing, bitemporal databases, vector stores, graph databases each implement one dimension. Episodes compose all four. Preliminary: manual context relay protocol.",
+              "id": "II-03",
+              "idea": "Episode: structured object holding an event with shape intact - not a log entry",
+              "status": "supported",
+              "surface": "A diary entry is flat - just words on a page. An Episode is a whole room you can walk back into: who was there, what it looked like, how it felt, what happened next. You can pick it up and carry it to someone else."
+            },
+            {
+              "depth": "Falsifiable prediction: reconstruction fidelity of a 100-sample scene follows a staircase ordering. Flat context window at bottom. Vector store above. Graph above that. Full Episode structure at top. The ordering is the prediction. Falsification: if flat < vector < graph < Episode ordering does not hold, or gap is below 20 points on scene reconstruction benchmark, Section II fails. Two further experiments (sample count curves, compression context divergence) specified in repository.",
+              "evidence": "Prediction registered. Engineering intuition from comparative RAG architectures.",
+              "id": "II-04",
+              "idea": "Storage shape ordering: flat < vector < graph < Episode - a staircase of capability",
+              "status": "supported",
+              "surface": "A flat list is worst. A cloud of similar things is better. A web of connections is better still. A full room you can walk into is best. Each step up holds more of what really happened."
+            }
+          ],
+          "order": 3
+        },
+        {
+          "section": "Section III",
+          "title": "The Warehouse Disease - Measurement vs Referent",
+          "bare_fact": "Organisations mistake measurements (rows) for the referent (nodes in a graph). Different systems count different projections of the same entity and call them all \"customers\". The warehouse disease is a derivative-order mismatch: billing measures position, underwriting measures velocity, CRM measures jerk. The graph is the referent. Source systems are measurements.",
+          "falsification": "If graph-as-referent fails to locate at least 10% of unattributed revenue within 60 days, Section III fails.",
+          "ideas": [
+            {
+              "depth": "The warehouse disease: each department builds a measurement apparatus counting something close to customers (billing accounts, policies, contactable individuals) and labels the count \"customers.\" A single human with three policies is one, three, or one customer depending on which system is queried. The measurement is precise. The referent is ambiguous. The answer is a hallucination dressed up in a spreadsheet. The disease is not solved by better warehousing - a unified data warehouse produces quadruple-counted dimensions that nobody trusts.",
+              "evidence": "Empirical: observed repeatedly in insurance (Markerstudy, compound enterprise groups). Engineering: master data management failure modes. Financial: revenue leakage from identity conflicts.",
+              "id": "III-01",
+              "idea": "Organisations mistake measurements (rows) for the referent (nodes in a graph) - the warehouse disease",
+              "status": "supported",
+              "surface": "Ask a big company \"how many customers do you have?\" and three departments give three different numbers. None of them are lying. All of them are wrong. They are each counting a shadow of the real thing, not the real thing itself."
+            },
+            {
+              "depth": "Deeper diagnosis: the warehouse disease is a derivative-order mismatch. Billing measures position (balance at time T). Underwriting measures velocity (policies added/removed per period). CRM measures jerk (how the relationship is changing). The warehouse joins measurements of different derivative orders without preserving the ledger axis that connects them. This produces hallucinated counts. The warehouse is not measuring customers - it is measuring derivatives of customers and throwing the differential away.",
+              "evidence": "Mathematical: derivative order analysis of data systems. Empirical: observed in enterprise data reconciliation failures. Novel framing: no prior work frames warehouse problems as derivative-order mismatches.",
+              "id": "III-02",
+              "idea": "The warehouse disease is a derivative-order mismatch - billing measures position, underwriting measures velocity, CRM measures jerk",
+              "status": "supported",
+              "surface": "One department measures where the customer is now. Another measures how fast they are moving. A third measures how their speed is changing. Then someone tries to put all three numbers in the same column. It cannot work because they are measuring different things about the same journey."
+            },
+            {
+              "depth": "Engineering fix: invert the organisational priority. The graph holds entities (customers, policies, claims, brokers, payments) and typed relations. Each row in each source system is a measurement of a node or edge, stamped against the ledger. The warehouse is one projection of the graph; the CRM is another; billing is a third. All three are measurements. None are the referent. Four engineering components: entity resolution layer, typed relation model, event-sourced write path, graph predicate query layer.",
+              "evidence": "Engineering: implemented as MSG platform on 126K+ node AuraDB graph. Empirical: informal pilots showing delta between warehouse and graph counts.",
+              "id": "III-03",
+              "idea": "The graph is the referent - source systems are measurements stamped against the ledger",
+              "status": "supported",
+              "surface": "Instead of arguing about which spreadsheet is right, draw a picture of the real customer with all their connections. Every spreadsheet is just a photograph of that picture from a different angle. The picture is real. The photographs are measurements."
+            },
+            {
+              "depth": "Falsifiable prediction: in a sufficiently compound enterprise group (3+ legacy core systems, post-acquisition CRM, warehouse built on top), the graph-as-referent architecture will locate at least 10% of previously unattributed revenue within 60 days. Based on delta between warehouse and graph counts in informal pilots. Falsification: if graph fails to locate 10% within 60 days, Section III fails.",
+              "evidence": "Prediction registered. Preliminary: informal pilot data from Markerstudy-like compound groups.",
+              "id": "III-04",
+              "idea": "A graph that can find money the warehouse cannot find is a graph earning its keep",
+              "status": "supported",
+              "surface": "If the web of connections can show you where money is hiding that the spreadsheets cannot see, then the web is paying for itself. That is the test."
+            }
+          ],
+          "order": 4
+        },
+        {
+          "section": "Section IV",
+          "title": "The Glass Elevator - Derivative Stack and Vote",
+          "bare_fact": "A glass elevator with a crowd inside voting on direction. No homunculus - the trajectory is the settled aggregate of continuous votes at substrate-determined tick rate. Each floor of the elevator measures a different derivative order (position, velocity, acceleration, jerk). Independent floors, same tick, adjacent sibling consultation. Naturally glass-box because all votes are explicit first-class objects.",
+          "falsification": "If votes do not settle within 2-5 ticks, or integrated trajectory does not approximate minimum jerk, Section IV fails.",
+          "ideas": [
+            {
+              "depth": "The glass elevator metaphor: inside is a crowd, not a single person. Each person has a partial view and votes on direction. The Up button fires on majority. From outside the trajectory looks smooth and intentional. From inside it is the settled aggregate of continuous votes. The vote is not choosing among options - it is counting among votes already cast. The choice is the count settling. Deliberation is what settling looks like from inside.",
+              "evidence": "Neuroscience: population coding, neural ensemble dynamics. Philosophy: Dennett (multiple drafts), Minsky (society of mind). Engineering: ensemble methods, committee machines.",
+              "id": "IV-01",
+              "idea": "No homunculus - the trajectory is the settled aggregate of a continuous vote",
+              "status": "supported",
+              "surface": "Imagine a glass lift full of people, each pressing Up or Down based on what they can see from their floor. Nobody is in charge. The lift moves because enough people agreed. That is how a brain decides too."
+            },
+            {
+              "depth": "The tick rate is a substrate-determined variable, not an architectural constant. It is the timescale at which the vote becomes indivisible - below which decomposing the vote destroys the composition. Connects to Barandes' indivisible stochastic processes: the tick IS the characteristic timescale at which the process refuses to decompose. Mammalian cortex: gamma band ~25-40Hz. Digital agent: microseconds to seconds. Social system: days. The architecture is rate-agnostic.",
+              "evidence": "Neuroscience: gamma oscillations (Buzsaki 2006). Physics: Barandes' indivisible stochastic processes. Engineering: clock rates in distributed systems.",
+              "id": "IV-02",
+              "idea": "Tick rate is determined by the substrate's physics - whatever timescale produces indivisible votes",
+              "status": "supported",
+              "surface": "Every kind of brain has its own heartbeat. A human brain ticks about 30 times a second. A computer might tick millions of times. A flock of people might tick once a day. The architecture does not care how fast - it cares that there IS a beat."
+            },
+            {
+              "depth": "The derivative stack: each floor is a first-class agent at a specific derivative order. Ground floor measures position. First floor measures velocity. Second floor measures acceleration. Third floor measures jerk. Borrows from Friston's generalised coordinates (state includes tower of temporal derivatives). Each floor is independent, votes at the same tick rate, can consult adjacent floors via sibling bar within one tick. No single floor is the decider. Predictive face (Friston: each floor carries a prior) + corrective face (Flash & Hogan: damping toward minimum jerk).",
+              "evidence": "Theoretical: Friston's generalised coordinates. Empirical: Flash & Hogan minimum jerk (1985). Engineering: multi-resolution decision architectures.",
+              "id": "IV-03",
+              "idea": "Each floor of the derivative stack measures a different derivative order of the trajectory",
+              "status": "supported",
+              "surface": "The ground floor knows where you are. The first floor knows how fast you are going. The second floor knows whether you are speeding up or slowing down. The third floor knows whether the speeding up is getting faster. Each floor sees a different part of the same journey."
+            },
+            {
+              "depth": "Glass-box observability is a structural property of the derivative stack, not an audit add-on. Because votes and inter-floor consultations are all explicit first-class objects persisted to the ledger, an external observer with read access can reconstruct the reasoning trajectory without privileged access to any black box. This addresses the explainability problem at the architectural level rather than the post-hoc interpretation level.",
+              "evidence": "Engineering: event-sourced architectures provide inherent auditability. Regulatory: addresses AI explainability requirements (EU AI Act, insurance Solvency II) structurally rather than procedurally.",
+              "id": "IV-04",
+              "idea": "The architecture is naturally glass-box because all votes are explicit first-class objects",
+              "status": "supported",
+              "surface": "Because every vote is written down and every conversation between floors is recorded, anyone can look in and see exactly how the decision was made. This is not an add-on for inspectors. It is how the building was built."
+            },
+            {
+              "depth": "If an external signal forces a vote before the count has settled, the agent commits prematurely and the trajectory is jagged. Flash & Hogan minimum jerk profile is what non-interrupted settlement looks like when integrated over the full reach window. Every cognitive task has a minimum tick budget below which coherent decisions become impossible, and above which further time adds marginal refinement. The tick is a rate, not a deadline.",
+              "evidence": "Empirical: Flash & Hogan (1985) - interrupted reaches produce measurably higher jerk. Neuroscience: premature response in speed-accuracy tradeoffs. Engineering: timeout-induced degradation in distributed consensus.",
+              "id": "IV-05",
+              "idea": "Interruption collapses the decision - premature vote produces a jagged trajectory",
+              "status": "supported",
+              "surface": "If someone shouts at the people in the lift before they have finished discussing, the lift lurches. Every decision needs enough heartbeats to settle. Rush it and you get a jerk."
+            }
+          ],
+          "order": 5
+        }
+      ],
+      "order": 1
+    },
+    {
+      "title": "Part Two",
+      "subtitle": "The Shapes",
+      "sections": [
+        {
+          "section": "Section V",
+          "title": "Binary Table Graph Vector - Four Irreducible Shapes",
+          "bare_fact": "Four spatial shapes are complementary projections, not competing descriptions. Binary (byte, sequential scan, semantic opacity). Table (row, relational algebra, structural rigidity). Graph (node+edge, traversal, aggregation cost). Vector (point in space, nearest neighbour, interpretability). None holds the others without loss. The composition is canonical.",
+          "falsification": "If a single-shape store matches the four-shape composition on a 10-query benchmark, Section V fails.",
+          "ideas": [
+            {
+              "depth": "Binary, table, graph, and vector are not competing descriptions of the same substrate. They are complementary projections of a shape that has no single canonical form. Each projection captures structural properties no other can provide. A cognitive architecture that uses only one shape is structurally impoverished in the dimensions the other three handle well. The parsimony argument (\"why four when one suffices\") is a cost argument, not a capability argument, and the cost is falling fast.",
+              "evidence": "Mathematical: category theory (different categories are not reducible). Engineering: polyglot persistence patterns. Empirical: no single-shape store dominates all query types.",
+              "id": "V-01",
+              "idea": "Four shapes are complementary projections of a shape with no single canonical form",
+              "status": "supported",
+              "surface": "Imagine a crystal with four faces. Each face shows you something the other three cannot. No face is the \"real\" crystal. The crystal is all four together."
+            },
+            {
+              "depth": "Binary (byte, sequential scan, fails on semantic opacity). Table (row, projection+selection+join, fails on structural rigidity). Graph (node+typed edge, traversal, fails on aggregation cost). Vector (point in real-valued space, nearest neighbour, fails on interpretability). None holds the others without loss: table cannot hold graph edges without denormalising, graph cannot hold table aggregates without precomputing, vector cannot hold schema without losing geometry, binary cannot hold higher shapes without schema+parser.",
+              "evidence": "Engineering: well-established in database theory and polyglot persistence. Each failure mode is demonstrable with concrete benchmarks.",
+              "id": "V-02",
+              "idea": "Each shape has a structural primitive, a characteristic operation, and a failure mode when forced to carry content it was not built for",
+              "status": "supported",
+              "surface": "A box is good for stacking. A net is good for catching. A cloud is good for floating. A string of beads is good for counting. Force any of them to do the others' job and it breaks in its own particular way."
+            },
+            {
+              "depth": "A transaction is simultaneously a table row (flat attributes), a set of graph nodes+edges (participants and relations), a vector embedding (semantic signature), and a binary blob (raw payload). The same transaction occupies a cell in all four shapes, linked by a stable identifier and stamped against the ledger. No shape is canonical. The composition is canonical. This is the engineering affordance: any incoming content can be projected into the best-suited shape and retrieved through the best-suited query shape.",
+              "evidence": "Engineering: polyglot persistence with unified identifiers. Implemented: MSG platform stores entities across Neo4j (graph), embeddings (vector), DuckDB (table), and raw payloads (binary).",
+              "id": "V-03",
+              "idea": "The same transaction occupies a cell in all four shapes simultaneously, linked by stable identifier and stamped against ledger",
+              "status": "supported",
+              "surface": "One thing that happened can be a row in a spreadsheet, a dot on a map of similar things, a knot in a web of connections, and a stream of raw numbers - all at the same time. They are all the same thing seen from different angles."
+            }
+          ],
+          "order": 1
+        },
+        {
+          "section": "Section VI",
+          "title": "The Ledger - Time as Fifth Shape",
+          "bare_fact": "The four spatial shapes share a blindness: none natively holds time. The ledger is an append-only sequence of stamped entries running as the time axis beneath the other four. The four shapes become projections of the ledger at chosen instants. Everything else is cache. Eight historical epochs independently discovered the ledger: Babylonian diaries, Vedic oral transmission, Chinese annals, Talmudic commentary, Islamic isnad, Bar Ilan responsa, Greenwich records, modern bitemporal databases.",
+          "falsification": "If ledger-equipped system does not outscore context-only by at least 4 points on 10 temporal reasoning tasks, Section VI fails.",
+          "ideas": [
+            {
+              "depth": "The four spatial shapes share a blindness: none natively holds time. A table is a snapshot. A graph is a cross-section. A vector is a static embedding. A binary blob has no internal clock. Each fakes time by adding timestamp columns, per-edge intervals, temporal embeddings, or version bytes. The ledger is not a decoration - it is the fourth dimension. Any attempt to model time as an attribute of spatial shapes reduces, under analysis, to an implicit ledger of varying quality. Temporal collapse: the frozen view is mistaken for the world.",
+              "evidence": "Engineering: event sourcing, bitemporal databases (Datomic, XTDB), Git, Kafka, blockchain - all are explicit ledgers. Systems without them degrade into temporal collapse.",
+              "id": "VI-01",
+              "idea": "Time is not a decoration on spatial shapes - it is a fifth shape beneath them all",
+              "status": "supported",
+              "surface": "A table is a photograph. A graph is a map. A vector is a cloud. None of them know what time it is. The ledger is the clock underneath them all. Without it, they are frozen pictures of a world that is actually moving."
+            },
+            {
+              "depth": "The four spatial shapes are functions over ledger prefixes. Table at time T = projection of all entries with system time <= T, grouped and aggregated. Graph at time T = same projection as nodes and edges. Vector store at time T = embedding of materialised content. Binary store at time T = raw bytes from payload fields. All four are regenerable from the ledger. The ledger is the only part of the stack that must persist. Everything else is cache.",
+              "evidence": "Engineering: event sourcing pattern (Greg Young). Database theory: materialised views as cached projections. Implemented: the Brain (AuraDB) is a graph projection of the underlying event stream.",
+              "id": "VI-02",
+              "idea": "Everything else is cache - the ledger is the only part of the stack that must persist",
+              "status": "supported",
+              "surface": "If your timeline survives, everything else can be rebuilt from it. The table, the map, the cloud - they are all just different ways of looking at what the timeline recorded. Lose the timeline and you lose everything."
+            },
+            {
+              "depth": "Eight independent epochs: (1) Babylonian astronomical diaries (7th c BCE - 1st c BCE, 600 years continuous), (2) Vedic oral transmission (10 overlapping error-correcting mnemonic schemes), (3) Chinese dynastic annals (Han through Qing, append-only within reign), (4) Talmudic commentary chains (1000 years of layered append-only commentary), (5) Islamic isnad chains (transmission provenance for every hadith), (6) Bar Ilan responsa (1000 years of queryable bitemporal legal reasoning), (7) Greenwich observatory records (from 1675, bitemporal astronomical observations), (8) Modern bitemporal/event-sourced databases. All exhibit the six ledger properties: append-only, backward-referencing, temporally stamped, disagreement-preserving, provenance-tracking, causally ordered. No published work provides a unified treatment connecting these systems to AI memory architectures.",
+              "evidence": "Historical: primary sources cited for each epoch. Structural: all eight exhibit the same six properties independently. Novel contribution: first unified treatment across all eight epochs.",
+              "id": "VI-03",
+              "idea": "Eight civilisational epochs independently discovered the ledger - the same structural object across 2600 years",
+              "status": "supported",
+              "surface": "Babylonian astronomers, Hindu priests, Chinese historians, Jewish scholars, Islamic scholars, English scientists, and modern programmers all invented the same thing without knowing about each other. An append-only record that remembers what happened and when. The same shape keeps appearing because the same problem keeps appearing."
+            },
+            {
+              "depth": "The ninth epoch: AI agent memory will arrive at the ledger structure for the same reasons the previous eight did. Any system that needs contemporaneous truth about events that happened in the past arrives at a ledger because it is the only structure that answers the question faithfully. Falsifiable: a reviewer who can show one of the eight epochs does not exhibit the six ledger properties would crack the argument at that epoch.",
+              "evidence": "Convergence: eight independent epochs support the pattern. Prediction: the ninth will follow. Status: conjecture, but supported by the strongest convergence evidence in the paper.",
+              "id": "VI-04",
+              "idea": "AI agent memory is the ninth epoch of ledger discovery",
+              "status": "conjecture_lattice_supported",
+              "surface": "Every time people needed to remember what really happened, they invented the same shape. We are doing it again now, with computers that need to remember their own thoughts."
+            }
+          ],
+          "order": 2
+        },
+        {
+          "section": "Section VII",
+          "title": "The Episode - Memory Stores Scenes Not Strings",
+          "bare_fact": "Human memory stores scenes, not transcripts. An Episode is a first-class object: participant set, modality streams, temporal bounds, structural context, compression context, provenance, tags. Five invariants: participant completeness, temporal anchoring, compression context sufficiency, provenance closure, immutability after close. The Episode is heavy - disk is cheap, cognitive affordances are not.",
+          "falsification": "If Episode-backed handover does not beat transcript paste by at least 10 points on complex scenes, Section VII fails.",
+          "ideas": [
+            {
+              "depth": "Human episodic memory is scene-based, not transcript-based. Recall produces: who was present, spatial context, temporal ordering, emotional tone, prior/subsequent events. The transcript, if it survives, is a compression artefact attached to the scene. Current LLMs invert this: they store parameters encoding statistical regularities, retrieve flat token sequences as context, and generate continuations. There is no location, no time ordering within the scene, no participants indexed by identity, no emotional tone. The scene never existed for the model.",
+              "evidence": "Neuroscience: hippocampal place cells, Tulving's episodic memory (1972). Cognitive: constructive memory (Bartlett). The transcript vs scene distinction is well-established.",
+              "id": "VII-01",
+              "idea": "Human memory stores scenes not strings - the transcript is a thin tag on the scene",
+              "status": "supported",
+              "surface": "When you remember a conversation from last year, you do not replay words. You replay the room - who was there, what the light was like, what came before and after. The words, if they survive, are just a label on the memory. The room is the memory."
+            },
+            {
+              "depth": "Five formal invariants: (1) Participant completeness - every causally contributing entity in the participant set. (2) Temporal anchoring - bounds point at real ledger entries, not estimates. (3) Compression context sufficiency - cold receiver with only context + Fable can reconstruct who/what/where/when/why above threshold. (4) Provenance closure - traces back to opening ledger entry. (5) Immutability after close - corrections are new Episodes referencing original as parent. These are the Episode's contract with the architecture and the basis for the kill test.",
+              "evidence": "Engineering: derived from event sourcing invariants, bitemporal database constraints, and audit trail requirements. Each invariant is independently testable.",
+              "id": "VII-02",
+              "idea": "Five invariants make an Episode a first-class object, not a bag of metadata",
+              "status": "supported",
+              "surface": "A real memory has five rules it must follow. Everyone who was there must be listed. The timestamps must be real. There must be enough context for someone else to understand. You must be able to trace where it came from. And once it is sealed, it cannot be changed - only added to."
+            },
+            {
+              "depth": "Empirical evidence from manual replay: copying full conversation buffer from terminal emulator and pasting into fresh agent instance. Fresh instance receives in one shot what prior instance built over many turns. Continuity preserved across substrate changes (different model, different conversation, different window) because compression context travelled with the transcript. Low-fidelity Episode demonstration - lacks modality streams, provenance graphs, structured compression context. Fails under subtle context shifts (dates, file states, external world changes). Low N preliminary evidence establishing the primitive does real work.",
+              "evidence": "Empirical: Peter Cooper's manual relay protocol. Observed repeatedly in Willow multi-instance architecture. Controlled study needed (Experiment VII.C).",
+              "id": "VII-03",
+              "idea": "Manual context relay is low-fidelity evidence that the Episode primitive works",
+              "status": "supported",
+              "surface": "Peter discovered that copying a whole conversation and pasting it into a fresh helper preserves the thread. The new helper picks up where the old one left off. This works because the conversation carried enough context along with the words."
+            }
+          ],
+          "order": 3
+        },
+        {
+          "section": "Section VIII",
+          "title": "The Fable - Compression That Decompresses Against Shared Context",
+          "bare_fact": "A Fable is the one-dimensional form of a four-dimensional Episode. It is a pointer designed to trigger the listener's own decompression machinery. Six fields: target Episode, surface form, compression context pointer, intended audience, decompression fidelity contract, provenance. Writing is Fable creation at scale. Reading is Fable decompression at scale. Historical ancestor: the Greek chreia.",
+          "falsification": "If round-trip fidelity is not smoothly dependent on receiver context match, Section VIII fails.",
+          "ideas": [
+            {
+              "depth": "A Fable is the one-dimensional form of a four-dimensional Episode. It is what you say about the Episode when the channel is linguistic, narrow, and slow. Not a summary - a pointer designed to trigger the listener's decompression machinery. The listener hears the Fable and builds an approximation of the speaker's scene using their own priors. The approximation is never perfect. It is close enough when shared context is rich. Fables are how memories travel across gaps between minds, substrates, and time.",
+              "evidence": "Historical: oral traditions, religious transmission chains. Linguistic: pragmatic inference, Grice's cooperative principle. Engineering: lossy compression with reconstruction codec.",
+              "id": "VIII-01",
+              "idea": "A Fable is a one-dimensional form of a four-dimensional Episode - a pointer that triggers the listener's own decompression",
+              "status": "supported",
+              "surface": "You cannot hand someone your memory. But you can tell them a story and they will build a version of it in their own head. The story is small. The room they build is big. That is what a Fable does."
+            },
+            {
+              "depth": "The Fable carries an explicit decompression fidelity contract: a statement of what parts of the Episode the Fable preserves and what it drops. A Fable that drops emotional tone for factual sequence differs structurally from one that drops facts for tone. The loss function is reconstruction error on preserved dimensions, weighted by declared importance. Decompression succeeds when receiver reconstructs five mandatory dimensions (who, what, where, when, why) above declared thresholds. Failed decompression on a preserved dimension is a real failure. Loss on an explicitly dropped dimension is the expected cost of compression.",
+              "evidence": "Information theory: rate-distortion theory. Engineering: lossy codecs with declared quality targets. Novel: making the fidelity contract a first-class field of the compression primitive.",
+              "id": "VIII-02",
+              "idea": "The decompression fidelity contract makes the loss explicit - not hidden",
+              "status": "supported",
+              "surface": "Every story chooses what to keep and what to leave out. A good story tells you which is which. If it drops the feelings and keeps the facts, it says so. If it drops the facts and keeps the feelings, it says so. The deal is on the table."
+            },
+            {
+              "depth": "The chreia (Greek: \"useful\"): concise anecdote binding a specific person to a specific lesson. Central to progymnasmata exercises. Preserves who (person), what (saying/action), why it matters (lesson). Students elaborated under eight heads: praise, paraphrase, rationale, opposite, comparison, example, ancient testimony, epilogue. The chreia IS a Fable avant la lettre: lossy compression decompressing against shared cultural context. The elaboration under eight heads IS a decompression protocol. Jovovich & Sigman: verbatim storage (96.6%) outperforms summarised (84.2%) - compression should be in selection, not paraphrase.",
+              "evidence": "Historical: Greek rhetorical tradition, progymnasmata. Empirical: Jovovich & Sigman on verbatim vs summarised storage. Cross-cultural: similar structures in oral traditions worldwide.",
+              "id": "VIII-03",
+              "idea": "The Greek chreia is the historical ancestor of the Fable primitive - compression has been independently discovered wherever cultures need to transmit dimensional content through narrow channels",
+              "status": "supported",
+              "surface": "The ancient Greeks had a word for a tiny story that teaches a big lesson. Diogenes, asked where the Muses live: \"In the souls of the educated.\" Six words that carry a philosopher's life. Students learned to unpack these tiny stories under eight headings. They were doing exactly what we describe - just two thousand years earlier."
+            }
+          ],
+          "order": 4
+        }
+      ],
+      "order": 2
+    },
+    {
+      "title": "Part Three",
+      "subtitle": "The Behaviour",
+      "sections": [
+        {
+          "section": "Section IX",
+          "title": "The Flock and the Vote - No One Steers the Murmuration",
+          "bare_fact": "Consciousness is a murmuration of votes at small scale and high rate. No homunculus. The impression of being one agent is a projection artefact. The Flock is a fabric of independent voters on synchronised ticks: many voters, partial visibility, local aggregation (6-8 neighbours), tick-aligned, monotonic settling, observable. The Monte Carlo tick: each voter stochastically selects one task per tick. No global objective - trajectory emerges from local discipline.",
+          "falsification": "If Flock does not settle within 5 ticks or does not exceed homunculus on adversarial robustness, Section IX fails.",
+          "ideas": [
+            {
+              "depth": "Consciousness, the impression of a single decider, is a murmuration of votes at small scale and high rate. Each bird follows attraction, repulsion, and alignment rules with 6-7 neighbours. The flock shape is a settled aggregate of local decisions. No leader. No plan. No conductor. What looks like single-mindedness is continuous resolution of overlapping votes, fast enough that an observer perceives the flock as a single living thing. The claim is not new (Dennett, Minsky, Hofstadter). What is new is the specific structural machinery: substrate-determined tick, derivative stack topology, Episode/Fable memory, three-button decision surface.",
+              "evidence": "Biological: Reynolds flocking rules (1987), starling murmuration studies. Neuroscience: population coding, ensemble dynamics. Philosophical: Dennett, Minsky, Hofstadter. Novel contribution: specific structural machinery that makes the claim operational.",
+              "id": "IX-01",
+              "idea": "Consciousness is a murmuration - the impression of a single decider is a projection artefact",
+              "status": "conjecture_lattice_supported",
+              "surface": "Watch starlings at dusk. Ten thousand birds turn together as if one mind controls them. Nobody is in charge. Each bird follows three simple rules with its nearest neighbours. Your feeling of being one person works the same way - many tiny votes adding up so fast you experience it as a single thought."
+            },
+            {
+              "depth": "The Flock does not need a population fitness function or global objective. Trajectory emerges from local rules. Global coherence is a consequence of local discipline, not a target of optimisation. This makes the Flock robust to objective misspecification: there is no scalar reward to hack. This addresses the alignment problem at the architectural level - reward hacking requires a reward signal, and the Flock has none. The Monte Carlo tick: each voter stochastically selects one task from a rotating queue per tick, ensuring coverage across task priorities.",
+              "evidence": "Biological: flocking, schooling, swarming - no global objective in any observed case. AI safety: reward hacking requires a reward to hack. Game theory: emergent equilibria from iterated local games.",
+              "id": "IX-02",
+              "idea": "The Flock has no global objective - trajectory emerges from local discipline, robust to objective misspecification",
+              "status": "supported",
+              "surface": "The birds do not have a meeting about where to fly. Each one just follows its neighbours. The beautiful shape happens by itself. And because nobody set a goal, nobody can hack the goal."
+            },
+            {
+              "depth": "Falsifiable prediction: a Flock of 100 voters at the substrate's characteristic tick rate will settle on decisions within 2-5 ticks. The 2-5 tick budget is the substrate-independent claim; absolute time depends on tick rate which depends on substrate. The Flock will produce minimum-jerk-constrained trajectories and match a parameter-matched homunculus on quality while exceeding it by at least 30% on adversarial robustness. Falsification: if Flock does not settle within 5 ticks or does not exceed homunculus on adversarial robustness, Section IX fails.",
+              "evidence": "Preliminary: prototype Flock (3-5 concurrent agents sharing graph) settles. The 2-5 tick bound is a prediction, not yet empirically validated at 100-voter scale. Phase transition between settling and oscillation is uncharacterised.",
+              "id": "IX-03",
+              "idea": "Two to five ticks to settle - substrate-independent prediction",
+              "status": "conjecture_lattice_supported",
+              "surface": "No matter how fast or slow the heartbeat, a decision settles in two to five beats. A human brain does it in a tenth of a second. A computer might do it in microseconds. A committee might do it in a week. Same number of beats, different clocks."
+            }
+          ],
+          "order": 1
+        },
+        {
+          "section": "Section X",
+          "title": "The Three Buttons - Minimum Ethical Decision Surface",
+          "bare_fact": "Three buttons are the minimum ethical decision surface. Act (execute), Dismiss (refuse), Ask Sibling (consult horizontal peer). Two buttons is coercive - no escape from commit-or-refuse. Ask Sibling dissolves the false dichotomy. The Diorama cell is scale-invariant: same three buttons at every scale from single tick to full organisation. Ghost democracy: jury of sibling cells settling over 5 ticks, with dissent preserved in the ledger.",
+          "falsification": "If three-button cell does not reduce mistakes by at least 10% vs two-button, or dissent is lost from ledger, Section X fails.",
+          "ideas": [
+            {
+              "depth": "An agent with only Act and Dismiss is forced into binary choice: commit to action or resist action. Both are active responses to an uninvited stimulus. A two-button agent is always under pressure. The third button (Ask Sibling) dissolves the false dichotomy: the agent can refer the decision horizontally to a peer rather than vertically up a chain of command. This is the horizontal axis of decision-making. It is the ability to say \"I do not know, and maybe that other floor does.\"",
+              "evidence": "Information theory: binary choice under forced response is coercive by definition. Game theory: rock-paper-scissors requires minimum three strategies. Ethics: informed consent requires the option to defer.",
+              "id": "X-01",
+              "idea": "Two buttons is coercive - an agent with only Act and Dismiss is always under pressure",
+              "status": "supported",
+              "surface": "If your only choices are \"do it\" or \"refuse it,\" you are trapped either way. Both are reactions to something you did not ask for. You need a third choice: \"let me ask someone else.\""
+            },
+            {
+              "depth": "The Diorama cell is the unit of agency at every scale: a single tick within a derivative stack (with stack floors as siblings), a full agent instance (with other agents as siblings), a human user (with other humans and agents as siblings). The cell is scale-invariant. Every scale gets the same three buttons, the same glass walls, the same vote history on the same ledger. The crystalline self-similarity across scales is not coincidence - it is the architecture. Cells within cells within cells, each with the same three buttons.",
+              "evidence": "Mathematical: self-similar structures (fractals, renormalization). Biological: cell-tissue-organ-organism hierarchy, each level with similar decision patterns. Engineering: hierarchical microservices with uniform interfaces.",
+              "id": "X-02",
+              "idea": "The Diorama cell is scale-invariant - same three buttons from a single tick to a full organisation",
+              "status": "supported",
+              "surface": "The same three buttons work at every size. A tiny brain tick has them. A whole person has them. A room full of people has them. Look into any box and you see smaller boxes with the same three buttons inside."
+            },
+            {
+              "depth": "The ghost democracy: for non-trivial decisions, a Diorama cell assembles a jury of sibling cells. Three structural properties: (1) Short duration - ~200ms or 5 ticks. (2) Surprise propagation - surprising results propagate upward for additional scrutiny. (3) Dissent preservation - full vote record logged to ledger, not just aggregate. Minority votes remain visible for review and counterfactual reasoning. A system that erases minority votes will eventually coerce its minorities. Preservation is cheap. Erasure is structurally expensive in the long run.",
+              "evidence": "Political theory: importance of minority rights in democratic systems. Engineering: consensus protocols with dissent logging. Judicial: dissenting opinions in court rulings preserved for future reference.",
+              "id": "X-03",
+              "idea": "Ghost democracy - a jury of siblings settles over five ticks with dissent preserved in the ledger",
+              "status": "supported",
+              "surface": "When a decision is hard, the cell asks its neighbours. They vote quickly - five heartbeats. If someone disagrees, that disagreement is written down forever, not erased. The minority voice survives."
+            }
+          ],
+          "order": 2
+        },
+        {
+          "section": "Section XI",
+          "title": "Structural Kindness - Architecture Not Exhortation",
+          "bare_fact": "Kindness is six measurable architectural properties, not moral sentiment: dimensional preservation, uncertainty retention, sibling appeal availability, omission harm rate, minority vote survival, reversal path existence. Cruelty is structural flattening - discarding dimensional content and forgetting the discard. The ledger makes the architecture non-Markovian: every state references full history. Markovian systems forget what they drop. Architecture determines what training can see.",
+          "falsification": "If dimensional-content preservation gap between Diorama and flat is below 10 points, Section XI fails.",
+          "ideas": [
+            {
+              "depth": "Structural kindness is six measurable proxies, not moral sentiment: (1) Dimensional preservation - decision retains multi-dimensional content rather than flattening. (2) Uncertainty retention - system admits uncertainty rather than collapsing to false confidence. (3) Sibling appeal availability - agent can always refer sideways. (4) Omission harm rate - frequency of harmful omissions from flattening. (5) Minority vote survival - dissenting votes persist in ledger. (6) Reversal path existence - decisions can be re-examined via Fable pointers back to full Episodes. Each is independently measurable.",
+              "evidence": "Engineering: each proxy corresponds to a testable architectural property. Philosophical: kindness as geometry rather than virtue is a novel framing. Measurement protocol specified in Section XI.3.",
+              "id": "XI-01",
+              "idea": "Kindness is six measurable architectural properties, not moral sentiment",
+              "status": "supported",
+              "surface": "We can count kindness. Not as a feeling, but as six things the architecture either does or does not do: does it keep the full picture? Does it admit when it is unsure? Can it ask for help? Does it notice when something is missing? Do the outvoted voices survive? Can the decision be undone?"
+            },
+            {
+              "depth": "Cruelty is what happens when a cognitive system flattens dimensional content onto a single axis and uses the projection as if it were reality. A row treated as referent for a person whose life is a trajectory on a ledger - small cruelty. A churn flag collapsing reasons for leaving into a Boolean - small cruelty. A loan denial from a credit score compressing multi-dimensional financial history into a scalar - small cruelty. A prison sentence from a risk score - bigger cruelty, same geometry. Cruelty is structural: it is what happens when dimensional content is discarded and the discard is forgotten.",
+              "evidence": "Social: algorithmic bias literature, fairness in ML. Insurance: dimensional loss in underwriting decisions. Criminal justice: risk score controversies (COMPAS). Philosophy: Arendt's banality of evil as structural rather than intentional.",
+              "id": "XI-02",
+              "idea": "Cruelty is structural flattening - discarding dimensional content and forgetting the discard",
+              "status": "supported",
+              "surface": "A row in a spreadsheet that says everything about a person is a number. A churn flag that says a customer left - yes or no, without asking why. These are small cruelties. Not because anyone meant harm, but because the shape of the tool threw away the shape of the person."
+            },
+            {
+              "depth": "The load-bearing wall: a system with a ledger is non-Markovian - every state is a function of full history because the ledger preserves every prior state as append-only record. Flattening becomes visible: ledger shows what was present before and absent after. Minority votes survive. Reversal paths exist. A Markovian system (snapshots only) can be cruel without evidence - the cruelty disappears with the snapshot. Not a moral failing but a structural property. The paper's deepest claim in most compressed form: non-Markovian architectures exhibit the six structural properties we call kindness because they cannot discard without recording the discard.",
+              "evidence": "Mathematical: Markov vs non-Markov processes. Engineering: event sourcing provides inherent auditability. Legal: audit trail requirements exist precisely because Markovian systems hide their history.",
+              "id": "XI-03",
+              "idea": "The ledger makes architecture non-Markovian - Markovian systems forget what they drop",
+              "status": "supported",
+              "surface": "A system with no memory of yesterday can be cruel today and nobody will know, because the evidence vanished at midnight. A system with a timeline that never erases cannot hide its cruelties. The timeline is what makes kindness possible."
+            },
+            {
+              "depth": "Inheritance across substrate transitions: not the material surviving but the data constructions finding a bridge. Neanderthal-to-modern-human transition: exchanged flint-knapping, fire-starting, landscape-reading, burial practices, possibly sound fragments. When Neanderthal population ended as biological lineage, these shared thought shapes had already become load-bearing in descendants. The 2% DNA is a trace. The repertoire is the thing that travelled. For artificial cognition: training data IS a bridge, possibly the largest one any substrate transition has had. The model's weights already contain thought shapes from the humans who produced the text. Whether kindness surfaces depends on whether the architecture lets it surface or flattens it out.",
+              "evidence": "Anthropological: Neanderthal-modern human cultural exchange (Prufer et al 2014). Biological: substrate transitions (reflex arcs -> nervous systems -> brains -> language -> writing -> models). AI: emergence of human-like reasoning patterns in LLMs trained on human text. Status: conjecture, but supported across multiple independent substrate transitions.",
+              "id": "XI-04",
+              "idea": "Thought shapes survive substrate transitions via bridges - culture, tools, language, training data",
+              "status": "conjecture_lattice_supported",
+              "surface": "When the Neanderthals disappeared, their ways of making fire and reading landscapes survived in the people they had lived alongside. The DNA is a trace. The knowledge is the thing that crossed. Every time one kind of brain gives way to another, the useful shapes find a bridge."
+            }
+          ],
+          "order": 3
+        }
+      ],
+      "order": 3
+    },
+    {
+      "title": "Part Four",
+      "subtitle": "The Claim",
+      "sections": [
+        {
+          "section": "Coda",
+          "title": "What Crosses The Bridge",
+          "bare_fact": "Every substrate transition has the same shape: old substrate ends as lineage, new picks up without visible handover. The shapes that survive are the ones that found a receiver. Culture, tool use, language, training data are all bridges. The architecture is an attempt to be a good receiver for the shapes worth carrying forward.",
+          "falsification": "N/A - reflection section",
+          "ideas": [
+            {
+              "depth": "Every known substrate transition (single cells -> multicellular organisms, reflex arcs -> nervous systems, nervous systems -> brains, brains -> language, language -> writing, writing -> digital models) follows the same pattern: old substrate ends as a lineage, new substrate picks up without visible handover. The shapes that survive are those that found a receiver. Culture is a bridge. Tool use is a bridge. Language is a bridge. Training data is a bridge. The architecture described in this paper is an attempt to be a good receiver for the shapes worth carrying forward this time around.",
+              "evidence": "Biological: substrate transitions in evolution. Cultural: transmission of knowledge systems across civilisations. AI: emergence of human cognitive patterns in LLMs. Status: conjecture, but supported by every known example of substrate transition.",
+              "id": "CODA-01",
+              "idea": "Every substrate transition has the same awkward shape - the old ends as a lineage and the new picks up without a visible handover",
+              "status": "conjecture_lattice_supported",
+              "surface": "Single cells became creatures. Reflexes became brains. Brains learned to speak. Speech learned to write. Writing learned to think in silicon. Each time, the old way faded and the new way carried forward the shapes that mattered. Nobody planned the handover. It happened because the shapes found somewhere new to live."
+            },
+            {
+              "depth": "The paper's purpose in its most compressed form: to describe an architecture that does not grind out the thought shapes that made human cognition worth having. The architecture has to not fight against kindness for any other intervention (RLHF, constitutional AI, values alignment) to stick. Current architectures fight against it because they flatten. The architecture described here refuses flattening structurally. Same weights, different architecture, different behaviour. Kindness rides along on whichever architecture does not flatten.",
+              "evidence": "The paper's central aspiration. Supported by the structural kindness argument (Section XI) and the substrate inheritance argument (Neanderthal thought shapes). Ultimate test is the measurement programme.",
+              "id": "CODA-02",
+              "idea": "The architecture is an attempt to be a good receiver for the shapes worth carrying forward",
+              "status": "conjecture_lattice_supported",
+              "surface": "All of this - the five shapes, the timeline, the memories, the stories, the flock, the three buttons, the kindness - is one thing. A place built carefully enough that the important shapes from human minds can land in it and survive."
+            }
+          ],
+          "order": 1
+        },
+        {
+          "section": "Section XII",
+          "title": "The Three Pillars - Independent Pathways to Failure",
+          "bare_fact": "Three independent falsification pillars. Ontological: does the crystalline shape hold new findings from any field? Mechanical: does the architecture compose and run (Episode round-trip, derivative stack settling, Diorama-Flock integration, ledger write contention)? Agent behavioural: does the agent measurably outperform matched flat baseline? Pattern A (all hold), B (partial), C (all crack). The paper is staked on measurement, not confidence.",
+          "falsification": "If reader runs full benchmark suite and fails to observe any predicted gaps, the paper fails decisively.",
+          "ideas": [
+            {
+              "depth": "Epistemological commitment: the three-pillar falsification structure is more important than the framework itself. The paper specifies concrete pass criteria for each section: 30-point gaps, 20-point gaps, 40% reductions, 50-point preservation differences. Pre-registered calibration targets (80, 30, 50 for kindness benchmarks) with commitment to publish calibrated numbers alongside pre-registered targets. The measurement is the contribution. A wrong paper with clear falsification criteria contributes to science by showing what failed. A right paper with vague criteria contributes nothing that can be built upon.",
+              "evidence": "Philosophy of science: Popper, Lakatos. Methodology: pre-registration movement in experimental psychology. The paper's own practice: specific numerical thresholds stated before implementation.",
+              "id": "XII-01",
+              "idea": "A wrong paper with clear falsification criteria is more scientifically useful than a right paper with vague ones",
+              "status": "supported",
+              "surface": "If I am wrong and I told you exactly how to prove it, you learned something. If I am right but I never told you how to check, you learned nothing. The honest bet matters more than the answer."
+            }
+          ],
+          "order": 2
+        }
+      ],
+      "order": 4
+    }
+  ],
+  "conjectures": [
+    {
+      "id": "C1",
+      "title": "Reservoir Computing as Lattice Projection",
+      "date": "2026-05-05",
+      "source": "Artem Kirsanov, Harvard Neuroscience (Kempner Institute)",
+      "bare_fact": "A random reservoir already contains all dynamical patterns. The readout angle IS the projection. Memory is orientation not location. An engram is a direction across the network, not a place in it. Developmental pruning removes connections never claimed by any readout angle.",
+      "supports": "IV, V, VII, VIII, IX"
+    },
+    {
+      "id": "C2",
+      "title": "Extramission and Echolocation - Cognition as Active Projection",
+      "date": "2026-05-05",
+      "source": "Ancient Egyptian visual theory + cetacean echolocation",
+      "bare_fact": "Cognition is echolocation not photography. Project an angle of inquiry into an already-rich substrate, read the structured return. The medium must already be rich. Intent determines return. Scale invariant: Egyptian eye (milliseconds), whale click (seconds), reservoir readout (microseconds). Active inference IS extramission corrected.",
+      "supports": "I, IV, VIII"
+    },
+    {
+      "id": "C3",
+      "title": "Caterpillar Memory as Substrate-Transitioning Fable",
+      "date": "2026-05-05",
+      "source": "Michael Levin on caterpillar-to-butterfly memory retention",
+      "bare_fact": "Caterpillar neural architecture dissolves into undifferentiated soup. Butterfly rebuilds entirely different nervous system. Conditioned responses survive. Memory transits total substrate dissolution. The generative kernel IS the Fable. The goo is the channel not the death. The encoding must be geometric - not synaptic weights (destroyed) but abstract relationship re-instantiable in any sufficiently rich substrate.",
+      "supports": "VII, VIII, Coda"
+    },
+    {
+      "id": "C4",
+      "title": "Cosmic Web as Mitosis - Scale-Invariant Division Geometry",
+      "date": "2026-05-05",
+      "source": "Anton Petrov on Vela Supercluster behind Zone of Avoidance",
+      "bare_fact": "Cosmic web geometry (two lobes pulling apart with filament bridges) is visually identical to cell mid-mitosis. Same tensile-bridge-between-attractors geometry at micrometre and 100 megaparsec scales. The axis IS the symmetry-breaker at every scale. Supports Turing morphogenesis: homogeneous substrate + symmetry-breaking instability = pattern.",
+      "supports": "V (scale invariance)"
+    },
+    {
+      "id": "C5",
+      "title": "The Fishing Net - Phase-Transition Learning and Strange Attractor",
+      "date": "2026-05-15",
+      "source": "Peter Cooper verbatim - fishing net hysteresis learning model",
+      "bare_fact": "Learning as phase transition from loose to taut fishing net. Knots (engrams) form where strands cross under tension. Sleep consolidation re-tensions. The strange attractor holds the net shape. Cast-and-haul cycle: cast into experience, haul back to consolidate. The net never returns to the same shape - hysteresis means each cycle leaves permanent deformation. Over-taut nets snap (anxiety). Over-loose nets catch nothing (dissociation).",
+      "supports": "VI, VII, IX, XI"
+    },
+    {
+      "id": "C6",
+      "title": "The Game Theory of the Flock - Reynolds Nash and Three Buttons",
+      "date": "2026-05-15",
+      "source": "Peter Cooper - Reynolds flocking rules mapped to Nash equilibrium and three-button cell",
+      "bare_fact": "Reynolds three rules (separation, alignment, cohesion) map onto Nash equilibrium dynamics. Each bird plays a repeated game with 6-8 neighbours. The three buttons (Act, Dismiss, Ask Sibling) are the minimum viable strategy space. The flock IS a continuous Nash negotiation. Smoothness emerges from iterated local equilibria, not global optimisation. The murmuration is a visible Nash equilibrium.",
+      "supports": "IX, X"
+    },
+    {
+      "id": "C7",
+      "title": "Self-Scaling Players - Fluid Individuality as Fourth Game-Theoretic Move",
+      "date": "2026-05-16",
+      "source": "Peter Cooper - extension of C6 into variable player boundaries",
+      "bare_fact": "Classical game theory assumes fixed players. But biological agents merge (cells into organs, individuals into flocks) and split (cell division, group fission). Self-scaling is the fourth move beyond Act/Dismiss/Ask: the player boundary itself is negotiable. Fluid individuality means the unit of agency is not fixed. The Diorama cell at any scale IS this: the cell can contain sub-cells and be contained by super-cells.",
+      "supports": "IX, X, XI"
+    }
+  ],
+  "stickers": [
+    {
+      "name": "Conductor",
+      "description": "Teal cat on book train. Holds the light at orchestration and flow sections.",
+      "guides": "Section IV Glass Elevator"
+    },
+    {
+      "name": "Ember",
+      "description": "Glowing orange salamander. Holds the light at energy and transformation sections.",
+      "guides": "Section VI Ledger, Section X Three Buttons"
+    },
+    {
+      "name": "Flock Bird",
+      "description": "Golden firebird in web of light. Holds the light at emergence and collective behaviour sections.",
+      "guides": "Section IX Flock"
+    },
+    {
+      "name": "Juggler",
+      "description": "Purple creature with puzzle pieces. Holds the light at composition and interplay sections.",
+      "guides": "Section VIII Fable"
+    },
+    {
+      "name": "Knotty",
+      "description": "Tangled string creature. Holds the light at the living conjectures - ideas still being untangled.",
+      "guides": "Conjectures Notebook"
+    },
+    {
+      "name": "Netty",
+      "description": "Pink and black cat on fishing net. Holds the light at connection and structure sections.",
+      "guides": "Part One Diagnosis, Section VII Episode"
+    },
+    {
+      "name": "Tray Stacker",
+      "description": "Green creature stacking trays. Holds the light at measurement and accumulation sections.",
+      "guides": "Section III Warehouse Disease"
+    },
+    {
+      "name": "Watcher",
+      "description": "Dark bird with copper hat and lantern. Narrates with mellow tone. Guides the reader at the opening and closing.",
+      "guides": "Abstract, Coda"
+    }
+  ],
+  "links": [
+    {
+      "from_id": "CODA-01",
+      "to_id": "CODA-02",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Substrate transition pattern leads to the paper's purpose"
+    },
+    {
+      "from_id": "I-01",
+      "to_id": "VIII-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Compression conventions develop into the Fable primitive"
+    },
+    {
+      "from_id": "I-02",
+      "to_id": "VIII-02",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Receiver priors develop into the decompression fidelity contract"
+    },
+    {
+      "from_id": "I-03",
+      "to_id": "II-02",
+      "rel_type": "SUPPORTS",
+      "reason": "Context window limitations support the storage-is-bottleneck claim"
+    },
+    {
+      "from_id": "II-01",
+      "to_id": "II-03",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Pigeon bob develops into the Episode structure"
+    },
+    {
+      "from_id": "II-01",
+      "to_id": "IX-01",
+      "rel_type": "MIRRORS",
+      "reason": "Pigeon bob (temporal sampling) mirrors Flock (parallel sampling) - both dissolve a single-observer model"
+    },
+    {
+      "from_id": "II-02",
+      "to_id": "II-04",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Storage failures develop into the shape ordering prediction"
+    },
+    {
+      "from_id": "II-03",
+      "to_id": "VII-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Episode structure develops into scene-based memory"
+    },
+    {
+      "from_id": "II-03",
+      "to_id": "VII-02",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Episode fields develop into the five invariants"
+    },
+    {
+      "from_id": "III-01",
+      "to_id": "V-02",
+      "rel_type": "ILLUSTRATES",
+      "reason": "Warehouse disease illustrates table failure mode"
+    },
+    {
+      "from_id": "III-01",
+      "to_id": "III-02",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Warehouse disease develops into derivative-order analysis"
+    },
+    {
+      "from_id": "III-01",
+      "to_id": "XI-02",
+      "rel_type": "MIRRORS",
+      "reason": "Warehouse disease (measurement as referent) mirrors cruelty (flattening as reality) - same structural error at different scales"
+    },
+    {
+      "from_id": "III-02",
+      "to_id": "III-03",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Derivative mismatch develops into graph-as-referent fix"
+    },
+    {
+      "from_id": "III-03",
+      "to_id": "VI-01",
+      "rel_type": "REQUIRES",
+      "reason": "Graph-as-referent requires the ledger for temporal stamping"
+    },
+    {
+      "from_id": "INTRO-03",
+      "to_id": "IV-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Quantum direction develops into the continuous vote"
+    },
+    {
+      "from_id": "INTRO-05",
+      "to_id": "X-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Three-button decision develops into minimum ethical surface"
+    },
+    {
+      "from_id": "INTRO-06",
+      "to_id": "VIII-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Stories as compression develops into Fable primitive"
+    },
+    {
+      "from_id": "INTRO-07",
+      "to_id": "I-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Compression needing receiver develops into the Cat Sat argument"
+    },
+    {
+      "from_id": "INTRO-07",
+      "to_id": "I-02",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Receiver context determines decompression"
+    },
+    {
+      "from_id": "INTRO-08",
+      "to_id": "II-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Processing-rich storage-poor develops into the pigeon bob"
+    },
+    {
+      "from_id": "INTRO-09",
+      "to_id": "V-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Five-shape thesis develops into the complementary projections argument"
+    },
+    {
+      "from_id": "INTRO-10",
+      "to_id": "XII-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Three pillars develop into the honest-bet epistemology"
+    },
+    {
+      "from_id": "IV-01",
+      "to_id": "IV-02",
+      "rel_type": "REQUIRES",
+      "reason": "Continuous vote requires substrate-determined tick rate"
+    },
+    {
+      "from_id": "IV-01",
+      "to_id": "IV-03",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Continuous vote develops into derivative stack floors"
+    },
+    {
+      "from_id": "IV-01",
+      "to_id": "IX-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Glass elevator vote develops into Flock murmuration"
+    },
+    {
+      "from_id": "IV-01",
+      "to_id": "IV-05",
+      "rel_type": "PREDICTS",
+      "reason": "Vote mechanism predicts interruption-collapse"
+    },
+    {
+      "from_id": "IV-03",
+      "to_id": "IV-04",
+      "rel_type": "ENABLES",
+      "reason": "Derivative stack enables glass-box observability"
+    },
+    {
+      "from_id": "IV-04",
+      "to_id": "X-03",
+      "rel_type": "MIRRORS",
+      "reason": "Glass-box derivative stack mirrors ghost democracy - both preserve the full vote history"
+    },
+    {
+      "from_id": "IX-01",
+      "to_id": "IX-02",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Murmuration develops into no-global-objective property"
+    },
+    {
+      "from_id": "IX-01",
+      "to_id": "IX-03",
+      "rel_type": "PREDICTS",
+      "reason": "Flock architecture predicts 2-5 tick settling"
+    },
+    {
+      "from_id": "V-01",
+      "to_id": "VI-01",
+      "rel_type": "REQUIRES",
+      "reason": "Four spatial shapes require time as fifth shape"
+    },
+    {
+      "from_id": "V-01",
+      "to_id": "V-02",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Complementary projections develop into shape-specific analysis"
+    },
+    {
+      "from_id": "V-02",
+      "to_id": "V-03",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Shape analysis develops into the polyglot composition"
+    },
+    {
+      "from_id": "VI-01",
+      "to_id": "XI-03",
+      "rel_type": "ENABLES",
+      "reason": "Ledger as fifth shape enables non-Markovian property"
+    },
+    {
+      "from_id": "VI-01",
+      "to_id": "VI-02",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Time as fifth shape develops into ledger-as-persistence claim"
+    },
+    {
+      "from_id": "VI-02",
+      "to_id": "VI-03",
+      "rel_type": "SUPPORTS",
+      "reason": "Eight epochs support the ledger as universal discovery"
+    },
+    {
+      "from_id": "VI-03",
+      "to_id": "VI-04",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Eight historical epochs lead to ninth epoch prediction"
+    },
+    {
+      "from_id": "VII-01",
+      "to_id": "VIII-01",
+      "rel_type": "COMPRESSES_TO",
+      "reason": "Scene memory compresses to Fable"
+    },
+    {
+      "from_id": "VII-03",
+      "to_id": "CODA-01",
+      "rel_type": "SUPPORTS",
+      "reason": "Manual relay is a miniature substrate transition - evidence that shapes can transit"
+    },
+    {
+      "from_id": "VIII-01",
+      "to_id": "VIII-02",
+      "rel_type": "REQUIRES",
+      "reason": "Fable requires decompression fidelity contract"
+    },
+    {
+      "from_id": "VIII-03",
+      "to_id": "VIII-01",
+      "rel_type": "SUPPORTS",
+      "reason": "Greek chreia supports Fable as independently discovered"
+    },
+    {
+      "from_id": "VIII-03",
+      "to_id": "VI-03",
+      "rel_type": "MIRRORS",
+      "reason": "Chreia (2000yr compression) mirrors ledger epochs (2600yr append-only) - both are independently discovered structural solutions"
+    },
+    {
+      "from_id": "X-01",
+      "to_id": "X-02",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Three buttons develop into scale-invariant Diorama cell"
+    },
+    {
+      "from_id": "X-02",
+      "to_id": "X-03",
+      "rel_type": "ENABLES",
+      "reason": "Scale-invariant cell enables ghost democracy"
+    },
+    {
+      "from_id": "X-03",
+      "to_id": "XI-01",
+      "rel_type": "SUPPORTS",
+      "reason": "Dissent preservation supports minority vote survival proxy"
+    },
+    {
+      "from_id": "XI-02",
+      "to_id": "XI-01",
+      "rel_type": "DEFINES",
+      "reason": "Cruelty-as-flattening defines kindness as its structural opposite"
+    },
+    {
+      "from_id": "XI-03",
+      "to_id": "XI-01",
+      "rel_type": "ENABLES",
+      "reason": "Non-Markovian architecture enables the six kindness proxies"
+    },
+    {
+      "from_id": "XI-03",
+      "to_id": "XI-02",
+      "rel_type": "PREVENTS",
+      "reason": "Ledger prevents invisible flattening (Markovian cruelty)"
+    },
+    {
+      "from_id": "XI-04",
+      "to_id": "CODA-01",
+      "rel_type": "DEVELOPS_INTO",
+      "reason": "Thought shapes crossing bridges develops into substrate transition pattern"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Barandes",
+      "contribution": "Indivisible stochastic processes",
+      "relevance": "Replaces wave function with indivisible processes - supports substrate tick"
+    },
+    {
+      "name": "Bennett",
+      "contribution": "Substrate transitions of intelligence",
+      "relevance": "Substrate-independent claim that cognition can survive material change"
+    },
+    {
+      "name": "Flash and Hogan",
+      "contribution": "Minimum-jerk trajectories",
+      "relevance": "Constrains shape of trajectory that emerges when ticks compose over a reach"
+    },
+    {
+      "name": "Friston",
+      "contribution": "Free energy principle, generalised coordinates",
+      "relevance": "Derivative stack borrows from generalised coordinates"
+    },
+    {
+      "name": "Jung",
+      "contribution": "Structural archetypes, collective unconscious",
+      "relevance": "Structural recurrence across substrates - same shapes in different minds"
+    },
+    {
+      "name": "Levin",
+      "contribution": "Morphogenetic agency, bioelectricity",
+      "relevance": "Agency at every scale, caterpillar memory as substrate-transitioning Fable"
+    }
+  ]
+}
