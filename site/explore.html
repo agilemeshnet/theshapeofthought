@@ -360,10 +360,19 @@
 
 .conjecture-block {
     margin: 12px 0;
-    padding: 12px;
+    padding: 12px 12px 12px 56px;
     background: rgba(184,115,51,0.04);
     border: 1px solid rgba(184,115,51,0.15);
     border-radius: 6px;
+    position: relative;
+}
+.conjecture-block .bayes-sticker {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    width: 38px;
+    height: auto;
+    opacity: 0.85;
 }
 .conjecture-block h3 {
     color: var(--copper);
@@ -885,6 +894,7 @@ function render() {
                 if (renderedConjs[c.id]) return;
                 renderedConjs[c.id] = true;
                 html += '<div class="conjecture-block">';
+                html += '<img src="stickers/rev-bayes.png" class="bayes-sticker" alt="Rev. Bayes">';
                 html += '<h3>' + c.id + '. ' + c.title + '</h3>';
                 html += '<div class="conj-date">' + (c.date || '') + '</div>';
                 if (foveationLevel >= 1 && c.source) html += '<div class="conj-source">Source: ' + c.source + '</div>';
