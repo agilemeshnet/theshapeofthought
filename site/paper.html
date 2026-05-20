@@ -33,6 +33,48 @@
 .paper-meta p { margin-bottom: 4px; }
 .back-to-top { text-align: center; margin: 40px 0; }
 .back-to-top a { color: var(--faint); font-size: 0.85em; }
+
+/* Margin Menagerie - sticker system */
+.sticker {
+    position: relative;
+    float: right;
+    width: 120px;
+    margin: 0 -60px 20px 24px;
+    filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.2));
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.88;
+}
+.sticker:hover {
+    transform: scale(1.12) rotate(3deg);
+    filter: drop-shadow(4px 8px 12px rgba(138,108,24,0.35));
+    opacity: 1;
+}
+.sticker.sticker-left {
+    float: left;
+    margin: 0 24px 20px -60px;
+}
+.sticker.sticker-peeled {
+    transform: rotate(-15deg) translateY(-10px) scale(1.05);
+    filter: drop-shadow(8px 14px 18px rgba(0,0,0,0.3));
+    opacity: 1;
+}
+.sticker img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+@media (max-width: 860px) {
+    .sticker { width: 80px; margin-right: -20px; }
+    .sticker.sticker-left { margin-left: -20px; }
+}
+@media (max-width: 600px) {
+    .sticker { width: 60px; margin-right: 0; float: none; display: block; margin: 16px auto; }
+    .sticker.sticker-left { margin-left: auto; float: none; }
+}
 </style>
 </head>
 <body class="has-sidebar">
@@ -118,6 +160,9 @@ Pillars</a>
 
 <main class="page-content">
     <div class="container paper-body">
+<figure class="sticker" style="transform: rotate(-4deg);" aria-hidden="true">
+<img src="stickers/watcher.png" alt="" loading="lazy">
+</figure>
 <h2 id="abstract">Abstract</h2>
 <p>A cat sat on a mat. You read that and reconstructed a
 four-dimensional scene - who, what, where, when - from six words. The
@@ -923,6 +968,9 @@ the framework. They are not load-bearing for the predictions. If a
 reader finds them unhelpful, skip to the measurement protocols. The
 measurements are the same either way.</p>
 <hr />
+<figure class="sticker sticker-left" style="transform: rotate(5deg);" aria-hidden="true">
+<img src="stickers/netty.png" alt="" loading="lazy">
+</figure>
 <h1 id="part-one---the-diagnosis-1">Part One - The Diagnosis</h1>
 <h2 id="section-i---the-cat-sat-on-the-mat">Section I - The Cat Sat On
 The Mat</h2>
@@ -1129,6 +1177,9 @@ framework stands or falls on the measurement.</p>
 Episode does not hold, or the gap is below twenty points, Section II
 fails.</p>
 <hr />
+<figure class="sticker" style="transform: rotate(-6deg);" aria-hidden="true">
+<img src="stickers/tray-stacker.png" alt="" loading="lazy">
+</figure>
 <h2 id="section-iii---the-warehouse-disease">Section III - The Warehouse
 Disease</h2>
 <h3 id="iii.1-measurement-without-connection-is-hallucination">III.1
@@ -1261,6 +1312,9 @@ defensibility of answers under audit.</p>
 at least ten percent of unattributed revenue within sixty days, Section
 III fails.</p>
 <hr />
+<figure class="sticker" style="transform: rotate(5deg);" aria-hidden="true">
+<img src="stickers/conductor.png" alt="" loading="lazy">
+</figure>
 <h2 id="section-iv---the-glass-elevator">Section IV - The Glass
 Elevator</h2>
 <h3 id="iv.1-observers-and-observed">IV.1 Observers and observed</h3>
@@ -1556,6 +1610,9 @@ the query.</p>
 <p>Falsification: if a single shape store matches or exceeds the
 composition on the full ten-query benchmark, Section V fails.</p>
 <hr />
+<figure class="sticker sticker-left" style="transform: rotate(-7deg);" aria-hidden="true">
+<img src="stickers/ember.png" alt="" loading="lazy">
+</figure>
 <h2 id="section-vi---the-ledger">Section VI - The Ledger</h2>
 <h3 id="vi.1-the-fourth-dimension-beneath-the-other-four">VI.1 The
 fourth dimension beneath the other four</h3>
@@ -1767,6 +1824,9 @@ existence proof at medium scale, not a proof at all scales. A simpler
 temporal index might achieve the same measurements at lower cost - we
 would welcome that narrowing.</p>
 <hr />
+<figure class="sticker sticker-left" style="transform: rotate(6deg);" aria-hidden="true">
+<img src="stickers/netty.png" alt="" loading="lazy">
+</figure>
 <h2 id="section-vii---the-episode">Section VII - The Episode</h2>
 <h3 id="vii.1-memory-stores-scenes-not-strings">VII.1 Memory stores
 scenes, not strings</h3>
@@ -1926,6 +1986,9 @@ cross-scene retrieval. Diary-entry nodes in the running graph database
 are Episodes in miniature - whether the full specification earns its
 overhead over these minimal entries is an open empirical question.</p>
 <hr />
+<figure class="sticker" style="transform: rotate(4deg);" aria-hidden="true">
+<img src="stickers/juggler.png" alt="" loading="lazy">
+</figure>
 <h2 id="section-viii---the-fable">Section VIII - The Fable</h2>
 <h3
 id="viii.1-compression-that-decompresses-against-shared-context">VIII.1
@@ -2080,6 +2143,9 @@ smooth context dependence within a shared substrate and graph - whether
 the same holds across genuinely alien substrates (an LLM agent to a SOAR
 architecture, say) is untested.</p>
 <hr />
+<figure class="sticker sticker-left" style="transform: rotate(3deg);" aria-hidden="true">
+<img src="stickers/flock-bird.png" alt="" loading="lazy">
+</figure>
 <h1 id="part-three---the-behaviour-1">Part Three - The Behaviour</h1>
 <h2 id="section-ix---the-flock-and-the-vote">Section IX - The Flock and
 the Vote</h2>
@@ -2223,6 +2289,9 @@ concurrent agents sharing a graph) settles - whether it would settle at
 a hundred voters with adversarial injection is the first engineering
 question the reference implementation must answer.</p>
 <hr />
+<figure class="sticker" style="transform: rotate(-5deg);" aria-hidden="true">
+<img src="stickers/ember.png" alt="" loading="lazy">
+</figure>
 <h2 id="section-x---the-three-buttons">Section X - The Three
 Buttons</h2>
 <h3 id="x.1-the-minimum-ethical-decision-surface">X.1 The minimum
@@ -2780,6 +2849,9 @@ falsification criteria is more scientifically useful than a right paper
 with vague ones. We aspire to be both right and clear, but we insist on
 clear.</p>
 <hr />
+<figure class="sticker sticker-left" style="transform: rotate(-3deg);" aria-hidden="true">
+<img src="stickers/watcher.png" alt="" loading="lazy">
+</figure>
 <h2 id="coda-what-crosses-the-bridge">Coda: What Crosses The Bridge</h2>
 <p>The paper began with a cat on a mat and a face with horror, and it is
 going to end with a pencil. Before the pencil, though, a thing worth
@@ -3618,6 +3690,9 @@ configuration approximately 92% with GPT-4o and Chain-of-Note.)</p>
 <p class="paper-meta" style="font-style:italic;">A living notebook. Observations that converge on the thesis as we find them.<br/>
 Each conjecture (C1, C2, ...) is dated. New entries land below as evidence accrues. The supersession trail stays in place per the additive-only discipline.</p>
 
+<figure class="sticker" style="transform: rotate(-8deg);" aria-hidden="true">
+<img src="stickers/knotty.png" alt="" loading="lazy">
+</figure>
 <h1 id="conjectures-notebook">Conjectures Notebook</h1>
 <h3 id="observations-that-converge-on-the-shape-of-thought-thesis-as-we-find-them">Observations that converge on The Shape of Thought thesis as we find them</h3>
 <hr />
@@ -3999,6 +4074,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.classList.remove('sidebar-open');
             }
         });
+    });
+});
+// Sticker click-to-peel
+document.querySelectorAll('.sticker').forEach(function(s) {
+    s.addEventListener('click', function() {
+        s.classList.add('sticker-peeled');
+        setTimeout(function() { s.classList.remove('sticker-peeled'); }, 4000);
     });
 });
 </script>
