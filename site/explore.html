@@ -16,10 +16,11 @@
     position: fixed;
     top: 100px;
     left: 0;
-    width: 220px;
+    width: 250px;
     height: calc(100vh - 110px);
     overflow-y: auto;
-    padding: 12px 10px 12px 14px;
+    overflow-x: visible;
+    padding: 12px 10px 12px 28px;
     font-size: 11px;
     z-index: 80;
     scrollbar-width: thin;
@@ -50,9 +51,8 @@
     border-left: 2px solid transparent;
     transition: all 0.2s;
     cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
 }
 .toc-section-link:hover {
     color: var(--accent);
@@ -69,8 +69,14 @@
 .toc-signpost {
     display: none;
     position: absolute;
-    left: -16px;
-    top: -2px;
+    left: -22px;
+    top: -4px;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+    animation: signpost-bob 2s ease-in-out infinite;
+}
+@keyframes signpost-bob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-1px) rotate(2deg); }
 }
 .toc-section-link.active .toc-signpost {
     display: block;
@@ -88,7 +94,7 @@
     font-size: 14px;
 }
 .main-content-area {
-    margin-left: 220px;
+    margin-left: 250px;
     flex: 1;
     min-width: 0;
 }
@@ -413,6 +419,18 @@
 .author-card .author-name { font-weight: 600; color: var(--accent); }
 .author-card .author-contrib { color: var(--dim); margin-top: 2px; font-size: 0.9em; }
 
+.living-signpost {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+.living-signpost:hover {
+    transform: scale(1.05) rotate(-1deg);
+}
+.living-signpost:hover svg text {
+    fill: #fff;
+}
+
 footer.explore-footer {
     text-align: center;
     padding: 24px 0;
@@ -451,7 +469,29 @@ footer.explore-footer {
 
 <div class="explore-bar">
     <div class="container">
-        <span class="filter-btn" style="font-style:italic; border-color:var(--copper); color:var(--copper); font-size:10px;" onclick="var n=document.getElementById('living-notice'); n.style.display = n.style.display==='none' ? 'block' : 'none';">Living Document &#9660;</span>
+        <span class="living-signpost" onclick="var n=document.getElementById('living-notice'); n.style.display = n.style.display==='none' ? 'block' : 'none';" title="About this living document">
+            <svg width="90" height="32" viewBox="0 0 90 32" style="vertical-align:middle; cursor:pointer;">
+                <rect x="8" y="12" width="4" height="20" rx="1" fill="#5C3D14"/>
+                <rect x="9" y="12" width="1.5" height="20" rx="0.5" fill="#8A6C18" opacity="0.5"/>
+                <rect x="8" y="9" width="6" height="4" rx="1" fill="#5C3D14"/>
+                <g transform="rotate(-3 10 8)">
+                    <rect x="4" y="0" width="82" height="16" rx="3" fill="#8A6C18"/>
+                    <rect x="4.5" y="0.5" width="81" height="15" rx="2.5" fill="#B87333"/>
+                    <rect x="4.5" y="0.5" width="81" height="3" rx="2" fill="#D4A04A" opacity="0.45"/>
+                    <line x1="10" y1="4" x2="12" y2="12" stroke="#8A6C18" stroke-width="0.3" opacity="0.3"/>
+                    <line x1="25" y1="3" x2="24" y2="13" stroke="#8A6C18" stroke-width="0.3" opacity="0.25"/>
+                    <line x1="50" y1="2" x2="51" y2="14" stroke="#8A6C18" stroke-width="0.3" opacity="0.2"/>
+                    <line x1="70" y1="3" x2="72" y2="13" stroke="#8A6C18" stroke-width="0.3" opacity="0.25"/>
+                    <text x="45" y="11.5" text-anchor="middle" font-size="7" fill="#2B1800" font-weight="bold" font-family="serif">Living Document</text>
+                </g>
+                <polygon points="84,8 90,5 90,11" fill="#B87333"/>
+                <polygon points="84,8 90,5.5 90,10.5" fill="#8A6C18" opacity="0.4"/>
+                <circle cx="5" cy="31" r="1.5" fill="#4a7a32" opacity="0.5"/>
+                <circle cx="9" cy="31.5" r="1" fill="#4a7a32" opacity="0.35"/>
+                <circle cx="13" cy="31" r="1.2" fill="#4a7a32" opacity="0.45"/>
+            </svg>
+            <span style="font-size:9px; color:var(--copper); vertical-align:middle;">&#9660;</span>
+        </span>
 
         <label for="foveation">Foveation</label>
         <input type="range" id="foveation" class="foveation-slider" min="0" max="2" step="1" value="1">
@@ -591,7 +631,7 @@ var tocSimple = {
 
 function shortTitle(title) {
     if (foveationLevel === 0 && tocSimple[title]) return tocSimple[title];
-    return title.replace(/^The /, '').split(' - ')[0].substring(0, 28);
+    return title.replace(/^The /, '').split(' - ')[0].substring(0, 40);
 }
 
 function getConjecturesForSection(sectionLabel) {
@@ -613,7 +653,22 @@ function buildToc() {
             var secId = 'sec-' + pi + '-' + si;
             html += '<a class="toc-section-link" data-section="' + secId + '" onclick="scrollToSection(\'' + secId + '\')">';
             html += shortTitle(section.title);
-            html += '<svg class="toc-signpost" width="14" height="16" viewBox="0 0 14 16"><rect x="6" y="0" width="2" height="16" rx="0.5" fill="#5C3D14"/><polygon points="1,3 12,3 13,7 1,7" fill="#B87333"/><text x="7" y="6.2" text-anchor="middle" font-size="3" fill="#fff" font-weight="bold">HERE</text></svg>';
+            html += '<svg class="toc-signpost" width="22" height="28" viewBox="0 0 22 28">'
+                + '<rect x="9" y="8" width="4" height="20" rx="1" fill="#5C3D14"/>'
+                + '<rect x="10" y="8" width="1.5" height="20" rx="0.5" fill="#8A6C18" opacity="0.5"/>'
+                + '<rect x="9" y="5" width="6" height="4" rx="1" fill="#5C3D14"/>'
+                + '<g transform="rotate(-8 11 4)">'
+                + '<rect x="0" y="0" width="20" height="10" rx="2" fill="#8A6C18"/>'
+                + '<rect x="0.5" y="0.5" width="19" height="9" rx="1.5" fill="#B87333"/>'
+                + '<rect x="0.5" y="0.5" width="19" height="2" rx="1" fill="#D4A04A" opacity="0.5"/>'
+                + '<polygon points="18,5 22,3 22,7" fill="#B87333"/>'
+                + '<polygon points="18,5 22,3.5 22,6.5" fill="#8A6C18" opacity="0.4"/>'
+                + '<text x="10" y="7" text-anchor="middle" font-size="4.5" fill="#2B1800" font-weight="bold" font-family="serif">YOU ARE HERE</text>'
+                + '</g>'
+                + '<circle cx="7" cy="27" r="1.5" fill="#4a7a32" opacity="0.6"/>'
+                + '<circle cx="11" cy="27.5" r="1" fill="#4a7a32" opacity="0.4"/>'
+                + '<circle cx="15" cy="27" r="1.2" fill="#4a7a32" opacity="0.5"/>'
+                + '</svg>';
             html += '</a>';
         });
         html += '</div>';
