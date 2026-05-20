@@ -419,6 +419,33 @@
 .author-card .author-name { font-weight: 600; color: var(--accent); }
 .author-card .author-contrib { color: var(--dim); margin-top: 2px; font-size: 0.9em; }
 
+.signpost-cta {
+    padding: 40px 0 20px;
+    margin-top: 30px;
+    text-align: center;
+}
+.cta-signpost {
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+    transition: transform 0.3s ease;
+}
+.cta-signpost:hover {
+    transform: scale(1.02);
+}
+.cta-plank {
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+.cta-plank:hover {
+    filter: brightness(1.15);
+    transform: translateX(4px);
+}
+.cta-signpost a {
+    text-decoration: none;
+}
+.cta-signpost a:hover text {
+    fill: #fff;
+}
+
 .living-signpost {
     cursor: pointer;
     display: inline-block;
@@ -542,6 +569,67 @@ footer.explore-footer {
         <p style="text-align:center; color:var(--faint); padding:20px;">Loading from graph...</p>
     </div>
 </main>
+
+<section class="signpost-cta" id="signpost-cta">
+    <div class="container" style="display:flex; justify-content:center; align-items:center; flex-direction:column;">
+        <svg class="cta-signpost" width="340" height="260" viewBox="0 0 340 260">
+            <!-- Post -->
+            <rect x="162" y="30" width="16" height="225" rx="3" fill="#5C3D14"/>
+            <rect x="165" y="30" width="5" height="225" rx="2" fill="#8A6C18" opacity="0.4"/>
+            <!-- Post cap -->
+            <rect x="156" y="18" width="28" height="16" rx="4" fill="#5C3D14"/>
+            <rect x="156" y="18" width="28" height="5" rx="3" fill="#8A6C18" opacity="0.35"/>
+            <!-- Plank 1: top, angled right - Examine -->
+            <a href="https://github.com/agilemeshnet/theshapeofthought" target="_blank" rel="noopener">
+                <g class="cta-plank" transform="rotate(-6 170 55)">
+                    <rect x="140" y="40" width="195" height="32" rx="5" fill="#8A6C18"/>
+                    <rect x="141" y="41" width="193" height="30" rx="4" fill="#B87333"/>
+                    <rect x="141" y="41" width="193" height="6" rx="3" fill="#D4A04A" opacity="0.4"/>
+                    <polygon points="333,56 342,50 342,62" fill="#B87333"/>
+                    <polygon points="333,56 342,51 342,61" fill="#8A6C18" opacity="0.35"/>
+                    <line x1="160" y1="46" x2="162" y2="66" stroke="#8A6C18" stroke-width="0.4" opacity="0.25"/>
+                    <line x1="220" y1="44" x2="218" y2="68" stroke="#8A6C18" stroke-width="0.4" opacity="0.2"/>
+                    <line x1="290" y1="45" x2="292" y2="67" stroke="#8A6C18" stroke-width="0.4" opacity="0.2"/>
+                    <text x="237" y="61" text-anchor="middle" font-size="11" fill="#2B1800" font-weight="bold" font-family="serif">Examine it yourself</text>
+                </g>
+            </a>
+            <!-- Plank 2: middle, angled left - Conversation -->
+            <a href="mailto:peter@agilemesh.net?subject=The%20Shape%20of%20Thought">
+                <g class="cta-plank" transform="rotate(5 170 110)">
+                    <rect x="5" y="95" width="165" height="32" rx="5" fill="#8A6C18"/>
+                    <rect x="6" y="96" width="163" height="30" rx="4" fill="#B87333"/>
+                    <rect x="6" y="96" width="163" height="6" rx="3" fill="#D4A04A" opacity="0.4"/>
+                    <polygon points="7" y1="111" fill="#B87333"/>
+                    <polygon points="7,111 0,105 0,117" fill="#B87333"/>
+                    <polygon points="7,111 0,106 0,116" fill="#8A6C18" opacity="0.35"/>
+                    <line x1="40" y1="100" x2="38" y2="122" stroke="#8A6C18" stroke-width="0.4" opacity="0.25"/>
+                    <line x1="100" y1="99" x2="102" y2="123" stroke="#8A6C18" stroke-width="0.4" opacity="0.2"/>
+                    <text x="90" y="116" text-anchor="middle" font-size="10.5" fill="#2B1800" font-weight="bold" font-family="serif">Continue the conversation</text>
+                </g>
+            </a>
+            <!-- Plank 3: bottom, angled right - Eyes -->
+            <a href="https://willowgrove.icu" target="_blank" rel="noopener">
+                <g class="cta-plank" transform="rotate(-3 170 165)">
+                    <rect x="140" y="150" width="195" height="32" rx="5" fill="#8A6C18"/>
+                    <rect x="141" y="151" width="193" height="30" rx="4" fill="#B87333"/>
+                    <rect x="141" y="151" width="193" height="6" rx="3" fill="#D4A04A" opacity="0.4"/>
+                    <polygon points="333,166 342,160 342,172" fill="#B87333"/>
+                    <polygon points="333,166 342,161 342,171" fill="#8A6C18" opacity="0.35"/>
+                    <line x1="180" y1="155" x2="178" y2="177" stroke="#8A6C18" stroke-width="0.4" opacity="0.2"/>
+                    <line x1="250" y1="154" x2="252" y2="178" stroke="#8A6C18" stroke-width="0.4" opacity="0.2"/>
+                    <line x1="310" y1="155" x2="308" y2="177" stroke="#8A6C18" stroke-width="0.4" opacity="0.2"/>
+                    <text x="237" y="171" text-anchor="middle" font-size="10.5" fill="#2B1800" font-weight="bold" font-family="serif">The shapes need more eyes</text>
+                </g>
+            </a>
+            <!-- Grass tufts -->
+            <ellipse cx="150" cy="252" rx="12" ry="4" fill="#4a7a32" opacity="0.35"/>
+            <ellipse cx="170" cy="254" rx="8" ry="3" fill="#4a7a32" opacity="0.25"/>
+            <ellipse cx="190" cy="252" rx="10" ry="4" fill="#4a7a32" opacity="0.3"/>
+            <ellipse cx="145" cy="254" rx="6" ry="2.5" fill="#5a8a42" opacity="0.2"/>
+            <ellipse cx="195" cy="254" rx="7" ry="2.5" fill="#5a8a42" opacity="0.2"/>
+        </svg>
+    </div>
+</section>
 
 <footer class="explore-footer">
     <div class="container">
