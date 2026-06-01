@@ -80,8 +80,13 @@
                 <td>ibm_marrakesh</td>
             </tr>
             <tr class="highlight">
-                <td>5</td><td>Tree of Life QFT</td><td>6</td>
-                <td><strong>k=32</strong> at 5.1x uniform. Two-beat. Cambrian + Cretaceous.</td>
+                <td>5a</td><td>Tree of Life QFT (by species)</td><td>6</td>
+                <td><strong>k=32</strong> at 5.1x. Two-beat. Cambrian + Cretaceous.</td>
+                <td>Simulator</td>
+            </tr>
+            <tr class="highlight">
+                <td>5b</td><td>Tree of Life QFT (equal weight)</td><td>6</td>
+                <td><strong>k=5</strong> at 3.5x. Five temporal peaks. Archaea gets a voice.</td>
                 <td>Simulator</td>
             </tr>
             </tbody>
@@ -188,13 +193,39 @@
             </tr>
         </table>
 
+        <h4>But what if insects and flowers are shouting over everyone else?</h4>
+
+        <p>Arthropoda accounts for 84% of animal species. Magnoliophyta accounts for 87% of plant species.
+        Those two mega-taxa dominate the species-count weighting. What happens if every phylum gets
+        <strong>one equal vote</strong> regardless of how many species it contains?</p>
+
+        <div class="result-card">
+            <p><strong>Equal weight (1 vote per phylum):</strong> The answer changes completely.
+            <strong>k=5</strong> at 3.5x uniform. Five temporal peaks:</p>
+            <table class="exp-table">
+                <tr><th>Peak</th><th>Age (MYA)</th><th>Phyla</th><th>What happened</th></tr>
+                <tr><td>1</td><td>2,965</td><td>7</td><td>Archaea and Bacteria - the origin of cellular life</td></tr>
+                <tr><td>2</td><td>1,527</td><td>3</td><td>Excavata - first complex eukaryotes</td></tr>
+                <tr><td>3</td><td>1,171</td><td>3</td><td>SAR supergroup - diatoms, dinoflagellates</td></tr>
+                <tr><td>4</td><td>528</td><td>17</td><td>Cambrian explosion - animal phyla</td></tr>
+                <tr><td>5</td><td>272</td><td>2</td><td>Late Paleozoic - gymnosperms, late diversification</td></tr>
+            </table>
+            <p>Count by species: two beats (Cambrian + Cretaceous). Count by lineages: <strong>five beats</strong>.
+            The choice of what to count determines what structure the QFT finds.
+            That is the thesis. Measurement includes what you choose to measure.</p>
+        </div>
+
         <div class="mirror-card">
-            <p><strong>What the QFT sees that taxonomy does not:</strong> Animals are a Cambrian
-            phenomenon. Plants are a Cretaceous phenomenon. Fungi, protists, bacteria, and archaea are
-            background. The two great radiations are the heartbeat of the biosphere, and the QFT
-            measures their pulse.</p>
-            <p>The k=4 secondary peak hints at four geological eras (Archean, Proterozoic, Paleozoic,
-            Mesozoic-Cenozoic). Even that is temporal structure, not categorical.</p>
+            <p><strong>The question does not matter.</strong> The QFT answers whatever question the
+            <em>data</em> was carrying, not the question we thought we were asking. The five peaks
+            may not be &ldquo;five kingdoms&rdquo; or &ldquo;five eras.&rdquo; They may be five
+            phase transitions in how DNA accumulates change - tree rings in four dimensions.
+            Our job is not to name the answer. It is to figure out what question the data was
+            carrying all along.</p>
+            <p>Species-count weighting lets insects and flowers speak loudest. Equal weighting lets
+            Archaea, the oldest and most fundamental domain, have its voice back. Neither is wrong.
+            They are different projections of the same tree. The QFT reads whatever structure
+            survives the projection.</p>
         </div>
 
         <h4>The Encoding Pipeline</h4>
@@ -226,14 +257,14 @@
         <div class="pullquote">Same method. Same qubits. Same Marrakesh. Different dictionary, different organ, different k.</div>
 
         <table class="exp-table">
-            <tr><th>Metric</th><th>Colour (eye)</th><th>Sound (ear)</th><th>Tree of Life (evolution)</th></tr>
-            <tr class="highlight"><td>Dominant k</td><td>k=3 (3.2x)</td><td>k=4 (2.7x)</td><td>k=32 (5.1x)</td></tr>
-            <tr><td>Encoding axis</td><td>Wavelength (nm)</td><td>Frequency (Hz, log)</td><td>Time (MYA, log)</td></tr>
-            <tr><td>Input data</td><td>115 CSS colours</td><td>86 sound words</td><td>66 taxa, 2.4M species</td></tr>
-            <tr><td>Structure found</td><td>3 cone types</td><td>4 perceptual bands</td><td>2 great radiations</td></tr>
-            <tr><td>What it sorts by</td><td>Biology (perception)</td><td>Biology (perception)</td><td>Chronology (time)</td></tr>
-            <tr><td>Shuffled control</td><td>k=3 vanishes</td><td>k=4 vanishes</td><td>k=32 structure changes</td></tr>
+            <tr><th>Metric</th><th>Colour (eye)</th><th>Sound (ear)</th><th>Life (by species)</th><th>Life (equal weight)</th></tr>
+            <tr class="highlight"><td>Dominant k</td><td>k=3 (3.2x)</td><td>k=4 (2.7x)</td><td>k=32 (5.1x)</td><td>k=5 (3.5x)</td></tr>
+            <tr><td>Encoding axis</td><td>Wavelength (nm)</td><td>Frequency (Hz, log)</td><td colspan="2">Time (MYA, log)</td></tr>
+            <tr><td>Input data</td><td>115 CSS colours</td><td>86 sound words</td><td>66 taxa, by count</td><td>66 taxa, equal voice</td></tr>
+            <tr><td>Structure found</td><td>3 cone types</td><td>4 perceptual bands</td><td>2 radiations</td><td>5 temporal peaks</td></tr>
+            <tr><td>What it sorts by</td><td>Perception</td><td>Perception</td><td>Chronology</td><td>Chronology</td></tr>
         </table>
+        <p>Same data, different weighting, different k. The measurement includes what you choose to count.</p>
 
         <p>If the method manufactured the result, both experiments would produce the same pattern. They don't. The computer wasn't told about eyes or ears. It was given words. Just words.</p>
 
