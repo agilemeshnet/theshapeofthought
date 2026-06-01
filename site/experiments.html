@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experiments - The Shape of Thought</title>
+<meta name="description" content="Quantum experiments testing whether human perceptual structure survives in language. Colour words carry the retina. Sound words carry the cochlea. Confirmed on IBM Quantum hardware.">
+<meta name="author" content="Peter Cooper">
+<link rel="stylesheet" href="style.css">
+<style>
+.exp-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.92em; }
+.exp-table th { background: var(--surface); color: var(--gold); font-weight: 600; text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--border-h); }
+.exp-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.exp-table tr:hover td { background: var(--surface); }
+.exp-table .highlight { background: var(--raised); font-weight: 600; }
+.headline { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 1.6em; text-transform: uppercase; letter-spacing: 1px; color: var(--text); text-align: center; padding: 24px 0; margin: 32px 0; border-top: 3px solid var(--text); border-bottom: 3px solid var(--text); }
+.result-card { background: var(--surface); border-left: 4px solid var(--green); padding: 20px 24px; margin: 28px 0; border-radius: 0 6px 6px 0; }
+.honest-card { background: #fef6f0; border-left: 4px solid var(--rust); padding: 16px 20px; margin: 24px 0; border-radius: 0 6px 6px 0; }
+.mirror-card { background: var(--raised); border-left: 4px solid var(--gold); padding: 20px 24px; margin: 28px 0; border-radius: 0 6px 6px 0; }
+.provenance { font-size: 0.85em; color: var(--dim); background: var(--surface); padding: 16px 20px; border-radius: 6px; margin-top: 40px; }
+.spectrum-bar { height: 16px; margin: 8px 0 24px; background: linear-gradient(to right, #7700ff 0%, #0000ff 15%, #00ffff 30%, #00ff00 45%, #ffff00 60%, #ff7700 75%, #ff0000 90%); border-radius: 3px; }
+.pullquote { text-align: center; font-family: var(--serif); font-size: 1.3em; font-style: italic; color: var(--dim); margin: 36px 0; padding: 20px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="index.html" class="site-title">The Shape of Thought</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="summary.html">Summary</a></li>
+            <li><a href="paper.html">Paper</a></li>
+            <li><a href="predictions.html">Predictions</a></li>
+            <li><a href="experiments.html" class="active">Experiments</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="flock.html">Flock</a></li>
+            <li><a href="https://github.com/agilemeshnet/theshapeofthought" rel="noopener">Repo</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main class="page-content">
+    <div class="container">
+
+        <h2>Quantum Experiments</h2>
+
+        <div class="headline">BOFFIN FEEDS DICTIONARY TO QUANTUM COMPUTER &mdash; IT DRAWS AN EYEBALL</div>
+
+        <div class="spectrum-bar"></div>
+
+        <p>The paper argues that the same structural shapes appear at every scale where observation occurs. These experiments test that claim on quantum hardware. Two dictionaries, two senses, two organs. Same qubits, same method, different answer.</p>
+
+        <!-- ============================================== -->
+        <h3>The Series</h3>
+
+        <table class="exp-table">
+            <thead>
+            <tr><th>#</th><th>Experiment</th><th>Qubits</th><th>Finding</th><th>Hardware</th></tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td><td>Bell State</td><td>2</td>
+                <td>92.2% correlated. Pipeline proof.</td>
+                <td>ibm_marrakesh</td>
+            </tr>
+            <tr class="highlight">
+                <td>2</td><td>Colour QFT</td><td>6</td>
+                <td><strong>k=3</strong> at 3.2x uniform. Three-fold. Eye.</td>
+                <td>ibm_marrakesh</td>
+            </tr>
+            <tr>
+                <td>3</td><td>SWAP Test</td><td>13</td>
+                <td>Fidelity 0.475 (sim). Hardware: decoherence wall at 690 gates.</td>
+                <td>ibm_marrakesh</td>
+            </tr>
+            <tr class="highlight">
+                <td>4</td><td>Sound QFT</td><td>6</td>
+                <td><strong>k=4</strong> at 2.7x uniform. k=3 <em>suppressed</em> (0.7x). Four-fold. Ear.</td>
+                <td>ibm_marrakesh</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- ============================================== -->
+        <h3>Experiment 2: Colour Words and Quantum Light</h3>
+
+        <p>115 CSS named colours, each mapped to a dominant wavelength via the CIE 1931 colorimetric pipeline (Wyman-Sloan-Shirley 2013 Gaussian fit). Not RGB. Not hue. Just position on the electromagnetic spectrum. Binned into 64 slots (5nm each) on 6 qubits. Quantum Fourier Transform. 8,192 shots.</p>
+
+        <div class="result-card">
+            <p><strong>The QFT found k=3.</strong> A three-fold periodicity of 107 nanometres across the visible spectrum. Three peaks: blue (~462nm), green (~547nm), yellow-gold (~577nm). The three types of cone cell in the human retina.</p>
+            <p>Shuffled control (same amplitude values, random bin order): <strong>k=3 vanishes.</strong> The structure is specifically about where on the spectrum English puts its colour names.</p>
+            <p>Hardware result on ibm_marrakesh (156-qubit Heron, 583 transpiled gates): <strong>k=3 confirmed at 3.2x uniform.</strong></p>
+        </div>
+
+        <p>Density peaks in English colour naming:</p>
+        <table class="exp-table">
+            <tr><th>Peak</th><th>Names at Peak</th><th>Region</th></tr>
+            <tr><td>462nm (blue)</td><td>7</td><td>457-492nm, 39 names total</td></tr>
+            <tr><td>492nm (cyan)</td><td>14</td><td>aqua, cyan, deepskyblue...</td></tr>
+            <tr><td>547nm (green)</td><td>9</td><td>green, forestgreen, darkgreen...</td></tr>
+            <tr><td>577nm (yellow-gold)</td><td>13</td><td>gold, wheat, goldenrod...</td></tr>
+        </table>
+
+        <p>Cone correlations (colour_direct vs cone sensitivity curves):</p>
+        <table class="exp-table">
+            <tr><th>Cone</th><th>Peak</th><th>Pearson r</th><th>p-value</th></tr>
+            <tr><td>S (blue)</td><td>420nm</td><td>-0.231</td><td>0.066</td></tr>
+            <tr><td>M (green)</td><td>530nm</td><td>+0.254</td><td>0.041</td></tr>
+            <tr><td><strong>L (red)</strong></td><td>560nm</td><td><strong>+0.393</strong></td><td><strong>0.001</strong></td></tr>
+            <tr><td>Combined</td><td>-</td><td>+0.271</td><td>0.030</td></tr>
+        </table>
+
+        <!-- ============================================== -->
+        <h3>Experiment 4: Sound Words and Quantum Hearing</h3>
+
+        <p>86 English sound words - onomatopoeia, musical terms, acoustic descriptors - each mapped to a frequency in Hertz. Binned <strong>logarithmically</strong> across 20Hz to 20,000Hz (because the ear hears in octaves). Same 6 qubits. Same QFT. Same 8,192 shots.</p>
+
+        <div class="result-card">
+            <p><strong>k=3 does not appear.</strong> It drops to 0.7x uniform - actively suppressed. The dominant non-DC frequency is <strong>k=4</strong> at 2.7x uniform. Four-fold structure matching the four perceptual bands of human hearing: bass, mid, presence, brilliance.</p>
+            <p>Shuffled control: k=4 also vanishes. The structure is in the frequency ordering.</p>
+            <p>Hardware result on ibm_marrakesh (627 transpiled gates): <strong>k=4 confirmed.</strong></p>
+        </div>
+
+        <p>Density peaks in English sound naming:</p>
+        <table class="exp-table">
+            <tr><th>Peak</th><th>Words at Peak</th><th>Examples</th></tr>
+            <tr><td>314 Hz</td><td>3</td><td>baritone, mumble, grumble</td></tr>
+            <tr><td>1,583 Hz</td><td>5</td><td>clang, ring, click, snap, crack</td></tr>
+            <tr><td>3,370 Hz</td><td>5</td><td>screech, whistle, chirp, beep, squawk</td></tr>
+        </table>
+
+        <!-- ============================================== -->
+        <h3>The Contrast</h3>
+
+        <div class="pullquote">Same method. Same qubits. Same Marrakesh. Different dictionary, different organ, different k.</div>
+
+        <table class="exp-table">
+            <tr><th>Metric</th><th>Colour (eye)</th><th>Sound (ear)</th></tr>
+            <tr class="highlight"><td>Dominant k</td><td>k=3 (3.2x)</td><td>k=4 (2.7x)</td></tr>
+            <tr><td>k=3 specifically</td><td>3.2x uniform</td><td>0.7x uniform (suppressed)</td></tr>
+            <tr><td>Shuffled control</td><td>k=3 vanishes</td><td>k=4 vanishes</td></tr>
+            <tr><td>Density peaks</td><td>3-4 (trichromatic wavelengths)</td><td>3 (speech frequencies)</td></tr>
+            <tr><td>Biology mapped</td><td>3 cone types</td><td>4 perceptual bands</td></tr>
+        </table>
+
+        <p>If the method manufactured the result, both experiments would produce the same pattern. They don't. The computer wasn't told about eyes or ears. It was given words. Just words.</p>
+
+        <!-- ============================================== -->
+        <h3>The Mirror</h3>
+
+        <div class="mirror-card">
+            <p>The double-slit experiment sends light through physical hardware and observes an interference pattern. The pattern encodes the wavelength of the light. Physicists have dined out on this for a century.</p>
+            <p>These experiments do the reverse. They send <em>language</em> through a quantum system and observe biological structure coming back. Not because the quantum computer imposed it. Because the language already carried it.</p>
+            <p>The double slit: physics in, pattern out.<br>
+            Colour words: words in, biology out.</p>
+            <p><strong>Same shape. 180 degrees.</strong></p>
+        </div>
+
+        <!-- ============================================== -->
+        <h3>The Honest Part</h3>
+
+        <div class="honest-card">
+            <p>The CIE 1931 colour matching functions used to map RGB to wavelength were calibrated by experiments on human trichromatic vision in 1931. There is a circularity: the pipeline that removes RGB was built on the biology we recover.</p>
+            <p>A classical Fast Fourier Transform on the same 64-bin histogram finds the same k=3 peak. The quantum computer performed a computation that a laptop could replicate in microseconds. At six qubits, there is no quantum advantage.</p>
+            <p>The frequency-to-word mappings for sound are less standardised than CSS colour values. "Screech" could reasonably map to 3,000 Hz or 5,000 Hz. The experiment is sensitive to these choices.</p>
+            <p>The claim is not that the quantum computer discovered something a laptop couldn't calculate. The claim is: <strong>the same structure - the shape of human perception - persists through every encoding: biology, language, quantum state, physical measurement, and Fourier decomposition.</strong> You cannot remove it. It appears at every scale where observation occurs.</p>
+        </div>
+
+        <!-- ============================================== -->
+        <h3>Experiment 3: SWAP Test - How Trichromatic Is English?</h3>
+
+        <p>The SWAP test measures quantum fidelity - the overlap between two quantum states - using entanglement and interference. One bit answers the question: how alike are you?</p>
+
+        <table class="exp-table">
+            <tr><th>Comparison</th><th>Fidelity</th><th>Interpretation</th></tr>
+            <tr><td>English vs Trichromatic</td><td>0.475</td><td>Moderate match to ideal 3-cone model</td></tr>
+            <tr><td>English vs Single Peak (550nm)</td><td>0.480</td><td>Slightly better - warm-colour bias in English</td></tr>
+            <tr><td>English vs Uniform</td><td>0.360</td><td>English is NOT uniformly distributed</td></tr>
+            <tr><td>Shuffled vs Trichromatic</td><td>0.346</td><td>Wavelength ordering matters</td></tr>
+        </table>
+
+        <p>On hardware (ibm_marrakesh), the SWAP test hit the decoherence wall at 690 gate depth. The 13-qubit circuit was too deep for current hardware. The simulator result stands; the hardware confirmation awaits error-corrected processors.</p>
+
+        <!-- ============================================== -->
+        <h3>Experiment 1: Bell State</h3>
+
+        <p>Two qubits entangled on ibm_marrakesh. 1,024 shots. 92.2% correlated (|00> + |11>), 7.8% decoherence noise. The machine IS the citation. The pipeline works.</p>
+
+        <!-- ============================================== -->
+        <h3>Reproducibility</h3>
+
+        <p>All experiments are deterministic (seeded RNG) and run on freely available infrastructure. The code is in the <a href="https://github.com/agilemeshnet/theshapeofthought">repository</a>.</p>
+
+        <div class="provenance">
+            <strong>Provenance</strong><br>
+            Hardware: IBM Quantum ibm_marrakesh (156-qubit Heron r2)<br>
+            Framework: Qiskit 2.4.0, Qiskit-Aer 0.17.2<br>
+            CIE pipeline: Wyman-Sloan-Shirley 2013 Gaussian fit to CIE 1931 2-degree observer<br>
+            Colour words: 115 chromatic (32 excluded) from CSS Color Level 4 via webcolors<br>
+            Sound words: 86 unique from psychoacoustic and musical terminology<br>
+            Shots: 8,192 per circuit (16,384 for SWAP test)<br>
+            Hardware jobs: 7 total (Bell: 1, Colour: 2, SWAP: 3, Sound: 2)<br>
+            Gate budget: under ~583 gates survives Heron; above ~690 hits decoherence wall<br>
+            Dates: 31 May - 1 June 2026<br>
+            Seed: 42
+        </div>
+
+    </div>
+</main>
+
+</body>
+</html>
