@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Experiments - The Shape of Thought</title>
-<meta name="description" content="Quantum experiments testing whether human perceptual structure survives in language. Colour words carry the retina. Sound words carry the cochlea. Confirmed on IBM Quantum hardware.">
+<meta name="description" content="Quantum experiments testing whether structure survives across substrates. Colour words carry the retina. Sound words carry the cochlea. The tree of life carries the calendar. Confirmed on IBM Quantum hardware.">
 <meta name="author" content="Peter Cooper">
 <link rel="stylesheet" href="style.css">
 <style>
@@ -49,7 +49,7 @@
 
         <div class="spectrum-bar"></div>
 
-        <p>The paper argues that the same structural shapes appear at every scale where observation occurs. These experiments test that claim on quantum hardware. Two dictionaries, two senses, two organs. Same qubits, same method, different answer.</p>
+        <p>The paper argues that the same structural shapes appear at every scale where observation occurs. These experiments test that claim on quantum hardware. Two dictionaries, a taxonomy, three domains. Same qubits, same method, different answer every time.</p>
 
         <!-- ============================================== -->
         <h3>The Series</h3>
@@ -78,6 +78,11 @@
                 <td>4</td><td>Sound QFT</td><td>6</td>
                 <td><strong>k=4</strong> at 2.7x uniform. k=3 <em>suppressed</em> (0.7x). Four-fold. Ear.</td>
                 <td>ibm_marrakesh</td>
+            </tr>
+            <tr class="highlight">
+                <td>5</td><td>Tree of Life QFT</td><td>6</td>
+                <td><strong>k=32</strong> at 5.1x uniform. Two-beat. Cambrian + Cretaceous.</td>
+                <td>Simulator</td>
             </tr>
             </tbody>
         </table>
@@ -131,17 +136,103 @@
         </table>
 
         <!-- ============================================== -->
+        <h3>Experiment 5: The Tree of Life and Quantum Taxonomy</h3>
+
+        <p>The colour experiment measured perception. The sound experiment measured perception.
+        This one measures something older: <strong>evolution</strong>.</p>
+
+        <p>Take 66 taxonomic groups across all seven kingdoms of life - from Archaea (3,500 million years ago)
+        to flowering plants (140 MYA). For each group, record its estimated species count and the molecular-clock
+        estimate of when it diverged from the tree. Bin the species counts on a <strong>logarithmic time axis</strong>
+        (because evolutionary time, like hearing, spans orders of magnitude). Same six qubits. Same QFT.
+        Same 8,192 shots.</p>
+
+        <p>Three runs: animals alone, plants alone, everything together.</p>
+
+        <div class="result-card">
+            <p><strong>The prediction:</strong> &ldquo;The quantum direction will be able to sort according
+            to our perception the kingdom that each quoted species belongs to, or our own understanding
+            of categorisation needs to be amended.&rdquo;</p>
+            <p><strong>The result:</strong> The QFT does not sort by kingdom. It sorts by <strong>time</strong>.
+            The dominant frequency across all kingdoms is <strong>k=32</strong> at 5.1x uniform - a
+            two-beat rhythm. Two moments dominate the tree of life:</p>
+            <ol>
+                <li><strong>The Cambrian explosion</strong> (~530 MYA) - when animal phyla radiated.
+                    1.38 million species concentrated in one temporal bin.</li>
+                <li><strong>The Cretaceous radiation</strong> (~140 MYA) - when flowering plants exploded.
+                    260,000 species in another.</li>
+            </ol>
+            <p>The secondary prediction wins: <strong>our definitions are organised wrong</strong>.
+            Taxonomy sorts by morphology (what things look like). The quantum measurement sorts by
+            chronology (when things appeared). They are different projections of the same data.</p>
+        </div>
+
+        <p>Results by kingdom:</p>
+        <table class="exp-table">
+            <tr><th>Dataset</th><th>Taxa</th><th>Species</th><th>Dominant k</th><th>Interpretation</th></tr>
+            <tr>
+                <td>Animals only</td><td>26</td><td>1,452,393</td>
+                <td>none</td><td>Too concentrated - 98% in one Cambrian bin</td>
+            </tr>
+            <tr>
+                <td>Plants only</td><td>12</td><td>306,151</td>
+                <td>k=32 (3.2x)</td><td>Two-fold: Ordovician (land plants) + Cretaceous (flowers)</td>
+            </tr>
+            <tr class="highlight">
+                <td><strong>All kingdoms</strong></td><td>66</td><td>2,405,464</td>
+                <td><strong>k=32 (5.1x)</strong></td><td><strong>Two-beat: Cambrian + Cretaceous</strong></td>
+            </tr>
+            <tr>
+                <td>All kingdoms (secondary)</td><td>66</td><td>2,405,464</td>
+                <td>k=4 (2.3x)</td><td>Four geological eras</td>
+            </tr>
+        </table>
+
+        <div class="mirror-card">
+            <p><strong>What the QFT sees that taxonomy does not:</strong> Animals are a Cambrian
+            phenomenon. Plants are a Cretaceous phenomenon. Fungi, protists, bacteria, and archaea are
+            background. The two great radiations are the heartbeat of the biosphere, and the QFT
+            measures their pulse.</p>
+            <p>The k=4 secondary peak hints at four geological eras (Archean, Proterozoic, Paleozoic,
+            Mesozoic-Cenozoic). Even that is temporal structure, not categorical.</p>
+        </div>
+
+        <h4>The Encoding Pipeline</h4>
+        <div class="result-card" style="border-left-color: var(--copper);">
+            <p><strong>Taxonomic group</strong> (Arthropoda, Magnoliophyta, Euryarchaeota...)<br>
+            &rarr; <strong>Species count</strong> (1,200,000 / 260,000 / 8,000) from Catalogue of Life<br>
+            &rarr; <strong>Divergence time</strong> (530 / 140 / 3,500 MYA) from molecular clock estimates<br>
+            &rarr; <strong>Log-time bin</strong> (0-63 across 50 - 3,500 MYA)<br>
+            &rarr; <strong>Quantum amplitude</strong> proportional to &radic;(species count per bin)</p>
+        </div>
+
+        <h4>The Honest Part</h4>
+        <div class="honest-card">
+            <p>Divergence times are molecular clock estimates, not fossil dates. They carry uncertainty
+            of &plusmn;50-100 MY for deep divergences. Species counts are estimates - particularly for
+            bacteria and archaea, where the described fraction is a small percentage of the true total.</p>
+            <p>The dominance of Arthropoda (84% of animal species) and Magnoliophyta (87% of plant
+            species) means the experiment is largely measuring where those two mega-taxa sit on the
+            timeline. A more even distribution across phyla would give a richer frequency spectrum.</p>
+            <p>k=32 on a 64-bin register is the Nyquist frequency - the simplest possible periodicity
+            (alternation between occupied and empty). When only two bins are heavily occupied, k=32
+            is the expected dominant frequency. This is not a surprise; it is a faithful measurement
+            of the data&rsquo;s bimodal structure.</p>
+        </div>
+
+        <!-- ============================================== -->
         <h3>The Contrast</h3>
 
         <div class="pullquote">Same method. Same qubits. Same Marrakesh. Different dictionary, different organ, different k.</div>
 
         <table class="exp-table">
-            <tr><th>Metric</th><th>Colour (eye)</th><th>Sound (ear)</th></tr>
-            <tr class="highlight"><td>Dominant k</td><td>k=3 (3.2x)</td><td>k=4 (2.7x)</td></tr>
-            <tr><td>k=3 specifically</td><td>3.2x uniform</td><td>0.7x uniform (suppressed)</td></tr>
-            <tr><td>Shuffled control</td><td>k=3 vanishes</td><td>k=4 vanishes</td></tr>
-            <tr><td>Density peaks</td><td>3-4 (trichromatic wavelengths)</td><td>3 (speech frequencies)</td></tr>
-            <tr><td>Biology mapped</td><td>3 cone types</td><td>4 perceptual bands</td></tr>
+            <tr><th>Metric</th><th>Colour (eye)</th><th>Sound (ear)</th><th>Tree of Life (evolution)</th></tr>
+            <tr class="highlight"><td>Dominant k</td><td>k=3 (3.2x)</td><td>k=4 (2.7x)</td><td>k=32 (5.1x)</td></tr>
+            <tr><td>Encoding axis</td><td>Wavelength (nm)</td><td>Frequency (Hz, log)</td><td>Time (MYA, log)</td></tr>
+            <tr><td>Input data</td><td>115 CSS colours</td><td>86 sound words</td><td>66 taxa, 2.4M species</td></tr>
+            <tr><td>Structure found</td><td>3 cone types</td><td>4 perceptual bands</td><td>2 great radiations</td></tr>
+            <tr><td>What it sorts by</td><td>Biology (perception)</td><td>Biology (perception)</td><td>Chronology (time)</td></tr>
+            <tr><td>Shuffled control</td><td>k=3 vanishes</td><td>k=4 vanishes</td><td>k=32 structure changes</td></tr>
         </table>
 
         <p>If the method manufactured the result, both experiments would produce the same pattern. They don't. The computer wasn't told about eyes or ears. It was given words. Just words.</p>
@@ -199,8 +290,9 @@
             CIE pipeline: Wyman-Sloan-Shirley 2013 Gaussian fit to CIE 1931 2-degree observer<br>
             Colour words: 115 chromatic (32 excluded) from CSS Color Level 4 via webcolors<br>
             Sound words: 86 unique from psychoacoustic and musical terminology<br>
+            Tree of life: 66 taxa across 7 kingdoms, species counts from Catalogue of Life, divergence times from molecular clock estimates<br>
             Shots: 8,192 per circuit (16,384 for SWAP test)<br>
-            Hardware jobs: 7 total (Bell: 1, Colour: 2, SWAP: 3, Sound: 2)<br>
+            Hardware jobs: 7 total on ibm_marrakesh (Bell: 1, Colour: 2, SWAP: 3, Sound: 2). Tree of life: simulator<br>
             Gate budget: under ~583 gates survives Heron; above ~690 hits decoherence wall<br>
             Dates: 31 May - 1 June 2026<br>
             Seed: 42

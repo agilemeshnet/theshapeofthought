@@ -1,0 +1,303 @@
+{
+  "experiment": "Tree of Life and Quantum Taxonomy",
+  "timestamp": "2026-06-01T21:43:38.632648+00:00",
+  "parameters": {
+    "n_qubits": 6,
+    "time_range_mya": [
+      50.0,
+      3500.0
+    ],
+    "scale": "logarithmic"
+  },
+  "animalia": {
+    "n_taxa": 26,
+    "total_species": 1452393,
+    "density_peaks": [
+      {
+        "bin": 35,
+        "time_mya": 527.7,
+        "density": 1380840.0
+      }
+    ],
+    "qft_peaks": [],
+    "shuffled_qft_peaks": [
+      {
+        "bin": 11,
+        "time_mya": 107.3,
+        "count": 207,
+        "ratio": 1.62
+      },
+      {
+        "bin": 23,
+        "time_mya": 237.9,
+        "count": 201,
+        "ratio": 1.57
+      },
+      {
+        "bin": 34,
+        "time_mya": 493.8,
+        "count": 194,
+        "ratio": 1.52
+      },
+      {
+        "bin": 53,
+        "time_mya": 1743.2,
+        "count": 210,
+        "ratio": 1.64
+      }
+    ],
+    "chi_squared_qft": 1326.5
+  },
+  "plantae": {
+    "n_taxa": 12,
+    "total_species": 306151,
+    "density_peaks": [
+      {
+        "bin": 15,
+        "time_mya": 139.9,
+        "density": 260000.0
+      },
+      {
+        "bin": 33,
+        "time_mya": 462.1,
+        "density": 21300.0
+      }
+    ],
+    "qft_peaks": [
+      {
+        "bin": 21,
+        "time_mya": 208.4,
+        "count": 197,
+        "ratio": 1.54
+      },
+      {
+        "bin": 28,
+        "time_mya": 331.6,
+        "count": 221,
+        "ratio": 1.73
+      },
+      {
+        "bin": 32,
+        "time_mya": 432.4,
+        "count": 414,
+        "ratio": 3.23
+      },
+      {
+        "bin": 36,
+        "time_mya": 564.0,
+        "count": 204,
+        "ratio": 1.59
+      },
+      {
+        "bin": 43,
+        "time_mya": 897.6,
+        "count": 222,
+        "ratio": 1.73
+      },
+      {
+        "bin": 53,
+        "time_mya": 1743.2,
+        "count": 220,
+        "ratio": 1.72
+      },
+      {
+        "bin": 60,
+        "time_mya": 2774.4,
+        "count": 193,
+        "ratio": 1.51
+      }
+    ],
+    "shuffled_qft_peaks": [
+      {
+        "bin": 2,
+        "time_mya": 59.0,
+        "count": 192,
+        "ratio": 1.5
+      },
+      {
+        "bin": 7,
+        "time_mya": 82.3,
+        "count": 215,
+        "ratio": 1.68
+      },
+      {
+        "bin": 26,
+        "time_mya": 290.4,
+        "count": 221,
+        "ratio": 1.73
+      },
+      {
+        "bin": 33,
+        "time_mya": 462.1,
+        "count": 315,
+        "ratio": 2.46
+      },
+      {
+        "bin": 38,
+        "time_mya": 644.0,
+        "count": 230,
+        "ratio": 1.8
+      },
+      {
+        "bin": 48,
+        "time_mya": 1250.9,
+        "count": 207,
+        "ratio": 1.62
+      },
+      {
+        "bin": 57,
+        "time_mya": 2273.4,
+        "count": 233,
+        "ratio": 1.82
+      },
+      {
+        "bin": 62,
+        "time_mya": 3168.3,
+        "count": 197,
+        "ratio": 1.54
+      }
+    ],
+    "chi_squared_qft": 2740.1
+  },
+  "all": {
+    "n_taxa": 66,
+    "total_species": 2405464,
+    "density_peaks": [
+      {
+        "bin": 15,
+        "time_mya": 139.9,
+        "density": 260000.0
+      },
+      {
+        "bin": 35,
+        "time_mya": 527.7,
+        "density": 1380840.0
+      }
+    ],
+    "qft_peaks": [
+      {
+        "bin": 4,
+        "time_mya": 67.4,
+        "count": 292,
+        "ratio": 2.28
+      },
+      {
+        "bin": 7,
+        "time_mya": 82.3,
+        "count": 206,
+        "ratio": 1.61
+      },
+      {
+        "bin": 16,
+        "time_mya": 149.5,
+        "count": 271,
+        "ratio": 2.12
+      },
+      {
+        "bin": 28,
+        "time_mya": 331.6,
+        "count": 266,
+        "ratio": 2.08
+      },
+      {
+        "bin": 32,
+        "time_mya": 432.4,
+        "count": 655,
+        "ratio": 5.12
+      },
+      {
+        "bin": 36,
+        "time_mya": 564.0,
+        "count": 271,
+        "ratio": 2.12
+      },
+      {
+        "bin": 48,
+        "time_mya": 1250.9,
+        "count": 220,
+        "ratio": 1.72
+      },
+      {
+        "bin": 52,
+        "time_mya": 1631.3,
+        "count": 204,
+        "ratio": 1.59
+      },
+      {
+        "bin": 57,
+        "time_mya": 2273.4,
+        "count": 210,
+        "ratio": 1.64
+      },
+      {
+        "bin": 60,
+        "time_mya": 2774.4,
+        "count": 274,
+        "ratio": 2.14
+      }
+    ],
+    "shuffled_qft_peaks": [
+      {
+        "bin": 5,
+        "time_mya": 72.0,
+        "count": 238,
+        "ratio": 1.86
+      },
+      {
+        "bin": 8,
+        "time_mya": 87.9,
+        "count": 210,
+        "ratio": 1.64
+      },
+      {
+        "bin": 11,
+        "time_mya": 107.3,
+        "count": 325,
+        "ratio": 2.54
+      },
+      {
+        "bin": 16,
+        "time_mya": 149.5,
+        "count": 312,
+        "ratio": 2.44
+      },
+      {
+        "bin": 32,
+        "time_mya": 432.4,
+        "count": 306,
+        "ratio": 2.39
+      },
+      {
+        "bin": 45,
+        "time_mya": 1025.0,
+        "count": 222,
+        "ratio": 1.73
+      },
+      {
+        "bin": 48,
+        "time_mya": 1250.9,
+        "count": 346,
+        "ratio": 2.7
+      },
+      {
+        "bin": 53,
+        "time_mya": 1743.2,
+        "count": 289,
+        "ratio": 2.26
+      },
+      {
+        "bin": 56,
+        "time_mya": 2127.4,
+        "count": 236,
+        "ratio": 1.84
+      },
+      {
+        "bin": 59,
+        "time_mya": 2596.2,
+        "count": 285,
+        "ratio": 2.23
+      }
+    ],
+    "chi_squared_qft": 11636.9
+  }
+}
