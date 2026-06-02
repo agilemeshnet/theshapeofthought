@@ -310,6 +310,36 @@
         <p>Two qubits entangled on ibm_marrakesh. 1,024 shots. 92.2% correlated (|00> + |11>), 7.8% decoherence noise. The machine IS the citation. The pipeline works.</p>
 
         <!-- ============================================== -->
+        <!-- ============================================== -->
+        <h3>Appendix: The Logistic Map Beyond Chaos</h3>
+
+        <p>Most visualisations of the logistic map stop at the onset of chaos. That is like
+        stopping a film at the intermission. Beyond the chaos are <strong>periodic windows</strong> -
+        islands of perfect order inside the noise. The period-3 window at r = 3.83. Period-5.
+        Period-7. Each one undergoes its own bifurcation cascade. The structure is fractal - the
+        same shape at every scale.</p>
+
+        <img src="logistic_beyond_chaos.png" alt="Logistic map: three zoom levels showing windows of order inside chaos">
+
+        <p>The ratio between successive bifurcation intervals is always <strong>4.669...</strong> -
+        the Feigenbaum constant. It does not depend on the logistic map. It appears in fluid
+        dynamics, population biology, electronic circuits, lasers. Different substrate, same constant.</p>
+
+        <img src="feigenbaum_constant.png" alt="Feigenbaum constant converging at every scale">
+
+        <p>The Lyapunov exponent maps where order (blue, negative) and chaos (red, positive) interleave.
+        The blue dips inside the red are the periodic windows. They are not noise. They are structure.</p>
+
+        <img src="lyapunov_exponent.png" alt="Lyapunov exponent: order and chaos interleaved">
+
+        <div class="mirror-card">
+            <p>k=3 (colour), k=4 (sound), k=5 (tree of life) - these are periodic windows.
+            The shuffled controls are the chaos between them. The QFT is the zoom lens that
+            finds windows inside noise. The Feigenbaum constant is a shape that survives
+            substrate transitions. The k-values are shapes that survive encoding transitions.
+            Same principle. Different scale.</p>
+        </div>
+
         <h3>Reproducibility</h3>
 
         <p>All experiments are deterministic (seeded RNG) and run on freely available infrastructure. The code is in the <a href="https://github.com/agilemeshnet/theshapeofthought">repository</a>.</p>
