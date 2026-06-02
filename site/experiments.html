@@ -90,6 +90,16 @@ img { max-width: 100%; height: auto; margin: 16px 0; border: 1px solid var(--bor
                 <td><strong>k=5</strong> at 3.5x. Five temporal peaks. Archaea gets a voice.</td>
                 <td>Simulator</td>
             </tr>
+            <tr>
+                <td>6</td><td>Genetic Alphabet (positional)</td><td>6</td>
+                <td><strong>Failed.</strong> 64 bins too coarse for 332-base codon period.</td>
+                <td>Simulator</td>
+            </tr>
+            <tr>
+                <td>7</td><td>Codon Usage (7 organisms)</td><td>6</td>
+                <td>Kingdom fingerprints visible. Animals share k=40, k=24. Archaea distinct.</td>
+                <td>Simulator</td>
+            </tr>
             </tbody>
         </table>
 
@@ -311,6 +321,81 @@ img { max-width: 100%; height: auto; margin: 16px 0; border: 1px solid var(--bor
         <p>Two qubits entangled on ibm_marrakesh. 1,024 shots. 92.2% correlated (|00> + |11>), 7.8% decoherence noise. The machine IS the citation. The pipeline works.</p>
 
         <!-- ============================================== -->
+        <!-- ============================================== -->
+        <!-- ============================================== -->
+        <h3>Experiment 6: The Genetic Alphabet (Honest Failure and Recovery)</h3>
+
+        <p>Colour words encode biology in language. DNA encodes biology in chemistry.
+        If both carry the same shape, the QFT should find it in both.</p>
+
+        <h4>First attempt: positional encoding. Failed.</h4>
+        <div class="honest-card">
+            <p>We mapped the human insulin gene (332 bases) into 64 bins by position along the
+            sequence, encoding the base identity in each window. The QFT found nothing. k=21
+            (the codon frequency) at 0.02x uniform - essentially zero.</p>
+            <p>The encoding killed the signal. 332 bases in 64 bins = ~5 bases per bin, averaging
+            over almost 2 complete codons. The period-3 codon structure was smoothed away. A classical
+            FFT on the raw 332-point sequence finds period-3 at 3.0x easily. The quantum version with
+            only 64 bins was too coarse.</p>
+            <p>This is not a failure of the hypothesis. It is a failure of the encoding. We report
+            it because it happened.</p>
+        </div>
+
+        <h4>Second attempt: codon usage. Signal found.</h4>
+        <p>There are exactly 64 codons (4 bases, taken in triplets: 4&sup3; = 64). This maps
+        perfectly to 6 qubits. Instead of encoding WHERE in the gene, encode WHICH codons the
+        organism prefers. Every species has a codon usage fingerprint - some codons used 10x
+        more than others.</p>
+
+        <div class="result-card">
+            <p><strong>Human insulin:</strong> Strong codon bias (std/mean = 0.79). CTG used 11 times,
+            21 codons unused. QFT peaks at k=8 and k=12, up to 1.5x uniform.</p>
+            <p><strong>E. coli lacZ:</strong> Moderate bias (0.56). Flatter distribution. No QFT peaks
+            above threshold. Bacteria spread their codons more evenly.</p>
+            <p><strong>Random DNA:</strong> Lowest bias (0.49). No structure. As expected.</p>
+        </div>
+
+        <p>The signal is quieter than colour (1.5x vs 3.2x) but the contrast between real genes
+        and random DNA is real.</p>
+
+        <h3>Experiment 7: Codon Usage Across the Tree of Life</h3>
+
+        <p>If every organism has a codon fingerprint, and every fingerprint fits on 6 qubits,
+        can the QFT sort organisms by kingdom from their DNA preferences alone?</p>
+
+        <p>Seven organisms. Five kingdoms.</p>
+
+        <table class="exp-table">
+            <tr><th>Organism</th><th>Kingdom</th><th>Codon Bias</th><th>QFT Signature</th></tr>
+            <tr><td>Homo sapiens</td><td>Animalia</td><td>0.45</td><td>k=63, k=1, k=40</td></tr>
+            <tr><td>Mus musculus</td><td>Animalia</td><td>0.48</td><td>k=24, k=1, k=40</td></tr>
+            <tr><td>Drosophila</td><td>Animalia</td><td>0.62</td><td>k=24, k=40, k=44</td></tr>
+            <tr><td>E. coli</td><td>Bacteria</td><td>0.48</td><td>k=40, k=24, k=9</td></tr>
+            <tr><td>S. cerevisiae</td><td>Fungi</td><td>0.53</td><td>k=60, k=4, k=59</td></tr>
+            <tr><td>A. thaliana</td><td>Plantae</td><td>0.38</td><td>k=1, k=63, k=52</td></tr>
+            <tr class="highlight"><td>M. jannaschii</td><td>Archaea</td><td><strong>0.74</strong></td><td><strong>k=48, k=16, k=58</strong></td></tr>
+        </table>
+
+        <div class="result-card">
+            <p><strong>Animals share k=40 and k=24.</strong> Human and mouse also share k=1.
+            The animal QFT fingerprint is recognisable across 80 million years of divergence.</p>
+            <p><strong>E. coli</strong> shares k=40 and k=24 with animals but adds k=9. Close but different.</p>
+            <p><strong>Yeast</strong> has its own signature (k=60, k=4). Fungi are distinct.</p>
+            <p><strong>Arabidopsis</strong> is the flattest. Plants spread their codons most evenly.</p>
+            <p><strong>The archaeon</strong> has the strongest bias (0.74) and completely different
+            k-values. Ancient life writes its DNA differently.</p>
+        </div>
+
+        <div class="honest-card">
+            <p>All signals are below 1x uniform. These are whispers, not shouts. The codon usage
+            tables used here are approximate (rounded from Kazusa database values). Seven organisms
+            is a small sample. The codon ordering (which codon gets bin 0 vs bin 63) is arbitrary -
+            different orderings would give different k-values.</p>
+            <p>The honest finding: codon bias differs by kingdom, and the QFT captures that difference
+            as distinct frequency signatures. Whether those signatures are robust to ordering changes
+            and larger samples is an open question. More organisms would sharpen or dissolve the pattern.</p>
+        </div>
+
         <!-- ============================================== -->
         <h3>Appendix: The Logistic Map Beyond Chaos</h3>
 
