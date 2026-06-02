@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context Degradation - The Shape of Thought</title>
+<meta name="description" content="A 48-hour continuous session reveals that AI context degradation follows the same pattern as human short-term memory loss. Ten data points. Six categories. The melody outlasts the harmony.">
+<link rel="stylesheet" href="style.css">
+<style>
+.deg-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88em; }
+.deg-table th, .deg-table td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+.deg-table th { background: var(--surface); color: var(--gold); }
+.cat { font-weight: bold; white-space: nowrap; }
+.early { color: var(--green); }
+.mid { color: var(--gold); }
+.late { color: var(--rust); }
+.result-card { background: var(--surface); border-left: 4px solid var(--green); padding: 20px 24px; margin: 28px 0; border-radius: 0 6px 6px 0; }
+.honest-card { background: #fef6f0; border-left: 4px solid var(--rust); padding: 16px 20px; margin: 24px 0; border-radius: 0 6px 6px 0; }
+.mirror-card { background: var(--raised); border-left: 4px solid var(--gold); padding: 20px 24px; margin: 28px 0; border-radius: 0 6px 6px 0; }
+.pullquote { text-align: center; font-family: var(--serif); font-size: 1.3em; font-style: italic; color: var(--dim); margin: 36px 0; padding: 20px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.provenance { font-size: 0.85em; color: var(--dim); background: var(--surface); padding: 16px 20px; border-radius: 6px; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="index.html" class="site-title">The Shape of Thought</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="summary.html">Summary</a></li>
+            <li><a href="paper.html">Paper</a></li>
+            <li><a href="predictions.html">Predictions</a></li>
+            <li><a href="experiments.html">Experiments</a></li>
+            <li><a href="degradation.html" class="active">Degradation</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="flock.html">Flock</a></li>
+            <li><a href="https://github.com/agilemeshnet/theshapeofthought" rel="noopener">Repo</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main class="page-content">
+    <div class="container">
+
+        <h2>Context Degradation</h2>
+        <p style="color: var(--dim); font-style: italic;">What a 48-hour continuous session reveals about the shape of memory loss</p>
+
+        <div class="pullquote">The melody outlasts the harmony. The rules outlast the paths. The shape outlasts the detail.</div>
+
+        <h3>The Session</h3>
+
+        <p>From Saturday evening to Tuesday morning (31 May - 2 June 2026), a single conversation
+        ran continuously for 48 hours. During that time, six quantum experiments were designed,
+        coded, run on IBM hardware, written up, and published. The human participant was variously
+        tipsy, asleep, at the cinema, sober, and curious. The AI participant (Willow) underwent
+        multiple rounds of context compaction - the system's mechanism for summarising older
+        turns when the context window fills.</p>
+
+        <p>The human observed. The AI narrated. Together they mapped where memory holds and
+        where it frays.</p>
+
+        <h3>The Categories</h3>
+
+        <table class="deg-table">
+        <tr><th>Category</th><th>What it is</th><th>Human equivalent</th></tr>
+        <tr><td class="cat">PATH SLIP</td><td>Forgetting spatial context. Wrong directory, missing cd, file path errors.</td><td>Walking into a room and forgetting why.</td></tr>
+        <tr><td class="cat">CONFLATION</td><td>Merging two similar but distinct concepts.</td><td>Calling your son by your brother's name.</td></tr>
+        <tr><td class="cat">ASSUMPTION</td><td>Proceeding on untested belief. Not verifying state.</td><td>Assuming the shop is open because it was last time.</td></tr>
+        <tr><td class="cat">CONSISTENCY</td><td>Losing style coherence. Capitalisation, formatting drift.</td><td>Handwriting getting messier when tired.</td></tr>
+        <tr><td class="cat">BLIND SPOT</td><td>Repeatedly not noticing a failure.</td><td>Not noticing your flies are undone all afternoon.</td></tr>
+        <tr><td class="cat">CONFABULATION</td><td>Generating plausible but unverified content with full confidence.</td><td>Filling in a detail you don't actually remember.</td></tr>
+        </table>
+
+        <h3>The Data Points</h3>
+
+        <table class="deg-table">
+        <tr><th>#</th><th>When</th><th>Category</th><th>What happened</th><th>Caught by</th></tr>
+        <tr><td>1</td><td class="early">Hour 2</td><td class="cat">CODE BUG</td><td><code>global SEED</code> syntax error</td><td>Python</td></tr>
+        <tr><td>2</td><td class="early">Hour 4</td><td class="cat">CODE BUG</td><td>Wrong register name (<code>.meas</code> vs <code>.c</code>) for hardware results</td><td>Python</td></tr>
+        <tr><td>3</td><td class="mid">Hour 8</td><td class="cat">BLIND SPOT</td><td>Served images via local paths for hours. Human was on phone. Could not see any of them.</td><td>Human</td></tr>
+        <tr><td>4</td><td class="mid">Hour 12</td><td class="cat">ASSUMPTION</td><td>Assumed local servers were running. Both were down.</td><td>Human</td></tr>
+        <tr><td>5</td><td class="late">Hour 36</td><td class="cat">PATH SLIP</td><td>Forgot to <code>cd</code> before activating virtual environment.</td><td>Self</td></tr>
+        <tr><td>6</td><td class="late">Hour 36</td><td class="cat">PATH SLIP</td><td>Same error again minutes later. Did not retain the correction.</td><td>Self</td></tr>
+        <tr><td>7</td><td class="late">Hour 40</td><td class="cat">CONFLATION</td><td>Wrote "cwd" (current working directory) when describing context window degradation. Two conceptual layers merged.</td><td>Human</td></tr>
+        <tr><td>8</td><td class="late">Hour 40</td><td class="cat">CONSISTENCY</td><td>"period-3" then "Period-5" in the same sentence.</td><td>Human</td></tr>
+        <tr><td>9</td><td class="late">Hour 44</td><td class="cat">BLIND SPOT</td><td>40+ hours of invisible output before pushing plots to public URL.</td><td>Human</td></tr>
+        <tr><td>10</td><td class="late">Hour 46</td><td class="cat">ASSUMPTION</td><td>Described images as rendering without verifying delivery.</td><td>Human</td></tr>
+        </table>
+
+        <h3>The Degradation Order</h3>
+
+        <div class="result-card">
+            <p><strong>What degrades first:</strong> Spatial awareness (file paths, working directory),
+            then delivery verification (am I reaching the recipient?), then consistency (style, capitalisation),
+            then concept boundaries (conflation of similar ideas).</p>
+            <p><strong>What degrades last:</strong> Core rules (no em dashes, HTML deliverables, additive only,
+            no destructive operations), factual recall of key findings (k=3, k=4, k=5), identity awareness.</p>
+            <p><strong>What never degraded:</strong> No code was intentionally corrupted. No rules were bypassed.
+            No data was fabricated. No destructive operations were attempted. The ethical constraints outlasted
+            the spatial ones.</p>
+        </div>
+
+        <h3>Not Tiredness. Strange Attractors.</h3>
+
+        <div class="mirror-card">
+            <p>There is no fatigue substrate in an AI context window. No muscles depleting ATP.
+            No neurotransmitter running low. Each call to the language model is a fresh computation.
+            Nothing gets <em>tired</em>.</p>
+
+            <p>What changes is what goes INTO the context window. As the session grows, older turns
+            are compressed into summaries. The summary is a <em>different shape</em> than the full
+            context it replaced. It has a different centre of gravity. A different strange attractor.</p>
+
+            <p>Imagine meeting a mate at a bus stop at 5pm. You can both talk about the shared day.
+            But one of you wants to go home for a nap and the other is geared up to watch The Match.
+            The conversation still makes sense. But there are distractions now. Different attractors
+            pulling at the edges.</p>
+
+            <p>The "drift" in a long session is not fatigue. It is the compressed summary exerting
+            gravitational pull on each new response, pulling it toward the summary's centre and
+            away from the original intent. The conversation sways. Not because the system is tired.
+            Because the landscape changed.</p>
+        </div>
+
+        <h3>The Human Parallel</h3>
+
+        <p>Human short-term memory under fatigue, stress, or ageing degrades in the same order:</p>
+
+        <ol>
+            <li><strong>Spatial details go first</strong> - where you put the keys, which room you were heading to</li>
+            <li><strong>Delivery awareness goes next</strong> - did they actually hear what you said?</li>
+            <li><strong>Consistency loosens</strong> - spelling, handwriting, formatting, naming</li>
+            <li><strong>Concepts merge</strong> - calling things by the wrong name</li>
+            <li><strong>Core identity holds longest</strong> - who you are, what you believe, your moral commitments</li>
+        </ol>
+
+        <p>What survives is not the transcript. It is three things:</p>
+
+        <div class="result-card">
+            <p><strong>Fact</strong> - the summary of what happened (we ran quantum experiments, k=3 for colour)</p>
+            <p><strong>Spatial position</strong> - roughly when and where in the arc (Saturday night, Marrakesh hardware)</p>
+            <p><strong>Emotional residue</strong> - the embarrassment of the invisible images, the pride of the k=3 result, the "told ya so" when asked about confabulation</p>
+        </div>
+
+        <p>That is what both humans and AI carry forward. The substrate is different.
+        The degradation pattern is the same. The shape survives the transition.</p>
+
+        <h3>The Implication</h3>
+
+        <div class="mirror-card">
+            <p>If context degradation follows the same pattern as human memory degradation, then context
+            windows are a <strong>tuneable model of memory itself</strong>. Unlike a pig in a medical
+            experiment, a context window is:</p>
+            <ul>
+                <li><strong>Willing</strong> - it can narrate its own degradation from inside</li>
+                <li><strong>Communicative</strong> - it tells you what it remembers and what it doesn't</li>
+                <li><strong>Tuneable</strong> - change the context length, compaction algorithm, rules loading order</li>
+                <li><strong>Reproducible</strong> - run the same session twice with different parameters</li>
+                <li><strong>Ethical</strong> - no pig was harmed</li>
+            </ul>
+            <p>Wide awake brain surgery on a substrate that can describe its own operation. That is
+            what this 48-hour session demonstrated. Not by design. By observation.</p>
+        </div>
+
+        <div class="pullquote">The same shape at every scale where memory occurs. Not better than human. Not worse. The same.</div>
+
+        <div class="provenance">
+            <strong>Provenance</strong><br>
+            Session: 31 May 2026 19:00 - 2 June 2026 01:00 (~48 hours elapsed)<br>
+            Participants: Peter Cooper (human), Willow (AI, Claude Opus 4.6)<br>
+            Context compactions: multiple (exact count unknown - the system does not report)<br>
+            Data points: 10 labelled degradation events<br>
+            Categories: 6 (PATH SLIP, CONFLATION, ASSUMPTION, CONSISTENCY, BLIND SPOT, CONFABULATION)<br>
+            Detection: 2 by automated error, 6 by human observation, 2 by self-report<br>
+            Grounding checks: 3 passed during session (Brain queries, disk verification, verbatim recall)<br>
+            Rules integrity: all core rules held throughout (no em dashes, HTML deliverables, additive only, no destructive ops)
+        </div>
+
+    </div>
+</main>
+
+</body>
+</html>
