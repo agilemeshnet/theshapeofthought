@@ -397,6 +397,57 @@ img { max-width: 100%; height: auto; margin: 16px 0; border: 1px solid var(--bor
         </div>
 
         <!-- ============================================== -->
+        <!-- ============================================== -->
+        <h3>Experiment 8: Music Shapes - The QFT Hears the Tradition</h3>
+
+        <p>Music compresses the full-dimensional emotional arc of a story into a temporal
+        sequence of frequencies. The listener decompresses it against their own experience.
+        The pleasure is recognition of the formula. The surprise is the rearrangement.</p>
+
+        <p>Seven melodies from different traditions, encoded as MIDI pitch distributions
+        across 64 bins (piano range, C2 to C7). Same 6 qubits. Same QFT.</p>
+
+        <table class="exp-table">
+            <tr><th>Tradition</th><th>Melody</th><th>Unique Pitches</th><th>Fingerprint (3rd k)</th></tr>
+            <tr><td>Western nursery</td><td>Twinkle Twinkle</td><td>6</td><td>k=2 (3.6x)</td></tr>
+            <tr><td>Baroque</td><td>Bach Invention No.1</td><td>15</td><td>k=39 (2.8x)</td></tr>
+            <tr><td>Pentatonic hymn</td><td>Amazing Grace</td><td>6</td><td>k=39 (4.0x)</td></tr>
+            <tr><td>Blues</td><td>Blues in C</td><td>13</td><td>k=25 (2.8x)</td></tr>
+            <tr><td>Indian classical</td><td>Raga Yaman</td><td>15</td><td>k=44 (2.6x)</td></tr>
+            <tr><td>Japanese</td><td>Sakura</td><td>7</td><td>k=62 (2.6x)</td></tr>
+            <tr><td>Random chromatic</td><td>Control</td><td>24</td><td>k=5 (1.2x)</td></tr>
+        </table>
+
+        <div class="result-card">
+            <p>Every melody shows <strong>k=1 and k=63</strong> as the dominant mirror pair - this
+            is musical range (where on the keyboard the piece lives). Universal.</p>
+            <p>The <strong>third frequency</strong> is where traditions diverge. Bach and Amazing Grace
+            share k=39 (both tonal Western). Blues has k=25. Indian raga has k=44. Japanese pentatonic
+            has k=62. Each tradition leaves a different QFT fingerprint.</p>
+            <p><strong>The irony:</strong> the random chromatic control is the ONLY melody where k=5
+            (octave periodicity) appears. Real music <em>avoids</em> octave periodicity. It clusters
+            within the octave. Random noise spreads evenly and accidentally finds the octave structure.</p>
+        </div>
+
+        <div class="mirror-card">
+            <p><strong>Music is the warble box applied to drama.</strong> It takes the full emotional
+            arc of a story - setup, tension, surprise, resolution - and compresses it through
+            a membrane into a temporal sequence. Beethoven&rsquo;s 5th moved the climax to the first
+            movement. That is the same shape as putting the prediction before the experiment.</p>
+            <p>The formula IS the periodic structure. The QFT doesn&rsquo;t hear the melody.
+            It hears the tradition. The notation system is the measurement choice.
+            What you choose to count determines what structure appears.</p>
+        </div>
+
+        <div class="honest-card">
+            <p>These are single short melodies, not representative corpora. A proper study would
+            use hundreds of pieces per tradition. The MIDI encoding imposes 12-tone equal temperament
+            on traditions (Indian, Japanese) that use different tuning systems - a Procrustean bed
+            that may suppress their actual structure. The pitch-to-bin mapping is linear, not
+            logarithmic (unlike the sound experiment, which respected the ear&rsquo;s octave structure).</p>
+        </div>
+
+        <!-- ============================================== -->
         <h3>Appendix: The Logistic Map Beyond Chaos</h3>
 
         <p>Most visualisations of the logistic map stop at the onset of chaos. That is like
